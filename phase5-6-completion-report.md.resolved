@@ -1,0 +1,84 @@
+# Ruby HSK Publishing — Completion Report
+
+## ✅ Đã hoàn thành
+
+### Phase 6 — Supabase Database
+
+**Project:** `Ruby-HSK` · `vqukxdeymnmweacovmup` · `ap-south-1` · Status: ACTIVE_HEALTHY
+
+| Bảng | Dữ liệu seed | RLS |
+|---|---|---|
+| `course_categories` | 4 categories (HSK 1-2, 3-4, 5-6, Giao tiếp) | Public SELECT |
+| `courses` | 4 khóa học đầy đủ | Public SELECT (is_published=true) |
+| `teacher_profile` | Cô Trần Hồng Ngọc — bio, certs, 10yr exp | Public SELECT (is_active=true) |
+| `testimonials` | 3 đánh giá học viên | Public SELECT (is_published=true) |
+| `faqs` | 4 FAQ cho Home | Public SELECT (is_published=true) |
+| `site_settings` | Phone, email, Zalo, Facebook, address | Public SELECT |
+| `contact_submissions` | — (nhận form thật) | Anon INSERT only, NO public SELECT |
+
+**Files mới:**
+- [src/lib/supabase/server.ts](file:///c:/DEV/ruby-hsk/src/lib/supabase/server.ts) — Server-side Supabase client
+- [src/lib/supabase/types.ts](file:///c:/DEV/ruby-hsk/src/lib/supabase/types.ts) — TypeScript types từ schema
+- [.env.local](file:///c:/DEV/ruby-hsk/.env.local) — Supabase URL + anon key
+
+### Phase 5 — SEO Infrastructure
+
+**Files mới:**
+- [src/app/sitemap.ts](file:///c:/DEV/ruby-hsk/src/app/sitemap.ts) — Dynamic sitemap × 2 locale (VI/EN)
+- [src/app/robots.ts](file:///c:/DEV/ruby-hsk/src/app/robots.ts) — robots.txt với disallow `/api/`, `/_next/`, `/coming-soon`
+- [src/app/manifest.ts](file:///c:/DEV/ruby-hsk/src/app/manifest.ts) — PWA manifest (theme `#804237`)
+- [src/lib/seo/jsonld.ts](file:///c:/DEV/ruby-hsk/src/lib/seo/jsonld.ts) — JSON-LD helpers: Organization, Course, FAQPage, BreadcrumbList
+- [public/og-default.png](file:///c:/DEV/ruby-hsk/public/og-default.png) — OG image 1200×630 cho social share
+
+**Pages cập nhật với [generateMetadata](file:///c:/DEV/ruby-hsk/src/app/%5Blocale%5D/page.tsx#13-42):**
+
+| Route | Title | OG | Twitter | JSON-LD | Canonical |
+|---|---|---|---|---|---|
+| `/[locale]` | ✅ | ✅ | ✅ | FAQPage (từ DB) | ✅ |
+| `/[locale]/courses` | ✅ | ✅ | ✅ | Course × 4 + Breadcrumb | ✅ |
+| `/[locale]/about` | ✅ | ✅ | ✅ | Breadcrumb | ✅ |
+| `/[locale]/contact` | ✅ | ✅ | ✅ | Breadcrumb | ✅ |
+| `/[locale]/privacy` | ✅ | — | — | — | ✅ |
+| `/[locale]/terms` | ✅ | — | — | — | ✅ |
+| `/[locale]/coming-soon` | ✅ `noindex` | — | — | — | — |
+
+**Layout `[locale]/layout.tsx` cập nhật:**
+- `metadataBase` → `NEXT_PUBLIC_SITE_URL`
+- `title.template` → `'%s | Ruby HSK'`
+- Full OG + Twitter card defaults
+- `keywords` array
+- Organization JSON-LD injected globally via `<script type="application/ld+json">`
+
+### Data Integration
+
+- **Courses page** — fetch từ `courses` table (có static fallback nếu DB lỗi)
+- **About page** — fetch `teacher_profile`: bio, certs, years_experience
+- **Contact form** ([src/components/sections/contact-form.tsx](file:///c:/DEV/ruby-hsk/src/components/sections/contact-form.tsx)) — submit client-side vào `contact_submissions` với validation + success/error state
+
+### Verification
+
+- ✅ `npm run typecheck` — pass 0 errors
+- ✅ `npm run build` — exit 0, sinh đúng 10 routes
+- ✅ Courses: 4 khoá học load từ Supabase với real descriptions
+- ✅ About: hiển thị cô Trần Hồng Ngọc + certifications từ DB
+- ✅ Contact: form đầy đủ, submit to Supabase, info liên lạc thật
+- ✅ Sitemap: `/vi` × 6 + `/en` × 6 = 12 URLs với priority đúng
+- ✅ robots.txt: allow `/`, disallow `/api/` `/coming-soon`
+
+## ⚠️ Còn cần bổ sung (khi có thông tin thật)
+
+1. **`NEXT_PUBLIC_SITE_URL`** production — cập nhật khi có domain thật (thay `http://localhost:3000` bằng `https://rubyhsk.vn`)
+2. **OG image** — ảnh [/public/og-default.png](file:///c:/DEV/ruby-hsk/public/og-default.png) hiện là AI-generated, nên thay bằng ảnh branding thật
+3. **Google Search Console** — thêm `verification.google` vào layout sau khi có property verification code
+4. **PWA icons** — `/public/icon-192.png`, `/public/icon-512.png` chưa tồn tại; manifest sẽ thiếu icon cho đến khi được tạo
+5. **Contact info thật** — số điện thoại `0901 234 567` là placeholder, cần thay bằng số thật của Ruby HSK
+6. **Supabase security note** — `contact_submissions` INSERT policy `WITH CHECK (true)` là intentional (public form), không phải lỗi bảo mật
+
+## 🗂️ Thứ tự phase tiếp theo
+
+```
+Phase 7 — Responsive/mobile acceptance (QA)
+Phase 8 — lint / typecheck / build cleanup
+Phase 9 — Vercel deployment + env vars production
+Phase 10 — Search Console + Lighthouse audit
+```

@@ -1,33 +1,55 @@
 'use client';
 
-import {BookOpen, Home, Info, Mail, MoreHorizontal} from 'lucide-react';
-import {useState} from 'react';
-import {useTranslations} from 'next-intl';
-import {Link, usePathname} from '@/i18n/navigation';
-import {LanguageToggle} from './language-toggle';
-import {ThemeToggle} from './theme-toggle';
+import { BookOpen, Home, Info, Mail, MoreHorizontal } from 'lucide-react';
+import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { Link, usePathname } from '@/i18n/navigation';
+import { LanguageToggle } from './language-toggle';
+import { ThemeToggle } from './theme-toggle';
 
 export function MobileBottomNav() {
   const t = useTranslations('Nav');
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const items = [
-    {href: '/', label: t('home'), icon: Home},
-    {href: '/courses', label: t('courses'), icon: BookOpen},
-    {href: '/about', label: t('about'), icon: Info},
-    {href: '/contact', label: t('contact'), icon: Mail}
+    { href: '/', label: t('home'), icon: Home },
+    { href: '/courses', label: t('courses'), icon: BookOpen },
+    { href: '/about', label: t('about'), icon: Info },
+    { href: '/contact', label: t('contact'), icon: Mail }
   ];
 
   return (
     <>
-      <nav className="fixed inset-x-3 bottom-3 z-50 rounded-[1.6rem] border border-[var(--color-border)] bg-[var(--color-surface-glass)] px-2 py-2 shadow-[var(--shadow-soft)] backdrop-blur-xl md:hidden">
-        <div className="grid grid-cols-5 gap-1">
+      <nav
+        className="fixed inset-x-0 bottom-0 z-50 h-16 bg-[var(--color-surface)] shadow-[0_-4px_10px_rgba(181,35,48,0.1)] md:hidden"
+        style={{ borderTopLeftRadius: '1.25rem', borderTopRightRadius: '1.25rem' }}
+      >
+        <div className="flex h-full items-center justify-around px-4">
           {items.map((item) => {
             const active = pathname === item.href;
             const Icon = item.icon;
-            return <Link key={item.href} href={item.href} className={`flex flex-col items-center gap-1 rounded-2xl px-1 py-2 text-[11px] font-bold ${active ? 'bg-[var(--color-peach)] text-[var(--color-primary)]' : 'text-[var(--color-muted)]'}`}><Icon className="h-5 w-5" />{item.label}</Link>;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex flex-col items-center justify-center gap-0.5 rounded-[var(--radius-xl)] px-4 py-1 text-[10px] font-bold transition-all ${active
+                    ? 'bg-[var(--color-primary-container)]/20 text-[var(--color-primary)]'
+                    : 'text-[var(--color-on-surface-variant)]'
+                  }`}
+              >
+                <Icon className="h-5 w-5" />
+                {item.label}
+              </Link>
+            );
           })}
-          <button type="button" onClick={() => setOpen(true)} className="flex flex-col items-center gap-1 rounded-2xl px-1 py-2 text-[11px] font-bold text-[var(--color-muted)]"><MoreHorizontal className="h-5 w-5" />{t('more')}</button>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="flex flex-col items-center justify-center gap-0.5 rounded-[var(--radius-xl)] px-4 py-1 text-[10px] font-bold text-[var(--color-on-surface-variant)]"
+          >
+            <MoreHorizontal className="h-5 w-5" />
+            {t('more')}
+          </button>
         </div>
       </nav>
       {open && <div className="fixed inset-0 z-[60] bg-black/30 md:hidden" onClick={() => setOpen(false)}>

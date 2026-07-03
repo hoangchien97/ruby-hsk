@@ -1,40 +1,212 @@
 @import "tailwindcss";
 @import "../styles/design-tokens.scss";
 
+@theme {
+  --breakpoint-xl: 1400px;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* ─── Reset ─── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
   background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--color-on-surface);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
+/* Stitch: subtle ivory radial background — NOT harsh gradients */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 12% 12%, rgba(231, 143, 101, 0.18), transparent 28rem),
-    radial-gradient(circle at 90% 10%, rgba(214, 168, 79, 0.16), transparent 28rem),
-    radial-gradient(circle at 70% 72%, rgba(128, 66, 55, 0.08), transparent 26rem);
+    radial-gradient(circle at 15% 15%, rgba(255, 218, 216, 0.35), transparent 30rem),
+    radial-gradient(circle at 88% 8%, rgba(255, 209, 103, 0.18), transparent 28rem),
+    radial-gradient(circle at 65% 80%, rgba(0, 168, 125, 0.10), transparent 25rem);
   z-index: -1;
 }
 
-a { color: inherit; text-decoration: none; }
-button, input, select, textarea { font: inherit; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-.page-shell { min-height: 100vh; padding-bottom: 96px; }
-.container { width: min(1120px, calc(100% - 32px)); margin-inline: auto; }
-.glass-card { background: var(--color-surface-glass); border: 1px solid var(--color-border); box-shadow: var(--shadow-soft); backdrop-filter: blur(18px); }
-.section-title { color: var(--color-title); font-weight: 800; letter-spacing: -0.03em; }
-.text-muted { color: var(--color-muted); }
-.focus-ring:focus-visible { outline: 3px solid color-mix(in srgb, var(--color-primary) 32%, transparent); outline-offset: 3px; }
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
 
+/* ─── Layout ─── */
+.page-shell {
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.container {
+  width: min(1400px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+/* ─── Card — white surface with coral-tinted shadow ─── */
+.card {
+  background: var(--color-surface-container-lowest);
+  border: 1px solid var(--color-surface-variant);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-card);
+}
+
+/* ─── Glass card (header, nav, floating) ─── */
+.glass-card {
+  background: var(--color-surface-glass);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ─── Type scale aliases ─── */
+.text-display-lg {
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.text-headline-lg {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+.text-headline-lg-mobile {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 700;
+}
+
+.text-title-md {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+.text-body-lg {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+}
+
+.text-body-md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.text-label-lg {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.text-label-sm {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+/* ─── Semantic text helpers ─── */
+.section-title {
+  color: var(--color-on-surface);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-muted {
+  color: var(--color-on-surface-variant);
+}
+
+/* ─── Focus ring ─── */
+.focus-ring:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-primary) 32%, transparent);
+  outline-offset: 3px;
+}
+
+/* ─── Pill badge / tag ─── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.badge-secondary {
+  background: var(--color-secondary-container);
+  color: var(--color-on-secondary-container);
+}
+
+.badge-tertiary {
+  background: var(--color-tertiary);
+  color: var(--color-on-tertiary);
+}
+
+.badge-surface {
+  background: var(--color-surface-container);
+  color: var(--color-on-surface);
+}
+
+/* ─── Coral card shadow utility ─── */
+.coral-shadow {
+  box-shadow: var(--shadow-coral);
+}
+
+/* ─── Bounce animation (mascot) ─── */
+@keyframes bounce-slow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 4s infinite ease-in-out;
+}
+
+/* ─── Mobile: show bottom nav ─── */
 @media (min-width: 768px) {
-  .page-shell { padding-bottom: 0; }
+  .page-shell {
+    padding-bottom: 0;
+  }
 }

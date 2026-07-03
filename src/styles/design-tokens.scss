@@ -1,39 +1,120 @@
+/**
+ * Design Tokens — Vibrant Academic Ivory
+ * Source: Stitch_Ruby_HSK_HTML/vibrant_academic_ivory/DESIGN.md
+ * Primary: Coral Red #b52330 | Background: Ivory #fdf9f4
+ */
+
 :root {
-  --font-sans: "Noto Sans", "Noto Sans SC";
-  --color-primary: #804237;
-  --color-primary-hover: #6e362e;
-  --color-secondary: #e78f65;
-  --color-tertiary: #191211;
-  --color-bg: #f9f5f0;
-  --color-bg-soft: #fffdf8;
-  --color-surface: #fffdf8;
-  --color-surface-glass: rgba(255, 253, 248, 0.78);
-  --color-title: #804237;
-  --color-text: #5b4843;
-  --color-muted: #8a756d;
-  --color-border: #e4d5c8;
-  --color-peach: #fce8de;
-  --color-gold: #d6a84f;
-  --radius-xl: 1.25rem;
-  --radius-2xl: 1.5rem;
-  --radius-3xl: 2rem;
-  --shadow-soft: 0 18px 55px rgba(128, 66, 55, 0.12);
-  --shadow-button: 0 14px 28px rgba(128, 66, 55, 0.22);
+  --font-sans: "Noto Sans", "Noto Sans SC", system-ui, sans-serif;
+
+  /* ─── Brand colors (exact Stitch tokens) ─── */
+  --color-primary:            #b52330;   /* Deep Coral Red — CTA, active nav, headings */
+  --color-primary-hover:      #9e1e2a;
+  --color-primary-container:  #ff5a5f;   /* Lighter coral — badge bg, active pill */
+  --color-on-primary:         #ffffff;
+  --color-on-primary-container: #61000e;
+  --color-primary-fixed:      #ffdad8;   /* Very light coral — hover tint */
+  --color-primary-fixed-dim:  #ffb3b0;   /* Inverse primary */
+
+  /* ─── Secondary — Sunlight Yellow ─── */
+  --color-secondary:          #785a00;
+  --color-secondary-container: #ffd167;
+  --color-on-secondary:       #ffffff;
+  --color-on-secondary-container: #765900;
+  --color-secondary-fixed:    #ffdf9b;
+  --color-secondary-fixed-dim: #edc157;
+
+  /* ─── Tertiary — Mint Green ─── */
+  --color-tertiary:           #006c4f;
+  --color-tertiary-container: #00a87d;
+  --color-on-tertiary:        #ffffff;
+  --color-on-tertiary-container: #003424;
+
+  /* ─── Surface / Background — Ivory Cream ─── */
+  --color-bg:                 #fdf9f4;
+  --color-surface:            #fdf9f4;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f7f3ee;
+  --color-surface-container:  #f1ede8;
+  --color-surface-container-high: #ebe8e3;
+  --color-surface-container-highest: #e6e2dd;
+  --color-surface-variant:    #e6e2dd;
+  --color-surface-dim:        #ddd9d5;
+  --color-surface-glass:      rgba(253, 249, 244, 0.85);
+
+  /* ─── Content colors ─── */
+  --color-on-background:      #1c1c19;
+  --color-on-surface:         #1c1c19;
+  --color-on-surface-variant: #5a403f;
+  --color-inverse-surface:    #31302d;
+  --color-inverse-on-surface: #f4f0eb;
+
+  /* ─── Semantic aliases (used in components) ─── */
+  --color-title:   var(--color-primary);       /* section titles */
+  --color-text:    var(--color-on-surface-variant);
+  --color-muted:   var(--color-on-surface-variant);
+  --color-border:  var(--color-outline-variant);
+  --color-peach:   var(--color-primary-fixed);
+  --color-gold:    var(--color-secondary-fixed-dim);
+
+  /* ─── Outline ─── */
+  --color-outline:          #8e706f;
+  --color-outline-variant:  #e2bebc;
+
+  /* ─── Error ─── */
+  --color-error:            #ba1a1a;
+  --color-on-error:         #ffffff;
+  --color-error-container:  #ffdad6;
+
+  /* ─── Radius — High Circularity ─── */
+  --radius-sm:   0.25rem;   /* 4px  — DEFAULT */
+  --radius-md:   0.5rem;    /* 8px  — lg */
+  --radius-xl:   0.75rem;   /* 12px — xl */
+  --radius-2xl:  1.5rem;    /* 24px — 2xl (cards, modals) */
+  --radius-3xl:  2rem;      /* 32px — large containers */
+  --radius-full: 9999px;    /* Pills — buttons, badges */
+
+  /* ─── Shadows — Coral-tinted ─── */
+  --shadow-card:   0 10px 30px -5px rgba(181, 35, 48, 0.08);
+  --shadow-coral:  0 10px 30px -10px rgba(181, 35, 48, 0.15);
+  --shadow-button: 0 14px 28px rgba(181, 35, 48, 0.22);
+  --shadow-soft:   var(--shadow-card);
+
+  /* ─── Spacing (8px base) ─── */
+  --space-xs:  4px;
+  --space-sm:  12px;
+  --space-md:  24px;
+  --space-lg:  40px;
+  --space-xl:  64px;
 }
 
+/* ─── Dark mode overrides ─── */
 .dark {
-  --color-primary: #e78f65;
-  --color-primary-hover: #f3a784;
-  --color-secondary: #d6a84f;
-  --color-bg: #191211;
-  --color-bg-soft: #241a18;
-  --color-surface: #241a18;
-  --color-surface-glass: rgba(36, 26, 24, 0.72);
-  --color-title: #f9f5f0;
-  --color-text: #eadbd2;
-  --color-muted: #d1bdb3;
-  --color-border: rgba(231, 143, 101, 0.28);
-  --color-peach: rgba(231, 143, 101, 0.18);
-  --shadow-soft: 0 18px 55px rgba(0, 0, 0, 0.35);
-  --shadow-button: 0 14px 28px rgba(231, 143, 101, 0.2);
+  --color-bg:               #1c1c19;
+  --color-surface:          #26221f;
+  --color-surface-container-lowest: #131211;
+  --color-surface-container-low: #26221f;
+  --color-surface-container:  #31302d;
+  --color-surface-container-high: #3c3835;
+  --color-surface-container-highest: #47433f;
+  --color-surface-variant:  #47433f;
+  --color-surface-dim:      #1c1c19;
+  --color-surface-glass:    rgba(30, 26, 23, 0.88);
+
+  --color-on-background:    #e8e4df;
+  --color-on-surface:       #e8e4df;
+  --color-on-surface-variant: #d4b9b7;
+  --color-inverse-surface:  #e8e4df;
+  --color-inverse-on-surface: #31302d;
+
+  --color-title:   var(--color-primary-fixed-dim);
+  --color-text:    var(--color-on-surface-variant);
+  --color-muted:   #b09896;
+  --color-border:  rgba(181, 35, 48, 0.22);
+  --color-peach:   rgba(181, 35, 48, 0.18);
+
+  --shadow-card:   0 10px 30px -5px rgba(0, 0, 0, 0.4);
+  --shadow-coral:  0 10px 30px -10px rgba(0, 0, 0, 0.35);
+  --shadow-button: 0 14px 28px rgba(181, 35, 48, 0.18);
+  --shadow-soft:   var(--shadow-card);
 }

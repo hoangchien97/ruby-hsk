@@ -1,30 +1,68 @@
-import {useTranslations} from 'next-intl';
-import {Link} from '@/i18n/navigation';
-import {LogoIcon} from '@/components/logo/logo-icon';
-import {LanguageToggle} from './language-toggle';
-import {ThemeToggle} from './theme-toggle';
-import {Button} from '@/components/ui/button';
+'use client';
 
+import { useTranslations } from 'next-intl';
+import { Link, usePathname } from '@/i18n/navigation';
+import { LogoIcon } from '@/components/logo/logo-icon';
+import { LanguageToggle } from './language-toggle';
+import { ThemeToggle } from './theme-toggle';
+import { NavLinks } from '@/lib/constants/site';
+
+/**
+ * Header — Stitch spec:
+ *   - Sticky top-0, full width, glass-nav (ivory/85% + blur)
+ *   - Logo icon-only + horizontal nav (hidden on mobile)
+ *   - Language toggle + Theme toggle + CTA "Bắt đầu học"
+ *   - Active link: coral underline border-b-2
+ */
 export function Header() {
   const t = useTranslations('Nav');
+  const pathname = usePathname();
   const nav = [
-    {href: '/', label: t('home')},
-    {href: '/courses', label: t('courses')},
-    {href: '/about', label: t('about')},
-    {href: '/contact', label: t('contact')}
+    { href: NavLinks.home, label: t('home') },
+    { href: NavLinks.courses, label: t('courses') },
+    { href: NavLinks.about, label: t('about') },
+    { href: NavLinks.contact, label: t('contact') },
   ];
 
   return (
-    <header className="sticky top-4 z-40 px-4">
-      <div className="container flex items-center justify-between rounded-[1.75rem] border border-[var(--color-border)] bg-[var(--color-surface-glass)] px-4 py-3 shadow-sm backdrop-blur-xl">
-        <Link href="/" aria-label="Ruby HSK home"><LogoIcon /></Link>
-        <nav className="hidden items-center gap-7 text-sm font-bold text-[var(--color-muted)] md:flex">
-          {nav.map((item) => <Link key={item.href} href={item.href} className="hover:text-[var(--color-primary)]">{item.label}</Link>)}
+    <header className="sticky top-0 z-50 w-full border-b border-[var(--color-surface-variant)] bg-[var(--color-surface-glass)] shadow-sm backdrop-blur-md">
+      <div className="flex h-20 items-center justify-between px-4 md:px-12 max-w-[1400px] mx-auto">
+        {/* Logo */}
+        <Link href="/" aria-label="Ruby HSK home" className="shrink-0">
+          <LogoIcon className="h-12 w-12 transition-transform hover:rotate-6" />
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-10 md:flex">
+          {nav.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`text-title-md transition-colors hover:text-[var(--color-primary)] py-1 ${isActive
+                    ? 'text-[var(--color-primary)] font-bold border-b-2 border-[var(--color-primary)] pb-0.5'
+                    : 'text-[var(--color-on-surface-variant)]'
+                  }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
-        <div className="flex items-center gap-2">
+
+        {/* Actions */}
+        <div className="flex items-center gap-3">
+          {/* Language toggle — pill style */}
           <LanguageToggle />
+
+          {/* Theme toggle */}
           <ThemeToggle />
-          <Link href="/contact" className="hidden md:inline-flex"><Button>{t('start')}</Button></Link>
+
+          {/* CTA button — hidden on mobile (bottom nav handles it) */}
+          {/* <Link href={NavLinks.contact} className="hidden md:inline-flex">
+            <Button size="md">{t('start')}</Button>
+          </Link> */}
         </div>
       </div>
     </header>

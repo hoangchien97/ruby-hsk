@@ -1,9 +1,83 @@
-import {useTranslations} from 'next-intl';
-import {Button} from '@/components/ui/button';
+import type { Metadata } from 'next';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
+import { Link } from '@/i18n/navigation';
+import { createServerSupabaseClient } from '@/lib/supabase/server';
+import { buildBreadcrumbLD, buildCourseLD } from '@/lib/seo/jsonld';
+import type { Tables } from '@/lib/supabase/types';
+import { CoursesContent } from '@/components/courses/courses-content';
 
-const courses = ['Tiếng Trung Sơ Cấp Toàn Diện', 'Trung Cấp & Luyện Thi HSK 4', 'Tiếng Trung Thương Mại Chuyên Sâu', 'HSK 5-6 Nâng Cao'];
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://rubyhsk.vn';
 
-export default function CoursesPage() {
-  const t = useTranslations('Courses');
-  return <section className="container pt-14"><div className="rounded-[2rem] bg-[#FCE8DE] p-8 md:p-12"><h1 className="section-title text-4xl md:text-6xl">{t('title')}</h1><p className="mt-4 max-w-2xl text-[var(--color-text)]">{t('sub')}</p><div className="mt-6 flex gap-3"><Button>Khám phá ngay</Button><Button variant="secondary">Tư vấn miễn phí</Button></div></div><div className="mt-10 grid gap-6 md:grid-cols-[240px_1fr]"><aside className="glass-card rounded-[1.75rem] p-5"><h2 className="font-black text-[var(--color-title)]">{t('filters')}</h2>{['Tất cả trình độ','HSK 1 - HSK 2','HSK 3 - HSK 4','HSK 5 - HSK 6'].map(x=><label className="mt-3 flex gap-2 text-sm" key={x}><input type="checkbox" />{x}</label>)}</aside><div><h2 className="section-title text-3xl">{t('list')}</h2><div className="mt-5 grid gap-5 md:grid-cols-2">{courses.map(c=><article key={c} className="glass-card overflow-hidden rounded-[1.75rem]"><div className="h-40 bg-gradient-to-br from-[#FCE8DE] to-[#FFF8E8]"/><div className="p-5"><span className="rounded-full bg-[var(--color-peach)] px-3 py-1 text-xs font-bold text-[var(--color-primary)]">HSK</span><h3 className="mt-3 text-xl font-black text-[var(--color-title)]">{c}</h3><p className="mt-2 text-sm text-[var(--color-muted)]">Lộ trình bài bản, dễ hiểu, phù hợp mục tiêu học tiếng Trung.</p><div className="mt-4"><Button>Chi tiết</Button></div></div></article>)}</div></div></div></section>;
+import { getDbMetadata } from '@/lib/seo/metadata';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'Courses' });
+  const path = '/courses';
+  const title = locale === 'vi' ? 'Khóa Học Tiếng Trung & Luyện Thi HSK 1-6' : 'Chinese Courses & HSK 1-6 Preparation';
+
+  return getDbMetadata(locale, path, title, t('sub'));
+}
+
+async function getCourses() {
+  try {
+    const supabase = createServerSupabaseClient();
+    const { data, error } = await supabase
+      .from('courses')
+      .select('id, slug, title_vi, title_en, description_vi, description_en, level_tag, duration_weeks, price_note, sort_order')
+      .eq('is_published', true)
+      .order('sort_order');
+    if (error) throw error;
+    return data ?? [];
+  } catch {
+    // Fallback tĩnh nếu DB không kết nối được
+    return [
+      { id: '1', slug: 'tieng-trung-so-cap', title_vi: 'Tiếng Trung Sơ Cấp Toàn Diện', title_en: 'Complete Beginner Chinese', description_vi: 'Xây dựng nền tảng phát âm chuẩn và từ vựng giao tiếp thường ngày.', description_en: 'Build a solid foundation in pronunciation and everyday vocabulary.', level_tag: 'HSK 1-2', duration_weeks: 16, price_note: 'Liên hệ để biết học phí', sort_order: 1 },
+      { id: '2', slug: 'luyen-thi-hsk-3-4', title_vi: 'Trung Cấp & Luyện Thi HSK 3-4', title_en: 'Intermediate & HSK 3-4 Preparation', description_vi: 'Nâng cao đọc hiểu, nghe và viết. Luyện đề thi HSK 3-4 chuyên sâu.', description_en: 'Improve reading, listening and writing. Intensive HSK 3-4 exam practice.', level_tag: 'HSK 3-4', duration_weeks: 20, price_note: 'Liên hệ để biết học phí', sort_order: 2 },
+      { id: '3', slug: 'tieng-trung-thuong-mai', title_vi: 'Tiếng Trung Thương Mại', title_en: 'Business Chinese', description_vi: 'Phát triển kỹ năng tiếng Trung trong môi trường công việc.', description_en: 'Develop Chinese skills for the workplace.', level_tag: 'HSK 4+', duration_weeks: 12, price_note: 'Liên hệ để biết học phí', sort_order: 3 },
+      { id: '4', slug: 'hsk-5-6-nang-cao', title_vi: 'HSK 5-6 Nâng Cao', title_en: 'HSK 5-6 Advanced', description_vi: 'Hoàn thiện kỹ năng ngôn ngữ, phân tích học thuật.', description_en: 'Master advanced language skills and academic analysis.', level_tag: 'HSK 5-6', duration_weeks: 24, price_note: 'Liên hệ để biết học phí', sort_order: 4 },
+    ] as Tables<'courses'>[];
+  }
+}
+
+export default async function CoursesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const courses = await getCourses();
+
+  const breadcrumbLD = buildBreadcrumbLD(
+    locale,
+    locale === 'vi' ? 'Khóa học' : 'Courses',
+    '/courses',
+  );
+  const courseLDs = courses.map((c) =>
+    buildCourseLD({
+      slug: c.slug,
+      titleVi: c.title_vi,
+      titleEn: c.title_en,
+      descriptionVi: c.description_vi ?? '',
+      descriptionEn: c.description_en ?? '',
+      locale,
+    }),
+  );
+
+  return (
+    <CoursesContent
+      locale={locale}
+      courses={courses}
+      breadcrumbLD={breadcrumbLD}
+      courseLDs={courseLDs}
+    />
+  );
 }

@@ -1,22 +1,100 @@
-import {useTranslations} from 'next-intl';
-import {HomeHero} from '@/components/sections/hero';
-import {FeatureGrid} from '@/components/sections/cards';
-import {Button} from '@/components/ui/button';
-import {Link} from '@/i18n/navigation';
+import type { Metadata } from 'next';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { HomeHero } from '@/components/sections/hero';
+import { LearningPaths } from '@/components/sections/learning-paths';
+import { WhyRuby } from '@/components/sections/why-ruby';
+import { TeacherSection } from '@/components/sections/teacher-section';
+import { buildFaqPageLD } from '@/lib/seo/jsonld';
+import { createServerSupabaseClient } from '@/lib/supabase/server';
 
-export default function HomePage() {
-  const t = useTranslations('Home');
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://rubyhsk.vn';
+
+import { getDbMetadata } from '@/lib/seo/metadata';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'Home' });
+  const path = '/';
+  const title = locale === 'vi'
+    ? 'Học Tiếng Trung & Luyện Thi HSK cùng cô Trần Hồng Ngọc'
+    : 'Learn Chinese & prepare for HSK with Ruby HSK';
+
+  return getDbMetadata(locale, path, title, t('sub'));
+}
+
+async function getFaqsLD(locale: string) {
+  try {
+    const supabase = createServerSupabaseClient();
+    const { data } = await supabase
+      .from('faqs')
+      .select('question_vi, question_en, answer_vi, answer_en')
+      .eq('page_scope', 'home')
+      .eq('is_published', true)
+      .order('sort_order');
+    if (!data?.length) return null;
+    return buildFaqPageLD(
+      data.map((f) => ({
+        question: locale === 'vi' ? f.question_vi : f.question_en,
+        answer: locale === 'vi' ? f.answer_vi : f.answer_en,
+      })),
+    );
+  } catch {
+    return null;
+  }
+}
+
+async function getTeacherData() {
+  try {
+    const supabase = createServerSupabaseClient();
+    const { data } = await supabase
+      .from('teacher_profile')
+      .select('bio_vi, bio_en, certifications')
+      .single();
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const [faqLD, teacher] = await Promise.all([getFaqsLD(locale), getTeacherData()]);
+  const isVi = locale === 'vi';
+
   return (
-    <>
-      <HomeHero />
-      <section className="container mt-8 grid gap-3 rounded-[2rem] bg-white/70 p-5 text-center shadow-sm md:grid-cols-4">
-        {['Lộ trình HSK 1-6', 'Online/Offline', '10.000+ Học viên', 'Thư viện 500+'].map((item) => <div key={item} className="rounded-2xl p-4"><strong className="text-xl text-[var(--color-title)]">{item}</strong></div>)}
-      </section>
-      <FeatureGrid title={t('why')} />
-      <section className="container mt-16 grid gap-6 rounded-[2rem] bg-[var(--color-primary)] p-8 text-white md:grid-cols-[1.2fr_0.8fr] md:p-12">
-        <div><h2 className="text-3xl font-black">{t('teacher')}</h2><p className="mt-3 max-w-2xl text-white/80">Ruby HSK hiện có một giáo viên chính: cô Trần Hồng Ngọc. Nội dung cần được cập nhật theo hồ sơ chính thức.</p></div>
-        <Link href="/about" className="self-center justify-self-start md:justify-self-end"><Button variant="secondary">Tìm hiểu về Ruby HSK</Button></Link>
-      </section>
-    </>
+    <div className="page-shell">
+      {faqLD && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLD) }}
+        />
+      )}
+
+      {/* Hero + Trust Stats */}
+      <HomeHero locale={locale} />
+
+      {/* HSK Learning Paths — Stitch 3-col bento */}
+      <LearningPaths locale={locale} />
+
+      {/* Why Ruby HSK — 2-col feature grid */}
+      <WhyRuby locale={locale} />
+
+      {/* Teacher Profile — Stitch wide card */}
+      <TeacherSection
+        locale={locale}
+        bio={isVi ? teacher?.bio_vi : teacher?.bio_en}
+        certifications={teacher?.certifications as string[] | null}
+      />
+    </div>
   );
 }

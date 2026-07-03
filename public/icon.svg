@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#b52330"/>
+  <text x="256" y="270" font-family="system-ui, sans-serif" font-size="200" font-weight="900" text-anchor="middle" dominant-baseline="middle" fill="#fdf9f4">RH</text>
+  <text x="256" y="380" font-family="system-ui, sans-serif" font-size="80" font-weight="800" text-anchor="middle" dominant-baseline="middle" fill="#fdf9f4">HSK</text>
+  <path d="M180,180 L256,120 L332,180 L332,200 L256,140 L180,200 Z" fill="#ffd167" />
+</svg>
