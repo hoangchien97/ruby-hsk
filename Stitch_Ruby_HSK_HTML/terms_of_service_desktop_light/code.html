@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Terms of Service | Ruby HSK</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fdf9f4",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#edc157",
+                        "tertiary-container": "#00a87d",
+                        "primary-fixed-dim": "#ffb3b0",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#ff5a5f",
+                        "secondary-container": "#ffd167",
+                        "surface-container-low": "#f7f3ee",
+                        "inverse-on-surface": "#f4f0eb",
+                        "inverse-primary": "#ffb3b0",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#e2bebc",
+                        "on-primary-fixed": "#410007",
+                        "surface-container-highest": "#e6e2dd",
+                        "on-tertiary-container": "#003424",
+                        "on-surface-variant": "#5a403f",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fdf9f4",
+                        "on-secondary-fixed": "#251a00",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#27e0a9",
+                        "inverse-surface": "#31302d",
+                        "secondary": "#785a00",
+                        "tertiary": "#006c4f",
+                        "surface-variant": "#e6e2dd",
+                        "surface-container-high": "#ebe8e3",
+                        "on-secondary-container": "#765900",
+                        "surface-tint": "#b52330",
+                        "background": "#fdf9f4",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#54fdc4",
+                        "primary": "#b52330",
+                        "outline": "#8e706f",
+                        "surface-container": "#f1ede8",
+                        "on-primary-fixed-variant": "#92001b",
+                        "on-tertiary-fixed-variant": "#00513b",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-background": "#1c1c19",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#61000e",
+                        "on-tertiary-fixed": "#002116",
+                        "surface-dim": "#ddd9d5",
+                        "primary-fixed": "#ffdad8",
+                        "on-surface": "#1c1c19"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "64px",
+                        "base": "8px",
+                        "lg": "40px",
+                        "sm": "12px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Noto Sans"],
+                        "body-lg": ["Noto Sans"],
+                        "title-md": ["Noto Sans"],
+                        "display-lg": ["Noto Sans"],
+                        "headline-lg-mobile": ["Noto Sans"],
+                        "label-lg": ["Noto Sans"],
+                        "label-sm": ["Noto Sans"],
+                        "body-md": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #fdf9f4; /* ivory base */
+            scroll-behavior: smooth;
+        }
+        .paper-texture {
+            background-image: radial-gradient(#e6e2dd 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+        .coral-shadow {
+            box-shadow: 0 10px 30px -10px rgba(181, 35, 48, 0.15);
+        }
+        .toc-link:hover {
+            background-color: rgba(181, 35, 48, 0.05);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation (Shell Implementation) -->
+<header class="sticky top-0 w-full z-50 bg-surface/80 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<div class="flex items-center gap-2 cursor-pointer" onclick="window.location.href='/'">
+<img alt="Ruby Mascot Logo" class="h-12 w-12 object-contain hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+<span class="font-headline-lg text-primary hidden md:block">Ruby HSK</span>
+</div>
+<div class="hidden md:flex gap-md">
+<a class="font-title-md text-on-surface-variant hover:text-primary transition-colors" href="#">Courses</a>
+<a class="font-title-md text-on-surface-variant hover:text-primary transition-colors" href="#">Resources</a>
+<a class="font-title-md text-on-surface-variant hover:text-primary transition-colors" href="#">Practice</a>
+<a class="font-title-md text-primary font-bold border-b-2 border-primary" href="#">Legal</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-lg hover:bg-primary-container transition-all active:scale-95">
+                Sign In
+            </button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-lg md:py-xl grid grid-cols-1 lg:grid-cols-12 gap-lg relative">
+<!-- Table of Contents (Sidebar) -->
+<aside class="lg:col-span-3">
+<div class="sticky top-32 p-md bg-surface-container-low rounded-2xl border border-surface-variant/30 coral-shadow">
+<h3 class="font-title-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">list_alt</span>
+                    Contents
+                </h3>
+<nav class="space-y-1">
+<a class="toc-link block px-3 py-2 rounded-lg text-label-lg text-on-surface-variant hover:text-primary transition-all" href="#introduction">1. Introduction</a>
+<a class="toc-link block px-3 py-2 rounded-lg text-label-lg text-on-surface-variant hover:text-primary transition-all" href="#accounts">2. Account Registration</a>
+<a class="toc-link block px-3 py-2 rounded-lg text-label-lg text-on-surface-variant hover:text-primary transition-all" href="#content">3. Intellectual Property</a>
+<a class="toc-link block px-3 py-2 rounded-lg text-label-lg text-on-surface-variant hover:text-primary transition-all" href="#conduct">4. User Conduct</a>
+<a class="toc-link block px-3 py-2 rounded-lg text-label-lg text-on-surface-variant hover:text-primary transition-all" href="#subscriptions">5. Payments &amp; Refunds</a>
+<a class="toc-link block px-3 py-2 rounded-lg text-label-lg text-on-surface-variant hover:text-primary transition-all" href="#termination">6. Termination</a>
+<a class="toc-link block px-3 py-2 rounded-lg text-label-lg text-on-surface-variant hover:text-primary transition-all" href="#contact">7. Contact Us</a>
+</nav>
+<div class="mt-xl pt-md border-t border-surface-variant/20">
+<p class="text-label-sm text-on-surface-variant opacity-70">Last Updated:<br/>October 24, 2023</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="lg:col-span-9 space-y-md">
+<!-- Header Card -->
+<div class="bg-surface-container-lowest p-lg rounded-2xl coral-shadow border border-surface-variant/20 paper-texture">
+<span class="inline-block px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-full font-label-sm mb-4">LEGAL DOCUMENT</span>
+<h1 class="font-display-lg text-on-surface mb-4">Terms of Service</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl">
+                    Welcome to Ruby HSK. These terms govern your use of our platform and provide information about the Ruby HSK service, outlined below.
+                </p>
+</div>
+<!-- Content Sections -->
+<div class="bg-surface-container-lowest p-lg md:p-xl rounded-2xl coral-shadow border border-surface-variant/20 space-y-xl">
+<section class="scroll-mt-32" id="introduction">
+<h2 class="font-headline-lg text-primary flex items-center gap-3 mb-base">
+<span class="h-8 w-1 bg-primary rounded-full"></span>
+                        1. Introduction
+                    </h2>
+<div class="space-y-4 text-on-surface-variant font-body-md leading-relaxed">
+<p>By accessing or using the Ruby HSK website, mobile application, or any other services provided by Ruby HSK (the "Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to all of these Terms, do not use the Service.</p>
+<p>The Service is designed to provide educational content for learning the Chinese language, specifically aligned with the Hanyu Shuiping Kaoshi (HSK) standards.</p>
+</div>
+</section>
+<section class="scroll-mt-32" id="accounts">
+<h2 class="font-headline-lg text-primary flex items-center gap-3 mb-base">
+<span class="h-8 w-1 bg-primary rounded-full"></span>
+                        2. Account Registration
+                    </h2>
+<div class="space-y-4 text-on-surface-variant font-body-md leading-relaxed">
+<p>To access certain features of the Service, you must register for an account. You agree to:</p>
+<ul class="list-disc ml-6 space-y-2 marker:text-primary">
+<li>Provide accurate, current, and complete information during registration.</li>
+<li>Maintain and promptly update your account information.</li>
+<li>Maintain the security of your password and accept all risks of unauthorized access to your account.</li>
+<li>Notify us immediately if you discover or suspect any security breaches related to the Service.</li>
+</ul>
+</div>
+</section>
+<section class="scroll-mt-32" id="content">
+<h2 class="font-headline-lg text-primary flex items-center gap-3 mb-base">
+<span class="h-8 w-1 bg-primary rounded-full"></span>
+                        3. Intellectual Property
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md py-4">
+<div class="bg-surface-container p-md rounded-xl border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary mb-2">copyright</span>
+<h4 class="font-title-md mb-2">Our Content</h4>
+<p class="text-label-lg">All materials including text, graphics, logos, images, and software are the property of Ruby HSK and are protected by copyright laws.</p>
+</div>
+<div class="bg-surface-container p-md rounded-xl border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary mb-2">person_pin</span>
+<h4 class="font-title-md mb-2">Your License</h4>
+<p class="text-label-lg">We grant you a limited, non-exclusive, non-transferable license to access and use the Service for personal, non-commercial educational purposes.</p>
+</div>
+</div>
+</section>
+<section class="scroll-mt-32" id="conduct">
+<h2 class="font-headline-lg text-primary flex items-center gap-3 mb-base">
+<span class="h-8 w-1 bg-primary rounded-full"></span>
+                        4. User Conduct
+                    </h2>
+<div class="p-md bg-error-container/10 border-l-4 border-error rounded-r-xl">
+<p class="font-body-md text-on-surface-variant italic">
+                            "Integrity is the heart of scholarship. Any form of cheating, automated scraping of our curriculum, or harassment of other students will result in immediate permanent suspension."
+                        </p>
+</div>
+</section>
+<section class="scroll-mt-32" id="subscriptions">
+<h2 class="font-headline-lg text-primary flex items-center gap-3 mb-base">
+<span class="h-8 w-1 bg-primary rounded-full"></span>
+                        5. Payments &amp; Refunds
+                    </h2>
+<p class="text-on-surface-variant mb-4">Ruby HSK offers both free and paid premium subscriptions. By choosing a premium subscription, you agree to pay the fees indicated for that service.</p>
+<div class="overflow-hidden rounded-xl border border-surface-variant">
+<table class="w-full text-left">
+<thead class="bg-surface-container-high font-label-lg">
+<tr>
+<th class="p-4">Plan Type</th>
+<th class="p-4">Refund Window</th>
+<th class="p-4">Cancellation</th>
+</tr>
+</thead>
+<tbody class="text-label-lg divide-y divide-surface-variant">
+<tr>
+<td class="p-4">Monthly</td>
+<td class="p-4">24 Hours</td>
+<td class="p-4">Anytime</td>
+</tr>
+<tr>
+<td class="p-4">Annual</td>
+<td class="p-4">7 Days</td>
+<td class="p-4">End of Term</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="scroll-mt-32 pt-lg" id="contact">
+<div class="flex flex-col items-center text-center p-lg bg-surface-container-low rounded-2xl border-2 border-dashed border-primary/20">
+<div class="h-16 w-16 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container mb-4">
+<span class="material-symbols-outlined text-3xl">mail</span>
+</div>
+<h2 class="font-title-md text-on-surface mb-2">Questions about these terms?</h2>
+<p class="text-label-lg text-on-surface-variant mb-4">Our support team is here to help clarify any legal points.</p>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-lg hover:shadow-lg transition-all">
+                            Contact Support
+                        </button>
+</div>
+</section>
+</div>
+<div class="flex justify-center py-lg">
+<button class="flex items-center gap-2 text-primary font-label-lg hover:underline cursor-pointer" onclick="window.scrollTo(0,0)">
+<span class="material-symbols-outlined">arrow_upward</span>
+                    Back to top
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer (Shell Implementation) -->
+<footer class="w-full py-xl bg-surface-container-low border-t border-surface-variant">
+<div class="flex flex-col md:flex-row justify-between items-center gap-md px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-headline-lg text-primary">Ruby HSK</span>
+<p class="text-on-surface-variant text-label-lg">© 2024 Ruby HSK. All rights reserved.</p>
+</div>
+<div class="flex gap-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg" href="#">Syllabus</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg" href="#">Certificates</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg" href="#">Support</a>
+</div>
+</div>
+</footer>
+<!-- Bottom Nav (Mobile Shell) -->
+<nav class="md:hidden fixed bottom-0 w-full rounded-t-xl z-50 bg-surface shadow-[0_-4px_10px_rgba(181,35,48,0.1)] flex justify-around items-center h-16 pb-safe px-4">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm-mobile">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-label-sm-mobile">Learn</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">school</span>
+<span class="text-label-sm-mobile">HSK Prep</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 scale-110 transition-all duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<span class="text-label-sm-mobile font-bold">Legal</span>
+</div>
+</nav>
+<script>
+        // Interactive TOC highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const tocLinks = document.querySelectorAll('.toc-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('text-primary', 'font-bold', 'bg-primary-container/10');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('text-primary', 'font-bold', 'bg-primary-container/10');
+                }
+            });
+        });
+
+        // Hover animations for Mascot logo
+        const logo = document.querySelector('header img');
+        if(logo) {
+            logo.addEventListener('mouseenter', () => {
+                logo.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            logo.addEventListener('mouseleave', () => {
+                logo.style.transform = 'scale(1) rotate(0deg)';
+            });
+        }
+    </script>
+</body></html>

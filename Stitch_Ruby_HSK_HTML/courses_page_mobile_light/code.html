@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ruby HSK - Courses</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fdf9f4",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#edc157",
+                        "tertiary-container": "#00a87d",
+                        "primary-fixed-dim": "#ffb3b0",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#ff5a5f",
+                        "secondary-container": "#ffd167",
+                        "surface-container-low": "#f7f3ee",
+                        "inverse-on-surface": "#f4f0eb",
+                        "inverse-primary": "#ffb3b0",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#e2bebc",
+                        "on-primary-fixed": "#410007",
+                        "surface-container-highest": "#e6e2dd",
+                        "on-tertiary-container": "#003424",
+                        "on-surface-variant": "#5a403f",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fdf9f4",
+                        "on-secondary-fixed": "#251a00",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#27e0a9",
+                        "inverse-surface": "#31302d",
+                        "secondary": "#785a00",
+                        "tertiary": "#006c4f",
+                        "surface-variant": "#e6e2dd",
+                        "surface-container-high": "#ebe8e3",
+                        "on-secondary-container": "#765900",
+                        "surface-tint": "#b52330",
+                        "background": "#fdf9f4",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#54fdc4",
+                        "primary": "#b52330",
+                        "outline": "#8e706f",
+                        "surface-container": "#f1ede8",
+                        "on-primary-fixed-variant": "#92001b",
+                        "on-tertiary-fixed-variant": "#00513b",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-background": "#1c1c19",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#61000e",
+                        "on-tertiary-fixed": "#002116",
+                        "surface-dim": "#ddd9d5",
+                        "primary-fixed": "#ffdad8",
+                        "on-surface": "#1c1c19"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "64px",
+                        "base": "8px",
+                        "lg": "40px",
+                        "sm": "12px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Noto Sans"],
+                        "body-lg": ["Noto Sans"],
+                        "title-md": ["Noto Sans"],
+                        "display-lg": ["Noto Sans"],
+                        "headline-lg-mobile": ["Noto Sans"],
+                        "label-lg": ["Noto Sans"],
+                        "label-sm": ["Noto Sans"],
+                        "body-md": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-sm-mobile": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #fdf9f4;
+            color: #1c1c19;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .course-card-shadow {
+            box-shadow: 0 4px 12px rgba(181, 35, 48, 0.08);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .pill-active {
+            background-color: #ff5a5f;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(255, 90, 95, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar (Mobile Optimized) -->
+<header class="sticky top-0 w-full z-40 bg-surface/80 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center h-16 px-4 max-w-7xl mx-auto">
+<div class="w-10 h-10 flex items-center justify-center">
+<!-- Mascot Logo Only as per instruction -->
+<img alt="Ruby Mascot Logo" class="w-10 h-10 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center border-2 border-white">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+</div>
+</div>
+</header>
+<main class="pb-24">
+<!-- Hero Title Section -->
+<section class="px-4 py-6">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">
+                Unlock your <span class="text-primary">HSK Potential</span>
+</h1>
+<p class="text-on-surface-variant mt-2 font-body-md">Choose the right course to master Mandarin and crush your proficiency goals.</p>
+</section>
+<!-- Horizontal Level Filters (Chips) -->
+<section class="mb-6">
+<div class="flex gap-3 overflow-x-auto px-4 py-2 hide-scrollbar">
+<button class="flex-none px-6 py-2 rounded-full font-label-lg text-label-lg pill-active transition-all">All</button>
+<button class="flex-none px-6 py-2 rounded-full font-label-lg text-label-lg bg-white border border-outline-variant text-on-surface-variant hover:bg-primary-container/10 transition-all">HSK 1</button>
+<button class="flex-none px-6 py-2 rounded-full font-label-lg text-label-lg bg-white border border-outline-variant text-on-surface-variant hover:bg-primary-container/10 transition-all">HSK 2</button>
+<button class="flex-none px-6 py-2 rounded-full font-label-lg text-label-lg bg-white border border-outline-variant text-on-surface-variant hover:bg-primary-container/10 transition-all">HSK 3</button>
+<button class="flex-none px-6 py-2 rounded-full font-label-lg text-label-lg bg-white border border-outline-variant text-on-surface-variant hover:bg-primary-container/10 transition-all">HSK 4+</button>
+</div>
+</section>
+<!-- Course Cards (Single Column) -->
+<section class="px-4 space-y-4">
+<!-- Card 1 -->
+<div class="group bg-white rounded-2xl overflow-hidden course-card-shadow border border-surface-container-low transition-transform active:scale-[0.98]">
+<div class="relative h-44 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A cheerful, minimalist 3D illustration of a Chinese pagoda in soft pastel colors, surrounded by floating cherry blossoms and stylized white clouds against a soft ivory background. The lighting is warm and friendly, matching a youthful educational app aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTuYPGPyEiXDBqatQLWI1io0a_VgFecSXP27XI8k2ztF0Y1p9d0zPunIfsLXTh-DYQVRd_tLc2ANHtj1jVTKE6TLwb5lKgn8rr4T1FCaUf0AigbGQFHobuWQPkGZ7-N5tNMw5ngID1idXvTT6R99rr9doz06D0zni_LJuf9nBlMyK-L5Ae-SC6HxPaCttzdKMdo-QOcZ_017YjwnBoHtJLiwFMiSAIGswTLqsl_gFQj8pKUrQdtUbHxJehrmwbGbtlNQpq4twD6qk"/>
+<div class="absolute top-3 left-3 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-full text-label-sm font-label-sm">Bestseller</div>
+<div class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg shadow-sm">
+<span class="font-title-md text-primary">$49.99</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-primary font-bold text-label-sm uppercase tracking-wider">HSK 1 • BEGINNER</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">Foundation Mastery: HSK 1 COMPLETE</h3>
+<div class="flex items-center gap-4 text-on-surface-variant mb-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span class="text-label-sm">48 Lessons</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="text-label-sm">12 Hours</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary font-label-lg rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                        Enroll Now
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-white rounded-2xl overflow-hidden course-card-shadow border border-surface-container-low transition-transform active:scale-[0.98]">
+<div class="relative h-44 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="An artistic 3D render of a stylized red panda character wearing a scholar's cap, sitting at a wooden desk with an open book. The background is a soft ivory studio setting with coral and mint green decorative accents. Professional soft-focus lighting with a youthful, high-quality character design style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7DESeE-JpV8zeyw-bgbM3NKVr5WeuWM5QIwk-PVuhO5zhbunMNnmApA9r1hBE4isik-q25075UDpjYvpAE5axNy1iQpxbVl_pw1zWRp6Y-VJqv_Up3VmrxYEu-qE7f2QjnT_IehqIdhXI8rAxz9WjXPVdtcTrFUm1a-tuJDzclYaPVXhRTSuER2xdkzfNurBqO9uDr89NKuMcQmQ_3lBIH5-znZ689IHH8BBt9iPt-9o8ceQcwEaSAoADMoEOm3XbvzaGFBA-Et0"/>
+<div class="absolute top-3 left-3 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-sm font-label-sm">High Value</div>
+<div class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg shadow-sm">
+<span class="font-title-md text-primary">$64.99</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-primary font-bold text-label-sm uppercase tracking-wider">HSK 2 • INTERMEDIATE</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">Fluent Communication HSK 2</h3>
+<div class="flex items-center gap-4 text-on-surface-variant mb-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span class="text-label-sm">62 Lessons</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="text-label-sm">18 Hours</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary font-label-lg rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                        Enroll Now
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-white rounded-2xl overflow-hidden course-card-shadow border border-surface-container-low transition-transform active:scale-[0.98]">
+<div class="relative h-44 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A minimalist 3D composition of glowing digital Chinese characters floating around a sleek, modern smartphone. The aesthetic is soft-minimalism with a color palette of ivory, coral red, and warm amber. The scene represents modern tech-focused language learning with a clean, airy feeling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYQvHbiQighEXlb5HZyyf7aovdlu7zeEOEtDkEv01SwWp8uDReMFnT00Tjn7Bgm5sn-V26AMJO-Ss6Ris2Dw1ObQXl14U7pf3eClzEUnCDZml0KHLA5FY3RxPBrmHeLtVVBemB4-K-eMOIUVtH4H9JdVRzLNN2JPeip-OeFFyHIINzb_lop6UNIhNAc2XAfOEmKubVoIYGLCdMQ5gxsVRqi8clHv1tbuybrlddiewoMvQ8-0UHjXcdnyCXGy8NDQzbWGWu7HBQimA"/>
+<div class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg shadow-sm">
+<span class="font-title-md text-primary">$79.99</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-primary font-bold text-label-sm uppercase tracking-wider">HSK 3 • ADVANCED</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">Professional Fluency: HSK 3 Intensive</h3>
+<div class="flex items-center gap-4 text-on-surface-variant mb-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span class="text-label-sm">85 Lessons</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="text-label-sm">24 Hours</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary font-label-lg rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                        Enroll Now
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Secondary CTA -->
+<section class="px-4 py-12 text-center">
+<div class="bg-primary-container/10 rounded-3xl p-8 border-2 border-dashed border-primary-container/30">
+<h4 class="font-title-md text-primary mb-2">Not sure where to start?</h4>
+<p class="text-on-surface-variant mb-6 font-body-md">Take our 5-minute placement test to find your current level.</p>
+<button class="px-8 py-3 bg-white text-primary border-2 border-primary font-label-lg rounded-full active:scale-95 transition-all">
+                    Start Test
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (The Anchor) -->
+<nav class="fixed bottom-0 w-full bg-surface dark:bg-surface-container-lowest h-16 pb-safe px-4 flex justify-around items-center rounded-t-xl z-50 shadow-[0_-4px_10px_rgba(181,35,48,0.1)]">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:bg-primary-container/20 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Home</span>
+</a>
+<!-- Learn (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 scale-110 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Learn</span>
+</a>
+<!-- HSK Prep -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:bg-primary-container/20 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-label-sm-mobile text-label-sm-mobile mt-1">HSK Prep</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:bg-primary-container/20 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Smooth scroll for chip container
+        const scrollContainer = document.querySelector('.overflow-x-auto');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        scrollContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - scrollContainer.offsetLeft;
+            scrollLeft = scrollContainer.scrollLeft;
+        });
+        scrollContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+        scrollContainer.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+        scrollContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            scrollContainer.scrollLeft = scrollLeft - walk;
+        });
+
+        // Simple Active State Toggle for Chips
+        const chips = document.querySelectorAll('.flex-none.rounded-full');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('pill-active');
+                    c.classList.add('bg-white', 'border', 'border-outline-variant', 'text-on-surface-variant');
+                });
+                chip.classList.add('pill-active');
+                chip.classList.remove('bg-white', 'border', 'border-outline-variant', 'text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

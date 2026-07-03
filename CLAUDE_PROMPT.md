@@ -52,7 +52,7 @@ Mobile:
 - Header logo is icon-only.
 - Add VI/EN language toggle.
 - Add single icon light/dark theme toggle.
-- Use `src/components_v2` for new components.
+- Use `src/components` for new components.
 - Use Supabase only as database client placeholder for now.
 - Use SEO metadata per page where possible.
 - Follow Ruby HSK Scholar color tone: #804237, #E78F65, #191211, #F9F5F0.

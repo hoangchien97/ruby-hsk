@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ruby HSK - 404 Error</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdf9f4",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#edc157",
+                    "tertiary-container": "#00a87d",
+                    "primary-fixed-dim": "#ffb3b0",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#ff5a5f",
+                    "secondary-container": "#ffd167",
+                    "surface-container-low": "#f7f3ee",
+                    "inverse-on-surface": "#f4f0eb",
+                    "inverse-primary": "#ffb3b0",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#e2bebc",
+                    "on-primary-fixed": "#410007",
+                    "surface-container-highest": "#e6e2dd",
+                    "on-tertiary-container": "#003424",
+                    "on-surface-variant": "#5a403f",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#fdf9f4",
+                    "on-secondary-fixed": "#251a00",
+                    "secondary-fixed": "#ffdf9b",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#27e0a9",
+                    "inverse-surface": "#31302d",
+                    "secondary": "#785a00",
+                    "tertiary": "#006c4f",
+                    "surface-variant": "#e6e2dd",
+                    "surface-container-high": "#ebe8e3",
+                    "on-secondary-container": "#765900",
+                    "surface-tint": "#b52330",
+                    "background": "#fdf9f4",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#54fdc4",
+                    "primary": "#b52330",
+                    "outline": "#8e706f",
+                    "surface-container": "#f1ede8",
+                    "on-primary-fixed-variant": "#92001b",
+                    "on-tertiary-fixed-variant": "#00513b",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#5b4300",
+                    "on-background": "#1c1c19",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#61000e",
+                    "on-tertiary-fixed": "#002116",
+                    "surface-dim": "#ddd9d5",
+                    "primary-fixed": "#ffdad8",
+                    "on-surface": "#1c1c19"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "64px",
+                    "base": "8px",
+                    "lg": "40px",
+                    "sm": "12px",
+                    "gutter": "20px",
+                    "xs": "4px",
+                    "md": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "48px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Noto Sans"],
+                    "body-lg": ["Noto Sans"],
+                    "title-md": ["Noto Sans"],
+                    "display-lg": ["Noto Sans"],
+                    "headline-lg-mobile": ["Noto Sans"],
+                    "label-lg": ["Noto Sans"],
+                    "label-sm": ["Noto Sans"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fdf9f4;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .bouncy-hover:active {
+            transform: scale(0.95);
+        }
+        .coral-shadow {
+            box-shadow: 0 10px 30px -10px rgba(181, 35, 48, 0.15);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(142, 112, 111, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-on-surface">
+<!-- TopNavBar Simplified (Consistent with JSON style but specialized for 404) -->
+<header class="sticky top-0 w-full bg-surface/80 dark:bg-surface/80 backdrop-blur-md z-50 transition-all">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container flex items-center justify-center">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+</div>
+<span class="font-bold text-primary font-title-md text-title-md tracking-tight">Ruby HSK</span>
+</div>
+<nav class="hidden md:flex gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">Syllabus</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">Support</a>
+</nav>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center relative px-margin-mobile overflow-hidden py-xl">
+<!-- Atmospheric Background Elements -->
+<div class="absolute -top-20 -left-20 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl opacity-60"></div>
+<div class="absolute -bottom-20 -right-20 w-80 h-80 bg-primary-container/10 rounded-full blur-3xl opacity-60"></div>
+<div class="max-w-4xl w-full flex flex-col md:flex-row items-center gap-xl relative z-10">
+<!-- Mascot Visual Section -->
+<div class="flex-1 flex flex-col items-center justify-center relative">
+<!-- Mascot Image -->
+<div class="relative z-10 floating-element">
+<div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-white coral-shadow flex items-center justify-center p-md overflow-hidden">
+<!-- Mimicking the Broken Flashcard Scene -->
+<div class="relative">
+<img alt="Ruby Mascot" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+<!-- Overlay Visual: Broken Flashcard Symbol -->
+<div class="absolute -bottom-4 -right-4 bg-surface-container-lowest p-sm rounded-xl shadow-lg border border-outline-variant rotate-12 flex flex-col items-center gap-xs">
+<div class="flex gap-1">
+<div class="w-10 h-14 bg-surface-container border-2 border-dashed border-outline-variant rounded-md flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">close</span>
+</div>
+<div class="w-1 h-14 bg-outline-variant/30 rounded-full"></div>
+<div class="w-10 h-14 bg-surface-container border-2 border-dashed border-outline-variant rounded-md flex items-center justify-center">
+<span class="text-primary font-bold text-label-sm">汉</span>
+</div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Broken Path</span>
+</div>
+</div>
+</div>
+<!-- Decorative Floating Icons -->
+<div class="absolute -top-4 -left-4 w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center coral-shadow animate-bounce" style="animation-delay: 0.5s;">
+<span class="material-symbols-outlined text-on-secondary-container">question_mark</span>
+</div>
+<div class="absolute top-1/2 -right-8 w-14 h-14 bg-tertiary-container rounded-full flex items-center justify-center coral-shadow animate-pulse">
+<span class="material-symbols-outlined text-on-tertiary">edit_off</span>
+</div>
+</div>
+</div>
+<!-- Content Section -->
+<div class="flex-1 text-center md:text-left">
+<div class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-bold text-label-lg mb-md">
+                    Lỗi 404
+                </div>
+<h1 class="font-display-lg text-[40px] md:text-display-lg leading-tight text-on-surface mb-sm">
+                    Ối! Ruby không tìm thấy bài học này.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-lg max-w-md">
+                    Trang bạn tìm không tồn tại. Có vẻ như thẻ từ vựng này đã bị thất lạc hoặc đường dẫn đã thay đổi. Đừng lo, Ruby sẽ đưa bạn quay lại hành trình học tiếng Trung ngay thôi!
+                </p>
+<div class="flex flex-col sm:flex-row gap-md justify-center md:justify-start">
+<a class="bouncy-hover inline-flex items-center justify-center px-xl py-4 bg-primary text-on-primary font-bold rounded-full transition-all shadow-lg hover:shadow-primary/30 hover:-translate-y-1" href="/">
+<span class="material-symbols-outlined mr-2">home</span>
+                        Về trang chủ
+                    </a>
+<button class="bouncy-hover inline-flex items-center justify-center px-lg py-4 border-2 border-outline-variant text-on-surface-variant font-bold rounded-full hover:bg-surface-container-low transition-all" onclick="window.history.back()">
+<span class="material-symbols-outlined mr-2">arrow_back</span>
+                        Quay lại
+                    </button>
+</div>
+<!-- Quick Access Links -->
+<div class="mt-xl grid grid-cols-2 gap-sm">
+<a class="p-sm glass-card rounded-xl flex items-center gap-xs hover:bg-white transition-all group" href="#">
+<div class="w-8 h-8 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+</div>
+<span class="text-label-sm font-bold">Từ vựng HSK</span>
+</a>
+<a class="p-sm glass-card rounded-xl flex items-center gap-xs hover:bg-white transition-all group" href="#">
+<div class="w-8 h-8 rounded-lg bg-tertiary-container/20 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[18px]">school</span>
+</div>
+<span class="text-label-sm font-bold">Luyện thi</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Consistent with JSON -->
+<footer class="w-full py-xl bg-surface-container-low dark:bg-surface-dim border-t border-surface-variant">
+<div class="flex flex-col md:flex-row justify-between items-center gap-md px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="font-headline-lg text-primary text-headline-lg">Ruby HSK</span>
+<p class="text-on-surface-variant font-label-lg text-label-lg">Học tiếng Trung dễ dàng hơn mỗi ngày.</p>
+</div>
+<div class="flex gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">Support</a>
+</div>
+<p class="text-on-surface-variant font-label-lg text-label-lg">© 2024 Ruby HSK. All rights reserved.</p>
+</div>
+</footer>
+<!-- Simple Interactivity for Floating Elements -->
+<script>
+        document.addEventListener('mousemove', (e) => {
+            const mascot = document.querySelector('.floating-element');
+            if (mascot) {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                mascot.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            }
+        });
+
+        // Click interaction for mascot sound/vibration feel
+        const mascotContainer = document.querySelector('.floating-element');
+        if (mascotContainer) {
+            mascotContainer.addEventListener('mousedown', () => {
+                mascotContainer.style.transform = 'scale(0.9)';
+            });
+            mascotContainer.addEventListener('mouseup', () => {
+                mascotContainer.style.transform = 'scale(1)';
+            });
+        }
+    </script>
+</body></html>

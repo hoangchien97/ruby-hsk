@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fdf9f4",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#edc157",
+                        "tertiary-container": "#00a87d",
+                        "primary-fixed-dim": "#ffb3b0",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#ff5a5f",
+                        "secondary-container": "#ffd167",
+                        "surface-container-low": "#f7f3ee",
+                        "inverse-on-surface": "#f4f0eb",
+                        "inverse-primary": "#ffb3b0",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#e2bebc",
+                        "on-primary-fixed": "#410007",
+                        "surface-container-highest": "#e6e2dd",
+                        "on-tertiary-container": "#003424",
+                        "on-surface-variant": "#5a403f",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fdf9f4",
+                        "on-secondary-fixed": "#251a00",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#27e0a9",
+                        "inverse-surface": "#31302d",
+                        "secondary": "#785a00",
+                        "tertiary": "#006c4f",
+                        "surface-variant": "#e6e2dd",
+                        "surface-container-high": "#ebe8e3",
+                        "on-secondary-container": "#765900",
+                        "surface-tint": "#b52330",
+                        "background": "#fdf9f4",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#54fdc4",
+                        "primary": "#b52330",
+                        "outline": "#8e706f",
+                        "surface-container": "#f1ede8",
+                        "on-primary-fixed-variant": "#92001b",
+                        "on-tertiary-fixed-variant": "#00513b",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-background": "#1c1c19",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#61000e",
+                        "on-tertiary-fixed": "#002116",
+                        "surface-dim": "#ddd9d5",
+                        "primary-fixed": "#ffdad8",
+                        "on-surface": "#1c1c19"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "64px",
+                        "base": "8px",
+                        "lg": "40px",
+                        "sm": "12px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Noto Sans"],
+                        "body-lg": ["Noto Sans"],
+                        "title-md": ["Noto Sans"],
+                        "display-lg": ["Noto Sans"],
+                        "headline-lg-mobile": ["Noto Sans"],
+                        "label-lg": ["Noto Sans"],
+                        "label-sm": ["Noto Sans"],
+                        "body-md": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #fdf9f4;
+            color: #1c1c19;
+            -webkit-font-smoothing: antialiased;
+        }
+        .coral-shadow {
+            box-shadow: 0 10px 30px -10px rgba(181, 35, 48, 0.15);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            background-color: rgba(253, 249, 244, 0.85);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 w-full z-50 glass-nav bg-surface-container-low shadow-sm">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<img alt="Ruby Mascot Logo" class="h-12 w-12 object-contain hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+<div class="hidden md:flex gap-8 ml-10">
+<a class="font-title-md text-title-md text-primary font-bold border-b-2 border-primary" href="#">Courses</a>
+<a class="font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" href="#">Resources</a>
+<a class="font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" href="#">Practice</a>
+<a class="font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block font-label-lg text-label-lg px-6 py-2 rounded-full text-on-surface hover:bg-surface-variant/50 transition-colors">Sign In</button>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-lg text-label-lg scale-100 hover:scale-105 active:scale-95 transition-all shadow-lg coral-shadow">
+                    Get Started
+                </button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop pb-24">
+<!-- Hero Section -->
+<section class="py-16 md:py-24 text-center md:text-left relative overflow-hidden">
+<div class="relative z-10 grid md:grid-cols-2 items-center gap-12">
+<div>
+<span class="inline-flex items-center px-4 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-lg text-label-lg mb-6">
+<span class="material-symbols-outlined text-[18px] mr-2">stars</span>
+                        Lộ trình học tập chuyên sâu
+                    </span>
+<h1 class="font-display-lg text-display-lg md:text-7xl text-on-background mb-6 leading-tight">
+                        Khóa học tiếng Trung &amp; <br/><span class="text-primary">luyện thi HSK</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">
+                        Nâng cao trình độ tiếng Trung cùng Ruby HSK thông qua các bài giảng sinh động, giáo trình chuẩn hóa và môi trường học tập tương tác cao.
+                    </p>
+<div class="flex flex-wrap gap-4 justify-center md:justify-start">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait photo of a smiling female student with glasses in a library setting, warm sunlight, soft academic aesthetic, high quality photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4fPOZ6z6CmoWXRBBBoih66Mzxw43Lqk_xGfIQzow4MdNWuSyJvC-ChNGy2jjpguIB91PuGr4A34YvmcCOU0HtJc--mXrI1xoMicHVSnfW2-cF50xMIZQqSAqa643tL2EdP_CNUfvoVwbWuXaiBzyDQiRquBFTp1M_UQUa3UV4aNjD48Ogw3nTYDoodm1iNrban0RXcfBucorpELcuUm4_2w6ymPC0-gF7QcekQEU16dNZTnUqDtpOBOyGhocC-coK8U2eh_u4Jlc"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-slate-300 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a young male student in a bright studio, wearing a casual sweater, clean background, soft lighting, professional lifestyle aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdCqh9Q0x77zLYs0IUXLcrq87LbvqE5hKFE4-01NYemsJe8JVmgdaLDcrMJdttXMK_aErbS5lCljC1SceB9vowg4y2BRg8Ia5cVwBi4_kodtXK0iukU7u97fKYYPyRJ_3C-s-OMeEBrm8xAESvdvyxhHPU1hoMpJMA9XyGptlxkXsWvaO023d1FJ2jZAA00COaUARROn5WTFuuMVI4c57SNKufokAmwDxSglj6Kc-AakRk_BFFMW5G_F3pWYK9VtRMUvja-VMze9o"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-slate-400 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A cheerful student with headphones, creative workspace background with plants and books, soft focus, warm light-mode photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACT33xlbhf8B5Tg0nDhH2C5g9zq12lZLCjyaOeX7025fPiHA-WtHS4prfbzyuE7Ddj7SZ_8BFFqIawI5Xg-i-STr0LjAhhfOqMbq2MF1u5nj-teMhdOanPmFr9a3sWm_cC8BhRoQ2kAsfCXzm63wbqn6anNNiCnnjbGu8fGrQ6XR-rSS6zP31xmYMMxiEId_pEeOF-5PyS8gOSCTOQwhkvBMsIZK9SnJ863GajofFvxOZk1WQEcdWcdAzFSN2-nk14D_iakJ5N9pM"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-primary-container flex items-center justify-center text-on-primary-container text-xs font-bold">
+                                +2k
+                            </div>
+</div>
+<p class="font-label-lg text-label-lg text-on-surface-variant self-center">Tham gia cùng 2,000+ học viên tích cực</p>
+</div>
+</div>
+<div class="relative hidden md:block">
+<div class="absolute -top-10 -right-10 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-10 -left-10 w-72 h-72 bg-primary-container/10 rounded-full blur-3xl"></div>
+<div class="relative bg-white rounded-3xl p-6 coral-shadow rotate-2 hover:rotate-0 transition-transform duration-500">
+<img class="rounded-2xl w-full h-[400px] object-cover" data-alt="A beautiful 3D digital illustration of a cozy study desk with a laptop displaying Chinese characters, a cute mascot figurine, stacked textbooks, and a steaming cup of tea. Soft morning light, ivory and coral color palette, tactile soft-minimalism style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbFBb82lRSeuobo6SrZytoFNjlhrQray2IQqy_ZcZCLp0DpbnIiCH-dV6bQDktYpJY59JWGHqJTjxovyolXpPIh6sohE8yfr5R7I2emBfoZZLPUbHQK2rS1FXvkjF6PleQXb7a13NwnSfjNQAr-ggHOUgHpScdSc6sEUuk-SEKmMP6_yIUkBz9k04Tbg1ObDoqYaXjRZMduQVEtxT-XUzYqos3WnhVoUu3SlCpg88DcUpBYeIYmrgsT013znmcv-8WqLo5N8lxorw"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Grid -->
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Sidebar Filters -->
+<aside class="w-full lg:w-72 space-y-8">
+<div class="bg-white p-8 rounded-2xl coral-shadow border border-surface-container">
+<h3 class="font-title-md text-title-md mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">filter_list</span>
+                        Bộ lọc HSK
+                    </h3>
+<div class="space-y-4">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded-lg border-outline text-primary focus:ring-primary/20 transition-all" type="checkbox"/>
+<span class="font-label-lg text-label-lg text-on-surface group-hover:text-primary transition-colors">Tất cả trình độ</span>
+</label>
+<div class="space-y-3 pl-1">
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 rounded-lg border-outline text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="font-label-lg text-label-lg text-on-surface-variant group-hover:text-primary transition-colors">HSK 1 - 2</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-xs font-bold">12</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 rounded-lg border-outline text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="font-label-lg text-label-lg text-on-surface-variant group-hover:text-primary transition-colors">HSK 3 - 4</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-xs font-bold">8</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input checked="" class="w-5 h-5 rounded-lg border-outline text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="font-label-lg text-label-lg text-primary font-bold">HSK 5 - 6</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container text-xs font-bold">5</span>
+</label>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-surface-variant/30">
+<h3 class="font-title-md text-title-md mb-6">Hình thức học</h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full bg-primary text-on-primary text-xs font-bold">Tất cả</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-variant text-xs font-bold transition-colors">Online</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-variant text-xs font-bold transition-colors">Video sẵn</button>
+</div>
+</div>
+</div>
+<div class="bg-secondary-container p-8 rounded-2xl coral-shadow relative overflow-hidden group cursor-pointer">
+<div class="relative z-10">
+<h4 class="font-title-md text-title-md text-on-secondary-container mb-2">Combo HSK 4-5-6</h4>
+<p class="text-sm text-on-secondary-container/80 mb-4">Tiết kiệm 30% khi đăng ký lộ trình trọn gói.</p>
+<span class="text-primary font-bold">Xem ưu đãi →</span>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[100px]" style="font-variation-settings: 'FILL' 1;">card_giftcard</span>
+</div>
+</div>
+</aside>
+<!-- Course Main Grid -->
+<div class="flex-1">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline-lg text-headline-lg text-on-background">Danh sách khóa học</h2>
+<div class="flex items-center gap-4">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Sắp xếp:</span>
+<select class="bg-white border-none rounded-xl font-label-lg text-label-lg coral-shadow px-4 py-2 focus:ring-2 focus:ring-primary/20">
+<option>Mới nhất</option>
+<option>Giá: Thấp đến cao</option>
+<option>Phổ biến nhất</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Course Card 1 -->
+<div class="group bg-white rounded-3xl overflow-hidden coral-shadow border border-surface-container-low hover:-translate-y-2 transition-all duration-300">
+<div class="relative h-56">
+<img class="w-full h-full object-cover" data-alt="A vibrant digital graphic for a Chinese language course, featuring stylized calligraphy, cherry blossoms, and professional icons. Soft coral and ivory palette, high energy, educational and modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA23Y3SFWaZP-Ro_dUvOyYG-X5IkTeRDuYfRGw9X3zZmykkS1NMQ5sG8tkzT_HokcHz_2AHCTppablTIFb5WLRShllqVnrmmLCCxTFKzcS2znbfo8PtUxeGNqeqvQBlluckFP13YenSGn_TXHaz5mRQags4U5pdC4KWo1zlwiF5gJ0W9Xbsx8VUGQ1EabmcsAqaOGHDyfXvOAy6vZrF137vzFGpQFzTy_KmVlS1O79DLf_jsJmBW6bo7bL_TuZPPJ9VzM7Zz9udC2E"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary px-4 py-1.5 rounded-full text-white text-xs font-extrabold uppercase tracking-wider">HSK 5 Chuyên Sâu</span>
+</div>
+<div class="absolute top-4 right-4 h-10 w-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-title-md text-title-md text-on-background group-hover:text-primary transition-colors">Luyện thi HSK 5: Chinh phục điểm số tối đa</h3>
+<div class="flex items-center bg-secondary-fixed/30 px-2 py-0.5 rounded-lg">
+<span class="material-symbols-outlined text-[16px] text-secondary mr-1" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-secondary-container">4.9</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Khóa học tập trung vào các kỹ năng Đọc hiểu và Viết đoạn văn, cung cấp bộ 50 đề thi thử bám sát thực tế.</p>
+<div class="flex items-center justify-between border-t border-surface-variant/20 pt-6">
+<div class="flex flex-col">
+<span class="text-xs text-on-surface-variant/60 line-through">2.500.000đ</span>
+<span class="text-xl font-bold text-primary tracking-tight">1.850.000đ</span>
+</div>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary px-5 py-2.5 rounded-xl font-label-lg text-label-lg transition-all active:scale-95">Chi tiết</button>
+</div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="group bg-white rounded-3xl overflow-hidden coral-shadow border border-surface-container-low hover:-translate-y-2 transition-all duration-300">
+<div class="relative h-56">
+<img class="w-full h-full object-cover" data-alt="Educational visual representing advanced Chinese grammar and vocabulary. Digital art with clean lines, soft gradient backgrounds in coral and ivory tones, floating book icons and hanzi characters, bright and scholarly atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxOJLYiku05WccysCZ_WUYIkPCNQHGOv7SNfxiCCk1gf5KQ_7SosySsu7uHbiPOY2F0ozfM-08H77LKU1xBZ8JtWnWyDsWPx1MAgz_8xBPRBQR0V6xmj6AhST57erNx1aGDSnmuTzfjz2-0aVZexI6nIjgiaPLkBg1SlwkBl1KrvFEWLgZBgmVrpOkzJUnGNMp3CTG0ISOPF_dGi7TbRN4CKJ254AynxJiqCTgI1ohuiVoaPWLr8TrvXLKYzVPU9hgExQEgMk2ONk"/>
+<div class="absolute top-4 left-4">
+<span class="bg-tertiary px-4 py-1.5 rounded-full text-white text-xs font-extrabold uppercase tracking-wider">HSK 6 Thượng Cấp</span>
+</div>
+<div class="absolute top-4 right-4 h-10 w-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-title-md text-title-md text-on-background group-hover:text-primary transition-colors">HSK 6: Làm chủ 5000+ từ vựng &amp; Ngữ pháp</h3>
+<div class="flex items-center bg-secondary-fixed/30 px-2 py-0.5 rounded-lg">
+<span class="material-symbols-outlined text-[16px] text-secondary mr-1" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-secondary-container">5.0</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Dành cho học viên trình độ cao, tập trung vào kỹ năng Tóm tắt văn bản và các chủ đề chuyên sâu về văn hóa, kinh tế.</p>
+<div class="flex items-center justify-between border-t border-surface-variant/20 pt-6">
+<div class="flex flex-col">
+<span class="text-xs text-on-surface-variant/60 line-through">3.200.000đ</span>
+<span class="text-xl font-bold text-primary tracking-tight">2.150.000đ</span>
+</div>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary px-5 py-2.5 rounded-xl font-label-lg text-label-lg transition-all active:scale-95">Chi tiết</button>
+</div>
+</div>
+</div>
+<!-- Course Card 3 -->
+<div class="group bg-white rounded-3xl overflow-hidden coral-shadow border border-surface-container-low hover:-translate-y-2 transition-all duration-300">
+<div class="relative h-56">
+<img class="w-full h-full object-cover" data-alt="Stylized representation of Chinese speaking and listening exercises. Minimalist 3D render of headphones, a microphone, and floating speech bubbles with pinyin and hanzi. Soft-focus background, bright academic lighting, coral red accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvBTDpKBKo3KwpzbOOJf6xz-axCjUgQh33SsZCNDz9tGu_Faj_EiNPO79Sdd2diH1dKQ74b4y5KlIUQz0QYdRoSpRlWsV7CjKLlIwqzt6sdVDx22u0FY-ha96yBBxquL-41vJAE5_WnKxBmtx7j37s2rL9j7ra8dR8MNcsLlVpp3yX-JpvYnH860OIuFWuOEyrcEf23X-E3Z832jtzuo9wz6KQCybLALhOkW6pn-o5CVVD-MW5nQ40S4y8lB9L6MOZPLS4LVGWK2E"/>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary px-4 py-1.5 rounded-full text-on-secondary text-xs font-extrabold uppercase tracking-wider">Luyện Nói - HSKK</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-title-md text-title-md text-on-background group-hover:text-primary transition-colors">Luyện nói HSKK Cao Cấp: Phản xạ tự nhiên</h3>
+<div class="flex items-center bg-secondary-fixed/30 px-2 py-0.5 rounded-lg">
+<span class="material-symbols-outlined text-[16px] text-secondary mr-1" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-secondary-container">4.8</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Khắc phục nỗi sợ nói, sửa phát âm chuẩn Bắc Kinh và luyện tập trả lời câu hỏi HSKK trong thời gian ngắn.</p>
+<div class="flex items-center justify-between border-t border-surface-variant/20 pt-6">
+<div class="flex flex-col">
+<span class="text-xl font-bold text-primary tracking-tight">1.250.000đ</span>
+</div>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary px-5 py-2.5 rounded-xl font-label-lg text-label-lg transition-all active:scale-95">Chi tiết</button>
+</div>
+</div>
+</div>
+<!-- Course Card 4 - New/Upcoming -->
+<div class="group bg-surface-container rounded-3xl overflow-hidden coral-shadow border-2 border-dashed border-primary/20 flex flex-col items-center justify-center p-8 text-center min-h-[400px]">
+<div class="w-20 h-20 bg-primary-container/20 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[40px] text-primary">auto_awesome</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-background mb-4">Khóa học Ngữ pháp VIP sắp ra mắt</h3>
+<p class="text-on-surface-variant text-sm max-w-xs mb-8">Chúng tôi đang hoàn thiện bộ tài liệu ngữ pháp 4.0. Đăng ký nhận thông báo để được ưu đãi 50%.</p>
+<button class="border-2 border-primary text-primary px-8 py-3 rounded-full font-label-lg text-label-lg hover:bg-primary hover:text-on-primary transition-all">Nhận thông báo</button>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex justify-center items-center gap-3">
+<button class="w-12 h-12 rounded-xl flex items-center justify-center bg-white border border-surface-variant/20 coral-shadow hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 rounded-xl flex items-center justify-center bg-primary text-on-primary font-bold coral-shadow">1</button>
+<button class="w-12 h-12 rounded-xl flex items-center justify-center bg-white border border-surface-variant/20 coral-shadow hover:text-primary transition-colors font-bold">2</button>
+<button class="w-12 h-12 rounded-xl flex items-center justify-center bg-white border border-surface-variant/20 coral-shadow hover:text-primary transition-colors font-bold">3</button>
+<button class="w-12 h-12 rounded-xl flex items-center justify-center bg-white border border-surface-variant/20 coral-shadow hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-low border-t border-surface-variant py-16">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+<div class="space-y-6 max-w-sm">
+<div class="flex items-center gap-3">
+<img alt="Ruby Mascot Logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+<span class="font-headline-lg text-headline-lg text-primary">Ruby HSK</span>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md">Hành trình chinh phục HSK của bạn trở nên dễ dàng và thú vị hơn cùng đội ngũ giáo viên tận tâm tại Ruby HSK.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white coral-shadow flex items-center justify-center text-primary hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-white coral-shadow flex items-center justify-center text-primary hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-white coral-shadow flex items-center justify-center text-primary hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</a>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-12 md:gap-24">
+<div class="space-y-4">
+<h4 class="font-title-md text-title-md text-on-background">Học tập</h4>
+<ul class="space-y-3 font-label-lg text-label-lg text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Syllabus</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Lịch khai giảng</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Thư viện HSK</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-title-md text-title-md text-on-background">Cộng đồng</h4>
+<ul class="space-y-3 font-label-lg text-label-lg text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Group Học tập</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Certificates</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Success Stories</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-title-md text-title-md text-on-background">Hỗ trợ</h4>
+<ul class="space-y-3 font-label-lg text-label-lg text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Support Center</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-surface-variant/30 text-center">
+<p class="text-on-surface-variant/60 text-sm">© 2024 Ruby HSK. All rights reserved. Design for curious minds.</p>
+</div>
+</div>
+</footer>
+<!-- Mobile Navigation Bar -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface z-50 rounded-t-xl shadow-[0_-4px_10px_rgba(181,35,48,0.1)] h-16 flex justify-around items-center px-4">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-[10px] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label-sm text-[10px] mt-1">Learn</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-sm text-[10px] mt-1">HSK Prep</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple interactivity for course cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Subtle lift or effect can be added via JS if needed beyond Tailwind
+            });
+        });
+
+        // Search bar micro-interaction (if added later) or mobile menu logic
+    </script>
+</body></html>

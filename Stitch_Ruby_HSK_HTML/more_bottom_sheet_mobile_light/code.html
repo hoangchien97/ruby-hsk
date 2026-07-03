@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface": "#fdf9f4",
+                "on-primary": "#ffffff",
+                "secondary-fixed-dim": "#edc157",
+                "tertiary-container": "#00a87d",
+                "primary-fixed-dim": "#ffb3b0",
+                "surface-container-lowest": "#ffffff",
+                "primary-container": "#ff5a5f",
+                "secondary-container": "#ffd167",
+                "surface-container-low": "#f7f3ee",
+                "inverse-on-surface": "#f4f0eb",
+                "inverse-primary": "#ffb3b0",
+                "error": "#ba1a1a",
+                "outline-variant": "#e2bebc",
+                "on-primary-fixed": "#410007",
+                "surface-container-highest": "#e6e2dd",
+                "on-tertiary-container": "#003424",
+                "on-surface-variant": "#5a403f",
+                "on-tertiary": "#ffffff",
+                "surface-bright": "#fdf9f4",
+                "on-secondary-fixed": "#251a00",
+                "secondary-fixed": "#ffdf9b",
+                "on-error": "#ffffff",
+                "tertiary-fixed-dim": "#27e0a9",
+                "inverse-surface": "#31302d",
+                "secondary": "#785a00",
+                "tertiary": "#006c4f",
+                "surface-variant": "#e6e2dd",
+                "surface-container-high": "#ebe8e3",
+                "on-secondary-container": "#765900",
+                "surface-tint": "#b52330",
+                "background": "#fdf9f4",
+                "on-error-container": "#93000a",
+                "tertiary-fixed": "#54fdc4",
+                "primary": "#b52330",
+                "outline": "#8e706f",
+                "surface-container": "#f1ede8",
+                "on-primary-fixed-variant": "#92001b",
+                "on-tertiary-fixed-variant": "#00513b",
+                "error-container": "#ffdad6",
+                "on-secondary-fixed-variant": "#5b4300",
+                "on-background": "#1c1c19",
+                "on-secondary": "#ffffff",
+                "on-primary-container": "#61000e",
+                "on-tertiary-fixed": "#002116",
+                "surface-dim": "#ddd9d5",
+                "primary-fixed": "#ffdad8",
+                "on-surface": "#1c1c19"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "2xl": "1rem",
+                "3xl": "1.5rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "xl": "64px",
+                "base": "8px",
+                "lg": "40px",
+                "sm": "12px",
+                "gutter": "20px",
+                "xs": "4px",
+                "md": "24px",
+                "margin-mobile": "16px",
+                "margin-desktop": "48px"
+            },
+            "fontFamily": {
+                "headline-lg": ["Noto Sans"],
+                "body-lg": ["Noto Sans"],
+                "title-md": ["Noto Sans"],
+                "display-lg": ["Noto Sans"],
+                "headline-lg-mobile": ["Noto Sans"],
+                "label-lg": ["Noto Sans"],
+                "label-sm": ["Noto Sans"],
+                "body-md": ["Noto Sans"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bottom-sheet-enter {
+            transform: translateY(100%);
+        }
+        .bottom-sheet-enter-active {
+            transform: translateY(0);
+            transition: transform 400ms cubic-bezier(0.33, 1, 0.68, 1);
+        }
+        .backdrop-blur-ivory {
+            background-color: rgba(253, 249, 244, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .bento-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .bento-card:active {
+            transform: scale(0.98);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-md text-on-surface overflow-hidden h-screen w-screen flex flex-col">
+<!-- Mock Main Content (Background) -->
+<main class="flex-1 overflow-y-auto px-margin-mobile pt-md pb-xl">
+<header class="mb-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-xs">Chào mừng bạn!</h1>
+<p class="text-on-surface-variant font-body-md">Hôm nay bạn muốn học gì nào?</p>
+</header>
+<!-- Bento-style Dashboard items to fill space -->
+<div class="grid grid-cols-2 gap-sm">
+<div class="col-span-2 bg-surface-container-lowest rounded-2xl p-md shadow-sm border border-surface-variant/30 flex items-center gap-md">
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-4xl">rocket_launch</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md">Tiếp tục HSK 3</h3>
+<div class="w-full bg-surface-container-highest h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-tertiary-container w-[65%] h-full"></div>
+</div>
+</div>
+</div>
+<div class="bg-secondary-container/20 rounded-2xl p-md border border-secondary-container/30 flex flex-col justify-between aspect-square">
+<span class="material-symbols-outlined text-secondary text-3xl">menu_book</span>
+<span class="font-label-lg text-label-lg text-on-secondary-container">Từ vựng mới</span>
+</div>
+<div class="bg-tertiary-container/10 rounded-2xl p-md border border-tertiary-container/20 flex flex-col justify-between aspect-square">
+<span class="material-symbols-outlined text-tertiary text-3xl">psychology</span>
+<span class="font-label-lg text-label-lg text-on-tertiary-fixed-variant">Luyện tập</span>
+</div>
+</div>
+</main>
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 bg-on-background/20 z-[60] backdrop-blur-sm transition-opacity duration-300" id="backdrop" onclick="toggleBottomSheet()"></div>
+<!-- More Bottom Sheet -->
+<div class="fixed bottom-0 left-0 right-0 z-[70] transition-transform duration-500 ease-out translate-y-0" id="bottom-sheet">
+<div class="max-w-md mx-auto w-full backdrop-blur-ivory rounded-t-3xl shadow-[0_-10px_30px_rgba(181,35,48,0.08)] border-t border-surface-variant/50 flex flex-col max-h-[751px]">
+<!-- Handle -->
+<div class="flex justify-center py-sm" onclick="toggleBottomSheet()">
+<div class="w-12 h-1.5 bg-surface-container-highest rounded-full"></div>
+</div>
+<!-- Content Container -->
+<div class="px-margin-mobile pb-xl overflow-y-auto">
+<div class="flex items-center gap-md mb-lg mt-sm">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-lowest shadow-sm flex items-center justify-center p-2 border border-surface-variant/30">
+<img class="w-full h-full object-contain" data-alt="A cute, minimalist mascot logo of a red bean-shaped character wearing a black academic mortarboard hat with a golden sparkle. The character has a cheerful smile and rosy pink cheeks, set against a warm ivory circular background. The style is soft, playful, and intellectually welcoming." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhsU2Z3ybUP4TdNm9JnFlzTcGsHf7DoQsVJWScgcRrSJO9h9MOa2GEJLiGRQFfoQn6_6SpAAn0R9LfUGAPKhwLRhuwWpgTwMQJJAnSZjspImTnZeW50hOORglqUFMF09KQ5XfDapMHxjZ7KxUYaWxoPvQIpMFmfMw2JrX2LSuUQLDJpnL_9-t6F-koMB4D7697AwTv62gon7HQpiBc29xZWU-puSjVGAFYtgdrRHmjURqk_sn82kIK6brLc1ZQEdrRaY1NgNkBTy8"/>
+</div>
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary leading-tight">Ruby HSK</h2>
+<p class="text-on-surface-variant font-label-lg">Học tiếng Trung thật vui</p>
+</div>
+</div>
+<!-- Section: Account -->
+<div class="mb-lg">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest mb-sm ml-sm">Tài khoản</h3>
+<div class="space-y-sm">
+<a class="flex items-center gap-md p-md bg-surface-container-lowest rounded-2xl shadow-sm bento-card active:bg-primary-container/5" href="#">
+<div class="w-10 h-10 rounded-xl bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">login</span>
+</div>
+<span class="flex-1 font-title-md text-title-md">Đăng nhập / Đăng ký</span>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Section: Support & Social -->
+<div class="mb-lg">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest mb-sm ml-sm">Hỗ trợ &amp; Cộng đồng</h3>
+<div class="grid grid-cols-2 gap-sm">
+<a class="flex flex-col gap-sm p-md bg-surface-container-lowest rounded-2xl shadow-sm bento-card" href="#">
+<div class="w-10 h-10 rounded-xl bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">chat</span>
+</div>
+<span class="font-label-lg text-label-lg">Messenger</span>
+</a>
+<a class="flex flex-col gap-sm p-md bg-surface-container-lowest rounded-2xl shadow-sm bento-card" href="#">
+<div class="w-10 h-10 rounded-xl bg-tertiary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">forum</span>
+</div>
+<span class="font-label-lg text-label-lg">Zalo</span>
+</a>
+</div>
+</div>
+<!-- Section: Legal & Info -->
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest mb-sm ml-sm">Thông tin</h3>
+<div class="bg-surface-container-lowest rounded-3xl shadow-sm divide-y divide-surface-variant/20 overflow-hidden">
+<a class="flex items-center gap-md p-md hover:bg-primary-container/5 active:bg-primary-container/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="flex-1 font-body-md text-body-md">Điều khoản sử dụng</span>
+<span class="material-symbols-outlined text-outline-variant text-sm">open_in_new</span>
+</a>
+<a class="flex items-center gap-md p-md hover:bg-primary-container/5 active:bg-primary-container/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-primary">privacy_tip</span>
+<span class="flex-1 font-body-md text-body-md">Chính sách bảo mật</span>
+<span class="material-symbols-outlined text-outline-variant text-sm">open_in_new</span>
+</a>
+<div class="p-md text-center">
+<p class="text-label-sm text-outline font-label-sm">Phiên bản 2.4.0 • Made with ❤️ by Ruby Team</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar (as trigger) -->
+<nav class="md:hidden flex justify-around items-center h-16 bg-surface border-t border-surface-variant/20 fixed bottom-0 w-full z-50 pb-safe">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-sm text-label-sm">Learn</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-sm text-label-sm">HSK Prep</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 transition-all duration-300 scale-110" onclick="toggleBottomSheet()">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-sm text-label-sm">Thêm</span>
+</button>
+</nav>
+<script>
+        let isOpen = true; // Initial state matches the generated visual
+
+        function toggleBottomSheet() {
+            const sheet = document.getElementById('bottom-sheet');
+            const backdrop = document.getElementById('backdrop');
+            
+            if (isOpen) {
+                sheet.style.transform = 'translateY(100%)';
+                backdrop.style.opacity = '0';
+                setTimeout(() => {
+                    backdrop.style.display = 'none';
+                }, 300);
+            } else {
+                backdrop.style.display = 'block';
+                setTimeout(() => {
+                    backdrop.style.opacity = '1';
+                    sheet.style.transform = 'translateY(0)';
+                }, 10);
+            }
+            isOpen = !isOpen;
+        }
+
+        // Auto-show for presentation (user requested the sheet itself)
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure visual matches initial 'open' state logic
+            const sheet = document.getElementById('bottom-sheet');
+            sheet.style.transform = 'translateY(0)';
+        });
+    </script>
+</body></html>

@@ -37,7 +37,7 @@ Open `http://localhost:3000/vi`.
 
 ## Notes
 
-- Components are created in `src/components_v2`.
+- Components are created in `src/components`.
 - Public landing content is static-ready and SEO-oriented.
 - Supabase is configured as a placeholder for database usage.
 # ruby-hsk

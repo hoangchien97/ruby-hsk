@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ruby HSK - Đang tải</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Noto Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface": "#fdf9f4",
+                "on-primary": "#ffffff",
+                "secondary-fixed-dim": "#edc157",
+                "tertiary-container": "#00a87d",
+                "primary-fixed-dim": "#ffb3b0",
+                "surface-container-lowest": "#ffffff",
+                "primary-container": "#ff5a5f",
+                "secondary-container": "#ffd167",
+                "surface-container-low": "#f7f3ee",
+                "inverse-on-surface": "#f4f0eb",
+                "inverse-primary": "#ffb3b0",
+                "error": "#ba1a1a",
+                "outline-variant": "#e2bebc",
+                "on-primary-fixed": "#410007",
+                "surface-container-highest": "#e6e2dd",
+                "on-tertiary-container": "#003424",
+                "on-surface-variant": "#5a403f",
+                "on-tertiary": "#ffffff",
+                "surface-bright": "#fdf9f4",
+                "on-secondary-fixed": "#251a00",
+                "secondary-fixed": "#ffdf9b",
+                "on-error": "#ffffff",
+                "tertiary-fixed-dim": "#27e0a9",
+                "inverse-surface": "#31302d",
+                "secondary": "#785a00",
+                "tertiary": "#006c4f",
+                "surface-variant": "#e6e2dd",
+                "surface-container-high": "#ebe8e3",
+                "on-secondary-container": "#765900",
+                "surface-tint": "#b52330",
+                "background": "#fdf9f4",
+                "on-error-container": "#93000a",
+                "tertiary-fixed": "#54fdc4",
+                "primary": "#b52330",
+                "outline": "#8e706f",
+                "surface-container": "#f1ede8",
+                "on-primary-fixed-variant": "#92001b",
+                "on-tertiary-fixed-variant": "#00513b",
+                "error-container": "#ffdad6",
+                "on-secondary-fixed-variant": "#5b4300",
+                "on-background": "#1c1c19",
+                "on-secondary": "#ffffff",
+                "on-primary-container": "#61000e",
+                "on-tertiary-fixed": "#002116",
+                "surface-dim": "#ddd9d5",
+                "primary-fixed": "#ffdad8",
+                "on-surface": "#1c1c19"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "2xl": "1rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "xl": "64px",
+                "base": "8px",
+                "lg": "40px",
+                "sm": "12px",
+                "gutter": "20px",
+                "xs": "4px",
+                "md": "24px",
+                "margin-mobile": "16px",
+                "margin-desktop": "48px"
+            },
+            "fontFamily": {
+                "headline-lg": ["Noto Sans"],
+                "body-lg": ["Noto Sans"],
+                "title-md": ["Noto Sans"],
+                "display-lg": ["Noto Sans"],
+                "label-lg": ["Noto Sans"],
+                "label-sm": ["Noto Sans"],
+                "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 1; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+        .bg-ivory-gradient {
+            background: radial-gradient(circle at center, #ffffff 0%, #fdf9f4 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface m-0 p-0 overflow-hidden select-none">
+<!-- Loading Screen Container -->
+<div class="fixed inset-0 flex flex-col items-center justify-center bg-ivory-gradient h-screen w-screen z-[999]">
+<!-- Animated Background Orbs -->
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+<!-- Central Content Canvas -->
+<div class="relative flex flex-col items-center justify-center space-y-12">
+<!-- Mascot Visual Cluster -->
+<div class="relative">
+<!-- Outer Pulse Rings -->
+<div class="absolute inset-0 bg-primary/10 rounded-full pulse-ring" style="animation-delay: 0s;"></div>
+<div class="absolute inset-0 bg-primary/5 rounded-full pulse-ring" style="animation-delay: 0.5s;"></div>
+<!-- Mascot Image -->
+<div class="relative z-10 float-animation w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+<img alt="Ruby HSK Mascot" class="w-full h-full object-contain drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+</div>
+<!-- Floating Decorative Icons -->
+<div class="absolute -top-4 -right-4 bg-white p-3 rounded-2xl shadow-lg float-animation" style="animation-delay: -0.5s;">
+<span class="material-symbols-outlined text-secondary text-2xl" style="font-variation-settings: 'FILL' 1;">translate</span>
+</div>
+<div class="absolute -bottom-2 -left-6 bg-white p-2.5 rounded-2xl shadow-lg float-animation" style="animation-delay: -1.2s;">
+<span class="material-symbols-outlined text-tertiary text-xl" style="font-variation-settings: 'FILL' 1;">book</span>
+</div>
+</div>
+<!-- Loading Text & Progress -->
+<div class="flex flex-col items-center space-y-6 w-full max-w-xs md:max-w-md text-center px-6">
+<div class="space-y-2">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+                        Đang tải Ruby HSK...
+                    </h1>
+<p class="font-label-lg text-label-lg text-on-surface-variant opacity-70">
+                        Chờ một chút để chuẩn bị bài học nhé!
+                    </p>
+</div>
+<!-- Custom Tactile Progress Bar -->
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden shadow-inner relative border border-surface-dim">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-300 ease-out shadow-[0_0_8px_rgba(181,35,48,0.4)]" id="progress-bar" style="width: 0%;">
+<!-- Shimmer Effect -->
+<div class="absolute inset-0 opacity-30 bg-gradient-to-r from-transparent via-white to-transparent" style="background-size: 200% 100%; animation: shimmer 2s linear infinite;"></div>
+</div>
+</div>
+<!-- Progress percentage -->
+<div class="font-label-lg text-label-lg text-primary font-bold" id="percentage">
+                    0%
+                </div>
+</div>
+</div>
+<!-- Bottom Footer Branding -->
+<div class="absolute bottom-12 flex flex-col items-center opacity-40">
+<div class="flex items-center space-y-1">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em]">Intellectual Journey</span>
+</div>
+</div>
+</div>
+<!-- Interaction & Logic Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBar = document.getElementById('progress-bar');
+            const percentageText = document.getElementById('percentage');
+            let progress = 0;
+
+            // Simulate loading steps for aesthetic feel
+            const updateLoading = () => {
+                if (progress < 100) {
+                    // Random increment to simulate real loading feel
+                    const increment = Math.random() * 8;
+                    progress = Math.min(progress + increment, 100);
+                    
+                    progressBar.style.width = `${progress}%`;
+                    percentageText.innerText = `${Math.floor(progress)}%`;
+                    
+                    // Slightly varied intervals
+                    setTimeout(updateLoading, 100 + Math.random() * 200);
+                } else {
+                    // Optional: Fade out or redirect after complete
+                    setTimeout(() => {
+                        console.log('Loading Complete');
+                        // In a real app, this would trigger the transition to the dashboard
+                    }, 500);
+                }
+            };
+
+            // Start simulated progress
+            setTimeout(updateLoading, 500);
+
+            // Subtle interaction: Mascot follows mouse slightly
+            const mascot = document.querySelector('.float-animation');
+            document.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 45;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+                mascot.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateY(-15px) scale(1.05)`;
+            });
+
+            // Reset transform when mouse leaves or stops
+            document.addEventListener('mouseleave', () => {
+                mascot.style.transform = `rotateY(0deg) rotateX(0deg) translateY(0px) scale(1)`;
+            });
+        });
+    </script>
+</body></html>

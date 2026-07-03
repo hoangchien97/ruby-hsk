@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ruby HSK - Học Tiếng Trung Thật Nhẹ Nhàng</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fdf9f4",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#edc157",
+                    "tertiary-container": "#00a87d",
+                    "primary-fixed-dim": "#ffb3b0",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#ff5a5f",
+                    "secondary-container": "#ffd167",
+                    "surface-container-low": "#f7f3ee",
+                    "inverse-on-surface": "#f4f0eb",
+                    "inverse-primary": "#ffb3b0",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#e2bebc",
+                    "on-primary-fixed": "#410007",
+                    "surface-container-highest": "#e6e2dd",
+                    "on-tertiary-container": "#003424",
+                    "on-surface-variant": "#5a403f",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#fdf9f4",
+                    "on-secondary-fixed": "#251a00",
+                    "secondary-fixed": "#ffdf9b",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#27e0a9",
+                    "inverse-surface": "#31302d",
+                    "secondary": "#785a00",
+                    "tertiary": "#006c4f",
+                    "surface-variant": "#e6e2dd",
+                    "surface-container-high": "#ebe8e3",
+                    "on-secondary-container": "#765900",
+                    "surface-tint": "#b52330",
+                    "background": "#fdf9f4",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#54fdc4",
+                    "primary": "#b52330",
+                    "outline": "#8e706f",
+                    "surface-container": "#f1ede8",
+                    "on-primary-fixed-variant": "#92001b",
+                    "on-tertiary-fixed-variant": "#00513b",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#5b4300",
+                    "on-background": "#1c1c19",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#61000e",
+                    "on-tertiary-fixed": "#002116",
+                    "surface-dim": "#ddd9d5",
+                    "primary-fixed": "#ffdad8",
+                    "on-surface": "#1c1c19"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "64px",
+                    "base": "8px",
+                    "lg": "40px",
+                    "sm": "12px",
+                    "gutter": "20px",
+                    "xs": "4px",
+                    "md": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "48px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Noto Sans"],
+                    "body-lg": ["Noto Sans"],
+                    "title-md": ["Noto Sans"],
+                    "display-lg": ["Noto Sans"],
+                    "headline-lg-mobile": ["Noto Sans"],
+                    "label-lg": ["Noto Sans"],
+                    "label-sm": ["Noto Sans"],
+                    "label-sm-mobile": ["Noto Sans"],
+                    "body-md": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-sm-mobile": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fdf9f4; /* Ivory base */
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .coral-shadow {
+            box-shadow: 0 10px 25px -5px rgba(181, 35, 48, 0.15);
+        }
+        .bouncy {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bouncy:active {
+            transform: scale(0.92);
+        }
+        .floating-nav {
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed-variant pb-24">
+<!-- TopNavBar (Mobile Optimized Header) -->
+<header class="sticky top-0 z-50 flex items-center justify-center h-20 px-margin-mobile bg-surface/80 backdrop-blur-md">
+<div class="flex items-center justify-center w-full">
+<img alt="Ruby Mascot Logo" class="h-14 w-14 object-contain bouncy cursor-pointer" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+</div>
+</header>
+<main class="max-w-7xl mx-auto">
+<!-- Hero Section -->
+<section class="px-margin-mobile pt-base pb-lg flex flex-col items-center text-center">
+<div class="relative w-full max-w-sm mb-md group">
+<div class="absolute inset-0 bg-primary-container/10 rounded-full scale-110 blur-3xl transition-transform duration-700 group-hover:scale-125"></div>
+<img alt="Ruby Mascot" class="relative z-10 w-64 h-64 mx-auto object-contain bouncy transform hover:rotate-3" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+<!-- Decorative floating chips -->
+<div class="absolute -top-4 -right-2 bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full font-label-lg shadow-sm animate-bounce">你好!</div>
+<div class="absolute bottom-10 -left-4 bg-tertiary-container text-on-tertiary text-label-lg px-4 py-1 rounded-full shadow-sm">HSK 1-6</div>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-xs px-2 leading-tight">
+                Học Tiếng Trung Thật Nhẹ Nhàng
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xs mx-auto mb-md opacity-80">
+                Phương pháp học tập ấm áp và gần gũi như một người bạn.
+            </p>
+<button class="bg-primary text-on-primary px-xl py-md rounded-full font-title-md coral-shadow bouncy flex items-center gap-sm">
+                Bắt đầu ngay
+                <span class="material-symbols-outlined">rocket_launch</span>
+</button>
+</section>
+<!-- Bento Grid Dashboard / Features -->
+<section class="px-margin-mobile grid grid-cols-2 gap-gutter mb-xl">
+<!-- Large Main Card -->
+<div class="col-span-2 bg-surface-container-lowest p-md rounded-3xl coral-shadow border border-surface-container-high relative overflow-hidden group">
+<div class="relative z-10">
+<span class="bg-primary-fixed text-on-primary-fixed-variant text-label-sm px-2 py-0.5 rounded-full mb-base inline-block">Nổi bật</span>
+<h3 class="font-title-md text-title-md text-on-surface mb-xs">Lộ trình HSK 3 cấp tốc</h3>
+<p class="text-label-lg text-on-surface-variant mb-md">Chỉ 30 phút mỗi ngày, đạt kết quả mong muốn.</p>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[65%] rounded-full"></div>
+</div>
+<div class="flex justify-between mt-xs">
+<span class="text-label-sm text-on-surface-variant">Hoàn thành 65%</span>
+<span class="text-label-sm text-primary font-bold">Tiếp tục</span>
+</div>
+</div>
+<div class="absolute top-0 right-0 p-4 opacity-10 transform translate-x-4 -translate-y-4 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+</div>
+</div>
+<!-- Small Cards -->
+<div class="bg-surface-container-lowest p-md rounded-3xl coral-shadow border border-surface-container-high bouncy flex flex-col items-center text-center">
+<div class="w-12 h-12 bg-secondary-container rounded-2xl flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-on-secondary-container">spellcheck</span>
+</div>
+<span class="font-title-md text-on-surface">Từ vựng</span>
+<span class="text-label-sm text-on-surface-variant">500+ Thẻ</span>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-3xl coral-shadow border border-surface-container-high bouncy flex flex-col items-center text-center">
+<div class="w-12 h-12 bg-tertiary-container rounded-2xl flex items-center justify-center mb-sm text-white">
+<span class="material-symbols-outlined">headset_mic</span>
+</div>
+<span class="font-title-md text-on-surface">Luyện nghe</span>
+<span class="text-label-sm text-on-surface-variant">Audio chuẩn</span>
+</div>
+</section>
+<!-- Community/Social Proof -->
+<section class="px-margin-mobile mb-xl">
+<h2 class="font-title-md text-title-md text-on-surface mb-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                Cộng đồng Ruby
+            </h2>
+<div class="flex gap-md overflow-x-auto pb-4 scrollbar-hide">
+<div class="min-w-[200px] bg-white p-md rounded-2xl border border-surface-variant/30 coral-shadow">
+<p class="text-label-lg italic mb-sm">"Học với Ruby mascot đáng yêu quá, hết sợ tiếng Trung luôn!"</p>
+<div class="flex items-center gap-xs">
+<div class="w-8 h-8 rounded-full bg-primary-fixed"></div>
+<span class="text-label-sm font-bold">Minh Anh</span>
+</div>
+</div>
+<div class="min-w-[200px] bg-white p-md rounded-2xl border border-surface-variant/30 coral-shadow">
+<p class="text-label-lg italic mb-sm">"Giao diện app mượt mà, dễ học nhất từ trước tới nay."</p>
+<div class="flex items-center gap-xs">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed"></div>
+<span class="text-label-sm font-bold">Hà Trang</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (The Mandatory Shell) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 px-4 pb-6 pt-2 pointer-events-none">
+<div class="max-w-md mx-auto bg-surface/90 backdrop-blur-xl rounded-3xl flex justify-around items-center h-16 shadow-[0_-4px_20px_rgba(181,35,48,0.08)] border border-surface-container-high pointer-events-auto">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1.5 transition-all duration-300 scale-105" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm-mobile text-label-sm-mobile mt-0.5">Home</span>
+</a>
+<!-- Courses -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 bouncy" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-sm-mobile text-label-sm-mobile mt-0.5">Courses</span>
+</a>
+<!-- About -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 bouncy" href="#">
+<span class="material-symbols-outlined">info</span>
+<span class="font-label-sm-mobile text-label-sm-mobile mt-0.5">About</span>
+</a>
+<!-- Contact -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 bouncy" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-sm-mobile text-label-sm-mobile mt-0.5">Contact</span>
+</a>
+<!-- More -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 bouncy" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-sm-mobile text-label-sm-mobile mt-0.5">More</span>
+</a>
+</div>
+</nav>
+<!-- Footer for Mobile Web -->
+<footer class="px-margin-mobile py-xl bg-surface-container-low text-center flex flex-col items-center gap-md mb-20 border-t border-surface-variant/20">
+<div class="font-headline-lg text-primary bouncy">Ruby HSK</div>
+<div class="flex flex-wrap justify-center gap-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors font-label-lg" href="#">Syllabus</a>
+<a class="hover:text-primary transition-colors font-label-lg" href="#">Certificates</a>
+<a class="hover:text-primary transition-colors font-label-lg" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors font-label-lg" href="#">Support</a>
+</div>
+<div class="text-label-sm text-on-surface-variant/60">
+            © 2024 Ruby HSK. All rights reserved.
+        </div>
+</footer>
+<script>
+        // Subtle micro-interaction: mascot follows mouse slightly on larger screens
+        document.addEventListener('mousemove', (e) => {
+            const mascot = document.querySelector('section img');
+            if (!mascot) return;
+            
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 45;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+            
+            mascot.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // Click ripple or interaction effect can be added here
+        const buttons = document.querySelectorAll('.bouncy');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    btn.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body></html>

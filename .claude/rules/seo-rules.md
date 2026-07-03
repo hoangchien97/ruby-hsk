@@ -1,0 +1,21 @@
+# SEO Rules
+
+- SEO là mục tiêu chính của toàn project — mọi trang public phải tối ưu SEO trước khi coi là "hoàn thành".
+- Dùng Next.js App Router metadata API (`generateMetadata`), không tự viết `<head>` tay.
+- Mỗi trang bắt buộc có: `title`, `description`, `alternates.canonical`, `alternates.languages` (vi/en).
+- Bắt buộc có `src/app/sitemap.ts`, `src/app/robots.ts`, `src/app/manifest.ts`.
+- JSON-LD thêm khi nội dung thật đã có (không nhúng dữ liệu giả):
+  - `EducationalOrganization` (site-wide)
+  - `Course` (mỗi khoá học, khi có dữ liệu Supabase thật)
+  - `FAQPage` (khi có FAQ thật)
+  - `BreadcrumbList` (mọi trang con)
+- Từ khoá mục tiêu (dùng tự nhiên, không nhồi):
+  - học tiếng Trung
+  - luyện thi HSK
+  - khóa học HSK
+  - tiếng Trung giao tiếp
+  - học tiếng Trung cho người mới bắt đầu
+  - trung tâm tiếng Trung
+- Không keyword stuffing — từ khoá chỉ xuất hiện tự nhiên trong H1/description/alt text.
+- Alt text mọi ảnh có nội dung; icon trang trí dùng `aria-hidden`/`aria-label` ở phần tử cha.
+- Chi tiết đầy đủ: `docs/seo/00-seo-implementation-plan.md`.
