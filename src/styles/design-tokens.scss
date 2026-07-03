@@ -1,0 +1,39 @@
+:root {
+  --font-sans: "Noto Sans", "Noto Sans SC";
+  --color-primary: #804237;
+  --color-primary-hover: #6e362e;
+  --color-secondary: #e78f65;
+  --color-tertiary: #191211;
+  --color-bg: #f9f5f0;
+  --color-bg-soft: #fffdf8;
+  --color-surface: #fffdf8;
+  --color-surface-glass: rgba(255, 253, 248, 0.78);
+  --color-title: #804237;
+  --color-text: #5b4843;
+  --color-muted: #8a756d;
+  --color-border: #e4d5c8;
+  --color-peach: #fce8de;
+  --color-gold: #d6a84f;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --shadow-soft: 0 18px 55px rgba(128, 66, 55, 0.12);
+  --shadow-button: 0 14px 28px rgba(128, 66, 55, 0.22);
+}
+
+.dark {
+  --color-primary: #e78f65;
+  --color-primary-hover: #f3a784;
+  --color-secondary: #d6a84f;
+  --color-bg: #191211;
+  --color-bg-soft: #241a18;
+  --color-surface: #241a18;
+  --color-surface-glass: rgba(36, 26, 24, 0.72);
+  --color-title: #f9f5f0;
+  --color-text: #eadbd2;
+  --color-muted: #d1bdb3;
+  --color-border: rgba(231, 143, 101, 0.28);
+  --color-peach: rgba(231, 143, 101, 0.18);
+  --shadow-soft: 0 18px 55px rgba(0, 0, 0, 0.35);
+  --shadow-button: 0 14px 28px rgba(231, 143, 101, 0.2);
+}

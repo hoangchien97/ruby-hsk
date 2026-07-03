@@ -1,0 +1,59 @@
+{
+  "Nav": {
+    "home": "Home",
+    "courses": "Courses",
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "more": "More",
+    "login": "Login",
+    "start": "Start learning"
+  },
+  "Common": {
+    "consult": "Free consultation",
+    "startNow": "Start now",
+    "learnMore": "Learn more",
+    "viewCourses": "View courses",
+    "backHome": "Back home",
+    "loading": "Loading Ruby HSK...",
+    "loadingSub": "Preparing your Chinese learning journey"
+  },
+  "Home": {
+    "badge": "Conquer HSK with Ruby",
+    "title": "Learn Chinese Gently",
+    "sub": "A warm, clear and structured learning pathway to help you confidently master Chinese.",
+    "paths": "Personalized learning pathways",
+    "why": "Why study with Ruby HSK?",
+    "teacher": "Learn with Ms. Tran Hong Ngoc",
+    "faq": "Frequently asked questions"
+  },
+  "Courses": {
+    "title": "Chinese courses & HSK preparation",
+    "sub": "Master Chinese with a structured pathway from HSK 1 to HSK 6.",
+    "list": "Course list",
+    "filters": "HSK Levels"
+  },
+  "About": {
+    "title": "Ruby HSK - Your companion on the Chinese learning journey",
+    "teacher": "Learn with Ms. Tran Hong Ngoc",
+    "safe": "Details are updated according to the official Ruby HSK profile."
+  },
+  "Contact": {
+    "title": "Contact Ruby HSK",
+    "sub": "Leave your information to receive a suitable Chinese learning consultation.",
+    "submit": "Send request"
+  },
+  "Legal": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "sub": "The page may have moved or does not exist."
+  },
+  "ComingSoon": {
+    "title": "Feature coming soon",
+    "sub": "Ruby HSK is preparing a better Chinese learning experience for you."
+  }
+}
