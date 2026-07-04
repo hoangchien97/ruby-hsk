@@ -48,7 +48,7 @@ export function WhyRuby({ locale = 'vi' }: WhyRubyProps) {
 
     return (
         <section className="bg-[var(--color-surface-container)] py-16">
-            <div className="container">
+            <div className="container px-4 mx-auto max-w-[1400px]">
                 <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
                     {/* Left: 2×2 feature grid */}
                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -57,7 +57,7 @@ export function WhyRuby({ locale = 'vi' }: WhyRubyProps) {
                             return (
                                 <div
                                     key={f.title}
-                                    className="rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-white p-6 shadow-sm flex flex-col items-start gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                                    className="rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] p-6 shadow-sm flex flex-col items-center text-center sm:items-start sm:text-left gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                                 >
                                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                                         <Icon className="h-6 w-6" />
@@ -66,7 +66,7 @@ export function WhyRuby({ locale = 'vi' }: WhyRubyProps) {
                                         <h4 className="text-title-md font-semibold text-[var(--color-on-surface)]">
                                             {f.title}
                                         </h4>
-                                        <p className="mt-1 text-label-lg text-[var(--color-on-surface-variant)]">
+                                        <p className="mt-1 text-label-lg text-[var(--color-on-surface-variant)] leading-relaxed">
                                             {f.desc}
                                         </p>
                                     </div>
@@ -77,9 +77,9 @@ export function WhyRuby({ locale = 'vi' }: WhyRubyProps) {
 
                     {/* Right: Why text + bullets */}
                     <div>
-                        <h2 className="text-headline-lg text-[var(--color-on-surface)]">
+                        <h2 className="text-headline-lg text-[var(--color-on-surface)] font-bold">
                             {t('whyTitle')}{' '}
-                            <span className="text-[var(--color-primary)]">Ruby HSK?</span>
+                            <span className="text-[var(--color-primary)] font-bold">Ruby HSK?</span>
                         </h2>
                         <p className="mt-4 max-w-lg text-body-lg text-[var(--color-on-surface-variant)]">
                             {t('whyDesc')}

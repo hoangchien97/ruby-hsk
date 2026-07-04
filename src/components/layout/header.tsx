@@ -35,14 +35,14 @@ export function Header() {
         {/* Desktop nav */}
         <nav className="hidden items-center gap-10 md:flex">
           {nav.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-title-md transition-colors hover:text-[var(--color-primary)] py-1 ${isActive
-                    ? 'text-[var(--color-primary)] font-bold border-b-2 border-[var(--color-primary)] pb-0.5'
-                    : 'text-[var(--color-on-surface-variant)]'
+                className={`text-label-lg font-bold transition-colors py-1 nav-link-animated ${isActive
+                  ? 'text-[var(--color-primary)] active'
+                  : 'text-[var(--color-on-surface-variant)] hover:text-[var(--color-primary)]'
                   }`}
               >
                 {item.label}

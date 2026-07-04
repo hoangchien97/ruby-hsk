@@ -1,0 +1,311 @@
+<!DOCTYPE html><html class="light" lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#f4f0eb",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#ffdad4",
+                    "on-secondary-fixed-variant": "#743411",
+                    "outline": "#86736f",
+                    "surface": "#fdf9f4",
+                    "on-primary-fixed": "#390b05",
+                    "surface-dim": "#ddd9d5",
+                    "surface-tint": "#8d4c41",
+                    "secondary-fixed": "#ffdbcc",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#5b5150",
+                    "primary": "#642c22",
+                    "surface-container-low": "#f7f3ee",
+                    "on-secondary-fixed": "#351000",
+                    "on-primary-fixed-variant": "#70362b",
+                    "on-primary-container": "#ffb6a9",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#fdf9f4",
+                    "on-tertiary-container": "#d3c4c2",
+                    "tertiary-fixed": "#eedfdd",
+                    "primary-container": "#804237",
+                    "inverse-surface": "#31302d",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#433a39",
+                    "background": "#fdf9f4",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#4e4543",
+                    "on-tertiary-fixed": "#211a19",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#fea277",
+                    "surface-container": "#f1ede8",
+                    "secondary-fixed-dim": "#ffb694",
+                    "surface-container-high": "#ebe8e3",
+                    "outline-variant": "#d8c2bd",
+                    "on-background": "#1c1c19",
+                    "surface-container-highest": "#e6e2dd",
+                    "secondary": "#924b27",
+                    "primary-fixed-dim": "#ffb4a6",
+                    "inverse-primary": "#ffb4a6",
+                    "on-secondary-container": "#773614",
+                    "on-surface": "#1c1c19",
+                    "tertiary-fixed-dim": "#d2c3c1",
+                    "surface-variant": "#e6e2dd",
+                    "on-surface-variant": "#534340"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-desktop": "48px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Noto Sans"],
+                    "label-md": ["Noto Sans"],
+                    "display-lg": ["Noto Sans"],
+                    "headline-md": ["Noto Sans"],
+                    "body-md": ["Noto Sans"],
+                    "headline-lg": ["Noto Sans"],
+                    "headline-lg-mobile": ["Noto Sans"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bottom-sheet-transition {
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .glass-container {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-body-md selection:bg-secondary-container">
+<!-- Mock Background Content (Dashboard View) -->
+<main class="max-w-container-max mx-auto px-margin-mobile pt-8 opacity-40 pointer-events-none">
+<header class="flex justify-between items-center mb-8">
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Chào Ruby!</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Hôm nay bạn muốn học gì?</p>
+</div>
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional yet warm headshot of a young Vietnamese student, styled as a high-quality studio portrait. The lighting is soft and academic, set against a blurred library background. The colors are dominated by warm ivory and deep crimson tones, reflecting a sophisticated scholarly aesthetic. The image is crisp, modern, and inviting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcdLMs6mGpyUmgOs8lbBFZzG34kZi23nhDVdt3d4xgdph1BJj_aIVqcz1MbjNe_cpj0KquD2A3L29015sWD7qe4i68Rewaeq6fxyK9xO443rNQN4P6Nr9mQAmzh1ePJTNtMRTq45kl6_sNlKoJmBAEH78Hg_Xh-_JS9w_Xj0P0v1PkG5zKOe2eWa2xitdi0ceFZljtlZ6MQSrQRwtsJPjlZPUtEFCadUtoX2gST-kpRNEIgJ4qJlmdbwqht7fhzH_WiYvrjapgV6c">
+</div>
+</header>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="p-4 bg-surface-container rounded-xl border border-soft-sunset">
+<span class="material-symbols-outlined text-secondary mb-2">menu_book</span>
+<p class="font-label-md text-label-md text-on-surface-variant">Đã học</p>
+<p class="font-headline-md text-headline-md text-primary">12 bài</p>
+</div>
+<div class="p-4 bg-surface-container rounded-xl border border-soft-sunset">
+<span class="material-symbols-outlined text-secondary mb-2">timer</span>
+<p class="font-label-md text-label-md text-on-surface-variant">Thời gian</p>
+<p class="font-headline-md text-headline-md text-primary">45p</p>
+</div>
+</div>
+</main>
+<!-- Overlay Backdrop -->
+<div class="fixed inset-0 bg-inverse-surface/40 z-[60] backdrop-blur-sm transition-opacity duration-300" id="backdrop"></div>
+<!-- Bottom Sheet Container -->
+<div class="fixed inset-x-0 bottom-0 z-[70] transform translate-y-0 bottom-sheet-transition" id="bottom-sheet">
+<!-- Pull Handle -->
+<div class="flex justify-center mb-2">
+<div class="w-12 h-1.5 bg-surface-container-highest/60 rounded-full"></div>
+</div>
+<!-- The Cream Glass Bottom Sheet -->
+<div class="bg-surface/95 glass-container rounded-t-3xl border-t border-x border-outline-variant/30 px-6 pt-4 pb-12 shadow-2xl max-h-[795px] overflow-y-auto">
+<!-- Header with Close Button -->
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline-md text-headline-md text-primary">Danh mục mở rộng</h2>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="closeSheet()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Page Links Group -->
+<div class="mb-8">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider mb-4 px-2">Điều hướng</h3>
+<div class="grid grid-cols-2 gap-3">
+<a class="flex items-center gap-3 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container hover:translate-y-[-2px] transition-all border border-outline-variant/10" href="#">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-body-md text-body-md text-on-surface">Trang chủ</span>
+</a>
+<a class="flex items-center gap-3 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container hover:translate-y-[-2px] transition-all border border-outline-variant/10" href="#">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="font-body-md text-body-md text-on-surface">Khóa học</span>
+</a>
+<a class="flex items-center gap-3 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container hover:translate-y-[-2px] transition-all border border-outline-variant/10" href="#">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">info</span>
+<span class="font-body-md text-body-md text-on-surface">Về Ruby</span>
+</a>
+<a class="flex items-center gap-3 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container hover:translate-y-[-2px] transition-all border border-outline-variant/10" href="#">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">contact_support</span>
+<span class="font-body-md text-body-md text-on-surface">Liên hệ</span>
+</a>
+<a class="flex items-center gap-3 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container hover:translate-y-[-2px] transition-all border border-outline-variant/10" href="#">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<span class="font-body-md text-body-md text-on-surface">Chính sách</span>
+</a>
+<a class="flex items-center gap-3 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container hover:translate-y-[-2px] transition-all border border-outline-variant/10" href="#">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-body-md text-body-md text-on-surface">Điều khoản</span>
+</a>
+</div>
+</div>
+<!-- Toggles Section -->
+<div class="mb-8 p-4 bg-surface-container-highest rounded-2xl border border-outline-variant/20">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider mb-4">Cài đặt hiển thị</h3>
+<div class="flex flex-col gap-4">
+<!-- Segmented Control for Language -->
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface">Ngôn ngữ</span>
+<div class="bg-surface-container-low p-1 rounded-full flex gap-1 border border-outline-variant/30">
+<button class="px-4 py-1.5 rounded-full text-on-secondary-container bg-secondary-container font-label-md text-label-md transition-all">VI</button>
+<button class="px-4 py-1.5 rounded-full text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md transition-all">EN</button>
+</div>
+</div>
+<div class="h-px bg-outline-variant/20"></div>
+<!-- Theme Switch -->
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface">Chế độ tối</span>
+<button class="w-12 h-6 rounded-full bg-surface-container-low border border-outline-variant/30 relative transition-all duration-300" id="theme-toggle">
+<div class="absolute left-1 top-1 w-4 h-4 rounded-full bg-primary transition-all duration-300" id="toggle-circle"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Contact Shortcuts Group -->
+<div class="mb-6">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider mb-4 px-2">Hỗ trợ học viên</h3>
+<div class="flex gap-4">
+<a class="flex-1 flex flex-col items-center justify-center p-4 rounded-2xl bg-white border border-outline-variant/20 hover:border-secondary transition-all" href="#">
+<div class="w-12 h-12 rounded-full bg-[#0068FF]/10 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[#0068FF]">chat</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Zalo</span>
+</a>
+<a class="flex-1 flex flex-col items-center justify-center p-4 rounded-2xl bg-white border border-outline-variant/20 hover:border-secondary transition-all" href="#">
+<div class="w-12 h-12 rounded-full bg-[#0084FF]/10 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[#0084FF]">forum</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Messenger</span>
+</a>
+<a class="flex-1 flex flex-col items-center justify-center p-4 rounded-2xl bg-white border border-outline-variant/20 hover:border-secondary transition-all" href="#">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-primary">call</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Tư vấn</span>
+</a>
+</div>
+</div>
+<!-- Footer Quote/Mascot Hint -->
+<div class="text-center mt-4">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-fixed/30 text-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-md text-label-md italic">Càng học càng thông tuệ</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mandatory Bottom Nav Bar for Mobile -->
+<nav class="fixed bottom-4 left-4 right-4 rounded-full z-50 md:hidden bg-surface-container/80 backdrop-blur-xl border border-white/20 shadow-xl flex justify-around items-center px-4 h-20">
+<div class="text-on-surface-variant flex flex-col items-center p-3 active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Trang chủ</span>
+</div>
+<div class="text-on-surface-variant flex flex-col items-center p-3 active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-label-md text-label-md">Khóa học</span>
+</div>
+<div class="text-on-surface-variant flex flex-col items-center p-3 active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-md text-label-md">Giới thiệu</span>
+</div>
+<div class="text-on-surface-variant flex flex-col items-center p-3 active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="font-label-md text-label-md">Liên hệ</span>
+</div>
+<div class="bg-secondary-container text-on-secondary-container rounded-full p-3 flex flex-col items-center active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+<span class="font-label-md text-label-md">Thêm</span>
+</div>
+</nav>
+<script>
+        function closeSheet() {
+            const sheet = document.getElementById('bottom-sheet');
+            const backdrop = document.getElementById('backdrop');
+            sheet.style.transform = 'translateY(100%)';
+            backdrop.style.opacity = '0';
+            setTimeout(() => {
+                backdrop.style.display = 'none';
+            }, 400);
+        }
+
+        // Simple Toggle Simulation
+        const themeBtn = document.getElementById('theme-toggle');
+        const circle = document.getElementById('toggle-circle');
+        let darkMode = false;
+
+        themeBtn.addEventListener('click', () => {
+            darkMode = !darkMode;
+            if (darkMode) {
+                circle.style.transform = 'translateX(24px)';
+                circle.classList.replace('bg-primary', 'bg-secondary');
+                document.documentElement.classList.add('dark');
+            } else {
+                circle.style.transform = 'translateX(0)';
+                circle.classList.replace('bg-secondary', 'bg-primary');
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Swipe down to close logic (simplified)
+        let touchstartY = 0;
+        let touchendY = 0;
+        const sheet = document.getElementById('bottom-sheet');
+
+        sheet.addEventListener('touchstart', e => {
+            touchstartY = e.changedTouches[0].screenY;
+        });
+
+        sheet.addEventListener('touchend', e => {
+            touchendY = e.changedTouches[0].screenY;
+            if (touchendY > touchstartY + 100) {
+                closeSheet();
+            }
+        });
+    </script>
+</body></html>

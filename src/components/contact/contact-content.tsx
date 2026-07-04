@@ -41,7 +41,7 @@ export function ContactContent({
                 <ContactForm locale={locale} />
 
                 {/* Info sidebar */}
-                <aside className="rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-low)] p-8 space-y-6">
+                <aside className="rounded-[2rem] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-low)] p-8 space-y-6">
                     <h2 className="text-title-md font-bold text-[var(--color-on-surface)]">
                         {isVi ? 'Thông tin liên hệ' : 'Contact information'}
                     </h2>
@@ -73,13 +73,26 @@ export function ContactContent({
                         />
                     </div>
 
-                    <div className="rounded-[var(--radius-xl)] bg-[var(--color-primary-fixed)] px-4 py-3">
-                        <p className="text-label-lg text-[var(--color-on-primary-fixed)]">
+                    <div className="rounded-[2rem] bg-[var(--color-primary-fixed)] px-4 py-3">
+                        <p className="text-label-lg font-bold text-[var(--color-on-primary-fixed)]">
                             {isVi ? Contact.replyTime.vi : Contact.replyTime.en}
                         </p>
                         <p className="mt-1 text-label-sm text-[var(--color-on-surface-variant)]">
                             {isVi ? 'Tư vấn hoàn toàn miễn phí.' : 'Consultation is completely free.'}
                         </p>
+                    </div>
+
+                    {/* Map Embed */}
+                    <div className="aspect-video w-full overflow-hidden rounded-2xl border border-[var(--color-surface-variant)] shadow-sm">
+                        <iframe
+                            src="https://maps.google.com/maps?cid=10357135247248641986&output=embed&hl=vi"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                        />
                     </div>
                 </aside>
             </section>

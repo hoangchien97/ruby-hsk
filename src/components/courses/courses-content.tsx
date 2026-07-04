@@ -20,7 +20,8 @@ import {
     Award,
     Filter,
     CheckCircle2,
-    Tv
+    Tv,
+    ArrowRight
 } from 'lucide-react';
 
 export type CourseRow = Pick<
@@ -43,10 +44,26 @@ export function CoursesContent({
     const isVi = locale === 'vi';
 
     // State for filtering
-    const [selectedLevel, setSelectedLevel] = useState<string>('all');
+    const [selectedLevels, setSelectedLevels] = useState<string[]>(['all']);
     const [selectedFormat, setSelectedFormat] = useState<string>('all');
     const [sortBy, setSortBy] = useState<string>('newest');
     const [favorites, setFavorites] = useState<Record<string, boolean>>({});
+
+    const handleLevelToggle = (level: string) => {
+        if (level === 'all') {
+            setSelectedLevels(['all']);
+        } else {
+            setSelectedLevels((prev) => {
+                const next = prev.filter((l) => l !== 'all');
+                if (next.includes(level)) {
+                    const filtered = next.filter((l) => l !== level);
+                    return filtered.length === 0 ? ['all'] : filtered;
+                } else {
+                    return [...next, level];
+                }
+            });
+        }
+    };
 
     // Toggle favorite state
     const toggleFavorite = (slug: string) => {
@@ -86,14 +103,16 @@ export function CoursesContent({
         let result = [...courses];
 
         // 1. Level filter
-        if (selectedLevel !== 'all') {
-            if (selectedLevel === 'hsk-1-2') {
-                result = result.filter(c => c.level_tag === 'HSK 1-2');
-            } else if (selectedLevel === 'hsk-3-4') {
-                result = result.filter(c => c.level_tag === 'HSK 3-4' || c.level_tag === 'HSK 4+');
-            } else if (selectedLevel === 'hsk-5-6') {
-                result = result.filter(c => c.level_tag === 'HSK 5-6');
-            }
+        if (!selectedLevels.includes('all')) {
+            result = result.filter((c) => {
+                const tag = c.level_tag?.toLowerCase() ?? '';
+                return selectedLevels.some((sel) => {
+                    if (sel === 'hsk-1-2') return tag === 'hsk 1-2';
+                    if (sel === 'hsk-3-4') return tag === 'hsk-3-4' || tag === 'hsk 3-4' || tag === 'hsk 4+';
+                    if (sel === 'hsk-5-6') return tag === 'hsk 5-6';
+                    return false;
+                });
+            });
         }
 
         // 2. Format filter
@@ -119,7 +138,7 @@ export function CoursesContent({
         }
 
         return result;
-    }, [courses, selectedLevel, selectedFormat, sortBy]);
+    }, [courses, selectedLevels, selectedFormat, sortBy]);
 
     // Static mapping of beautiful background cover images for courses
     const courseCovers: Record<string, string> = {
@@ -143,8 +162,8 @@ export function CoursesContent({
                 />
             ))}
 
-            {/* Hero Section */}
-            <section className="container py-16 md:py-24 text-center md:text-left relative overflow-hidden">
+            {/* Desktop Hero Section */}
+            <section className="container hidden md:block py-16 md:py-24 text-center md:text-left relative overflow-hidden">
                 <div className="relative z-10 grid md:grid-cols-2 items-center gap-12 max-w-[1400px] mx-auto">
                     <div>
                         <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] font-bold text-label-lg mb-6">
@@ -191,11 +210,79 @@ export function CoursesContent({
                 </div>
             </section>
 
+            {/* Mobile Hero Section */}
+            <section className="block md:hidden px-6 py-6 text-left">
+                <h1 className="text-display-sm font-extrabold text-[var(--color-on-surface)] tracking-tight leading-tight"
+                    dangerouslySetInnerHTML={{ __html: t.raw('mobileHeroTitleHtml') }}
+                />
+                <p className="text-[var(--color-on-surface-variant)] mt-2 text-body-md">
+                    {t('mobileHeroSub')}
+                </p>
+            </section>
+
+            {/* Mobile Horizontal Filter Slider (Chips) */}
+            <section className="block md:hidden mb-6 px-2">
+                <div className="flex gap-3 overflow-x-auto px-4 py-2 hide-scrollbar">
+                    {/* All Levels */}
+                    <button
+                        onClick={() => setSelectedLevels(['all'])}
+                        className={`flex-none px-6 py-2 rounded-full font-bold text-label-lg transition-all ${selectedLevels.includes('all')
+                            ? 'bg-[var(--color-primary)] text-white shadow-[0_4px_10px_rgba(181,35,48,0.25)] border-transparent'
+                            : 'bg-white border border-[var(--color-border)] text-[var(--color-on-surface-variant)] hover:bg-[var(--color-primary-container)]/10'
+                            }`}
+                    >
+                        {isVi ? 'Tất cả' : 'All'}
+                    </button>
+                    {/* HSK 1 - 2 */}
+                    <button
+                        onClick={() => setSelectedLevels(['hsk-1-2'])}
+                        className={`flex-none px-6 py-2 rounded-full font-bold text-label-lg transition-all ${selectedLevels.includes('hsk-1-2')
+                            ? 'bg-[var(--color-primary)] text-white shadow-[0_4px_10px_rgba(181,35,48,0.25)] border-transparent'
+                            : 'bg-white border border-[var(--color-border)] text-[var(--color-on-surface-variant)] hover:bg-[var(--color-primary-container)]/10'
+                            }`}
+                    >
+                        HSK 1 - 2
+                    </button>
+                    {/* HSK 3 - 4 */}
+                    <button
+                        onClick={() => setSelectedLevels(['hsk-3-4'])}
+                        className={`flex-none px-6 py-2 rounded-full font-bold text-label-lg transition-all ${selectedLevels.includes('hsk-3-4')
+                            ? 'bg-[var(--color-primary)] text-white shadow-[0_4px_10px_rgba(181,35,48,0.25)] border-transparent'
+                            : 'bg-white border border-[var(--color-border)] text-[var(--color-on-surface-variant)] hover:bg-[var(--color-primary-container)]/10'
+                            }`}
+                    >
+                        HSK 3 - 4
+                    </button>
+                    {/* HSK 5 - 6 */}
+                    <button
+                        onClick={() => setSelectedLevels(['hsk-5-6'])}
+                        className={`flex-none px-6 py-2 rounded-full font-bold text-label-lg transition-all ${selectedLevels.includes('hsk-5-6')
+                            ? 'bg-[var(--color-primary)] text-white shadow-[0_4px_10px_rgba(181,35,48,0.25)] border-transparent'
+                            : 'bg-white border border-[var(--color-border)] text-[var(--color-on-surface-variant)] hover:bg-[var(--color-primary-container)]/10'
+                            }`}
+                    >
+                        HSK 5 - 6
+                    </button>
+                </div>
+
+                {/* Localized style to hide scrollbar */}
+                <style dangerouslySetInnerHTML={{
+                    __html: `
+                    .hide-scrollbar::-webkit-scrollbar {
+                        display: none;
+                    }
+                    .hide-scrollbar {
+                        -ms-overflow-style: none;
+                        scrollbar-width: none;
+                    }
+                `}} />
+            </section>
+
             {/* Main Content Filters & List */}
-            <section className="container pb-24">
+            <section className="container pb-24 px-4 md:px-0">
                 <div className="grid gap-8 lg:grid-cols-[280px_1fr] max-w-[1400px] mx-auto items-start">
                     {/* Sidebar Filters */}
-                    <aside className="w-full space-y-6">
+                    <aside className="hidden md:block w-full space-y-6">
                         <Card variant="white" className="p-8 rounded-2xl coral-shadow border border-[var(--color-surface-variant)]/30">
                             <h3 className="text-title-md font-bold mb-6 flex items-center gap-2 text-[var(--color-on-surface)]">
                                 <Filter className="w-5 h-5 text-[var(--color-primary)]" />
@@ -206,13 +293,12 @@ export function CoursesContent({
                             <div className="space-y-4">
                                 <label className="flex items-center gap-3 cursor-pointer group">
                                     <input
-                                        type="radio"
-                                        name="hsk-filter"
-                                        checked={selectedLevel === 'all'}
-                                        onChange={() => setSelectedLevel('all')}
-                                        className="w-5 h-5 rounded-full border-[var(--color-outline)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]/20 transition-all cursor-pointer"
+                                        type="checkbox"
+                                        checked={selectedLevels.includes('all')}
+                                        onChange={() => handleLevelToggle('all')}
+                                        className="w-5 h-5 rounded-[6px] border-[var(--color-outline)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]/20 transition-all cursor-pointer accent-[var(--color-primary)]"
                                     />
-                                    <span className={`text-label-lg transition-colors ${selectedLevel === 'all' ? 'text-[var(--color-primary)] font-bold' : 'text-[var(--color-on-surface-variant)] group-hover:text-[var(--color-primary)]'}`}>
+                                    <span className={`text-label-lg font-semibold transition-colors ${selectedLevels.includes('all') ? 'text-[var(--color-primary)] font-bold' : 'text-[var(--color-on-surface-variant)] group-hover:text-[var(--color-primary)]'}`}>
                                         {isVi ? 'Tất cả trình độ' : 'All levels'}
                                     </span>
                                 </label>
@@ -221,17 +307,16 @@ export function CoursesContent({
                                     <label className="flex items-center justify-between cursor-pointer group">
                                         <div className="flex items-center gap-3">
                                             <input
-                                                type="radio"
-                                                name="hsk-filter"
-                                                checked={selectedLevel === 'hsk-1-2'}
-                                                onChange={() => setSelectedLevel('hsk-1-2')}
-                                                className="w-5 h-5 rounded-full border-[var(--color-outline)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]/20 cursor-pointer"
+                                                type="checkbox"
+                                                checked={selectedLevels.includes('hsk-1-2')}
+                                                onChange={() => handleLevelToggle('hsk-1-2')}
+                                                className="w-5 h-5 rounded-[6px] border-[var(--color-outline)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]/20 cursor-pointer accent-[var(--color-primary)]"
                                             />
-                                            <span className={`text-label-lg transition-colors ${selectedLevel === 'hsk-1-2' ? 'text-[var(--color-primary)] font-bold' : 'text-[var(--color-on-surface-variant)] group-hover:text-[var(--color-primary)]'}`}>
+                                            <span className={`text-label-lg font-semibold transition-colors ${selectedLevels.includes('hsk-1-2') ? 'text-[var(--color-primary)] font-bold' : 'text-[var(--color-on-surface-variant)] group-hover:text-[var(--color-primary)]'}`}>
                                                 HSK 1 - HSK 2
                                             </span>
                                         </div>
-                                        <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${selectedLevel === 'hsk-1-2' ? 'bg-[var(--color-primary-container)] text-[var(--color-primary)]' : 'bg-[var(--color-surface-container)] text-[var(--color-on-surface-variant)]'}`}>
+                                        <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${selectedLevels.includes('hsk-1-2') ? 'bg-[var(--color-primary-container)] text-[var(--color-primary)]' : 'bg-[var(--color-surface-container)] text-[var(--color-on-surface-variant)]'}`}>
                                             {counts['hsk-1-2']}
                                         </span>
                                     </label>
@@ -239,17 +324,16 @@ export function CoursesContent({
                                     <label className="flex items-center justify-between cursor-pointer group">
                                         <div className="flex items-center gap-3">
                                             <input
-                                                type="radio"
-                                                name="hsk-filter"
-                                                checked={selectedLevel === 'hsk-3-4'}
-                                                onChange={() => setSelectedLevel('hsk-3-4')}
-                                                className="w-5 h-5 rounded-full border-[var(--color-outline)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]/20 cursor-pointer"
+                                                type="checkbox"
+                                                checked={selectedLevels.includes('hsk-3-4')}
+                                                onChange={() => handleLevelToggle('hsk-3-4')}
+                                                className="w-5 h-5 rounded-[6px] border-[var(--color-outline)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]/20 cursor-pointer accent-[var(--color-primary)]"
                                             />
-                                            <span className={`text-label-lg transition-colors ${selectedLevel === 'hsk-3-4' ? 'text-[var(--color-primary)] font-bold' : 'text-[var(--color-on-surface-variant)] group-hover:text-[var(--color-primary)]'}`}>
+                                            <span className={`text-label-lg font-semibold transition-colors ${selectedLevels.includes('hsk-3-4') ? 'text-[var(--color-primary)] font-bold' : 'text-[var(--color-on-surface-variant)] group-hover:text-[var(--color-primary)]'}`}>
                                                 HSK 3 - HSK 4
                                             </span>
                                         </div>
-                                        <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${selectedLevel === 'hsk-3-4' ? 'bg-[var(--color-primary-container)] text-[var(--color-primary)]' : 'bg-[var(--color-surface-container)] text-[var(--color-on-surface-variant)]'}`}>
+                                        <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${selectedLevels.includes('hsk-3-4') ? 'bg-[var(--color-primary-container)] text-[var(--color-primary)]' : 'bg-[var(--color-surface-container)] text-[var(--color-on-surface-variant)]'}`}>
                                             {counts['hsk-3-4']}
                                         </span>
                                     </label>
@@ -257,17 +341,16 @@ export function CoursesContent({
                                     <label className="flex items-center justify-between cursor-pointer group">
                                         <div className="flex items-center gap-3">
                                             <input
-                                                type="radio"
-                                                name="hsk-filter"
-                                                checked={selectedLevel === 'hsk-5-6'}
-                                                onChange={() => setSelectedLevel('hsk-5-6')}
-                                                className="w-5 h-5 rounded-full border-[var(--color-outline)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]/20 cursor-pointer"
+                                                type="checkbox"
+                                                checked={selectedLevels.includes('hsk-5-6')}
+                                                onChange={() => handleLevelToggle('hsk-5-6')}
+                                                className="w-5 h-5 rounded-[6px] border-[var(--color-outline)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]/20 cursor-pointer accent-[var(--color-primary)]"
                                             />
-                                            <span className={`text-label-lg transition-colors ${selectedLevel === 'hsk-5-6' ? 'text-[var(--color-primary)] font-bold' : 'text-[var(--color-on-surface-variant)] group-hover:text-[var(--color-primary)]'}`}>
+                                            <span className={`text-label-lg font-semibold transition-colors ${selectedLevels.includes('hsk-5-6') ? 'text-[var(--color-primary)] font-bold' : 'text-[var(--color-on-surface-variant)] group-hover:text-[var(--color-primary)]'}`}>
                                                 HSK 5 - HSK 6
                                             </span>
                                         </div>
-                                        <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${selectedLevel === 'hsk-5-6' ? 'bg-[var(--color-primary-container)] text-[var(--color-primary)]' : 'bg-[var(--color-surface-container)] text-[var(--color-on-surface-variant)]'}`}>
+                                        <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${selectedLevels.includes('hsk-5-6') ? 'bg-[var(--color-primary-container)] text-[var(--color-primary)]' : 'bg-[var(--color-surface-container)] text-[var(--color-on-surface-variant)]'}`}>
                                             {counts['hsk-5-6']}
                                         </span>
                                     </label>
