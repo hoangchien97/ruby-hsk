@@ -33,6 +33,7 @@
     "scrollToTop": "Cuộn lên đầu trang"
   },
   "Home": {
+    "metaTitle": "Học Tiếng Trung & Luyện Thi HSK cùng cô Trần Hồng Ngọc",
     "badge": "Chinh phục HSK cùng Ruby",
     "title": "Học Tiếng Trung",
     "subtitle": "Thật Nhẹ Nhàng",
@@ -83,6 +84,8 @@
     "details": "Chi tiết →"
   },
   "Courses": {
+    "metaTitle": "Khóa Học Tiếng Trung & Luyện Thi HSK 1-6",
+    "breadcrumb": "Khóa học",
     "title": "Khóa học tiếng Trung & luyện thi HSK",
     "sub": "Chinh phục tiếng Trung cùng lộ trình học tập chuyên sâu từ HSK 1 đến HSK 6.",
     "mobileHeroTitleHtml": "Khai phóng <span class=\"text-[var(--color-primary)]\">tiềm năng HSK</span>",
@@ -114,6 +117,9 @@
     "notifyMe": "Nhận thông báo"
   },
   "About": {
+    "metaTitle": "Về Ruby HSK — Giáo viên Trần Hồng Ngọc",
+    "metaDesc": "Tìm hiểu về Ruby HSK và cô Trần Hồng Ngọc — Thạc sĩ Hán ngữ với 10+ năm kinh nghiệm dạy tiếng Trung và luyện thi HSK.",
+    "breadcrumb": "Về Ruby HSK",
     "title": "Cầu nối ngôn ngữ Kiến tạo tương lai",
     "desc": "Ruby HSK không chỉ là nơi dạy tiếng Trung, chúng tôi xây dựng cộng đồng học tập đam mê, nơi văn hóa và ngôn ngữ giao thoa. Sứ mệnh của chúng tôi là giúp người Việt chinh phục tiếng Trung một cách tự nhiên và hiệu quả nhất.",
     "aboutBadge": "ABOUT RUBY HSK",
@@ -168,6 +174,8 @@
     "copyright": "© {year} Ruby HSK. All rights reserved."
   },
   "Contact": {
+    "metaTitle": "Liên Hệ — Tư Vấn Khóa Học Tiếng Trung",
+    "breadcrumb": "Liên hệ",
     "title": "Liên hệ Ruby HSK",
     "sub": "Để lại thông tin để được tư vấn lộ trình học tiếng Trung phù hợp.",
     "submit": "Gửi yêu cầu tư vấn",
@@ -203,11 +211,18 @@
   },
   "Legal": {
     "privacy": "Chính sách bảo mật",
-    "terms": "Điều khoản sử dụng"
+    "privacyDesc": "Chính sách bảo mật của Ruby HSK — cách chúng tôi thu thập, sử dụng và bảo vệ thông tin của bạn.",
+    "terms": "Điều khoản sử dụng",
+    "termsDesc": "Điều khoản sử dụng của Ruby HSK — quy định khi tham gia các khóa học tiếng Trung."
   },
   "NotFound": {
-    "title": "Trang bạn tìm không tồn tại",
-    "sub": "Đường dẫn có thể đã thay đổi hoặc chưa được tạo."
+    "brokenPath": "Đứt quãng",
+    "error404": "Lỗi 404",
+    "title": "Ối! Ruby không tìm thấy bài học này.",
+    "sub": "Đường dẫn có thể đã thay đổi hoặc chưa được tạo.",
+    "goBack": "Quay lại",
+    "coursesVocab": "Từ vựng & Khóa học",
+    "aboutTeacher": "Luyện thi cùng cô Ngọc"
   },
   "ComingSoon": {
     "title": "Tính năng đang được hoàn thiện",

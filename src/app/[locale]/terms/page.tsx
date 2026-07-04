@@ -12,9 +12,7 @@ export async function generateMetadata({
     const path = '/terms';
     return {
         title: t('terms'),
-        description: locale === 'vi'
-            ? 'Điều khoản sử dụng của Ruby HSK — quy định khi tham gia các khóa học tiếng Trung.'
-            : 'Ruby HSK Terms of Service — rules when enrolling in Chinese language courses.',
+        description: t('termsDesc'),
         alternates: {
             canonical: `/${locale}${path}`,
             languages: { vi: `/vi${path}`, en: `/en${path}` },

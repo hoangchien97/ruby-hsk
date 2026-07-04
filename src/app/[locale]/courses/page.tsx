@@ -21,9 +21,8 @@ export async function generateMetadata({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'Courses' });
   const path = '/courses';
-  const title = locale === 'vi' ? 'Khóa Học Tiếng Trung & Luyện Thi HSK 1-6' : 'Chinese Courses & HSK 1-6 Preparation';
 
-  return getDbMetadata(locale, path, title, t('sub'));
+  return getDbMetadata(locale, path, t('metaTitle'), t('sub'));
 }
 
 async function getCourses() {
@@ -54,11 +53,12 @@ export default async function CoursesPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'Courses' });
   const courses = await getCourses();
 
   const breadcrumbLD = buildBreadcrumbLD(
     locale,
-    locale === 'vi' ? 'Khóa học' : 'Courses',
+    t('breadcrumb'),
     '/courses',
   );
   const courseLDs = courses.map((c) =>

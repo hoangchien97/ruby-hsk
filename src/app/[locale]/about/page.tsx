@@ -19,14 +19,8 @@ export async function generateMetadata({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'About' });
   const path = '/about';
-  const title = locale === 'vi'
-    ? 'Về Ruby HSK — Giáo viên Trần Hồng Ngọc'
-    : 'About Ruby HSK — Teacher Tran Hong Ngoc';
-  const desc = locale === 'vi'
-    ? 'Tìm hiểu về Ruby HSK và cô Trần Hồng Ngọc — Thạc sĩ Hán ngữ với 10+ năm kinh nghiệm dạy tiếng Trung và luyện thi HSK.'
-    : 'Learn about Ruby HSK and Ms. Tran Hong Ngoc — MA in Chinese with 10+ years of teaching and HSK preparation experience.';
 
-  return getDbMetadata(locale, path, title, desc);
+  return getDbMetadata(locale, path, t('metaTitle'), t('metaDesc'));
 }
 
 async function getTeacher() {
@@ -50,10 +44,11 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'About' });
   const teacher = await getTeacher();
   const breadcrumbLD = buildBreadcrumbLD(
     locale,
-    locale === 'vi' ? 'Về Ruby HSK' : 'About',
+    t('breadcrumb'),
     '/about',
   );
 

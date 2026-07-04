@@ -33,6 +33,7 @@
     "scrollToTop": "Scroll to top"
   },
   "Home": {
+    "metaTitle": "Learn Chinese & prepare for HSK with Ruby HSK",
     "badge": "Conquer HSK with Ruby",
     "title": "Study Chinese",
     "subtitle": "Soft & Natural",
@@ -83,6 +84,8 @@
     "details": "Details →"
   },
   "Courses": {
+    "metaTitle": "Chinese Courses & HSK 1-6 Preparation",
+    "breadcrumb": "Courses",
     "title": "Chinese Courses & HSK Preparation",
     "sub": "Master Chinese with structured pathways from HSK 1 to HSK 6.",
     "mobileHeroTitleHtml": "Unlock your <span class=\"text-[var(--color-primary)]\">HSK Potential</span>",
@@ -114,6 +117,9 @@
     "notifyMe": "Notify me"
   },
   "About": {
+    "metaTitle": "About Ruby HSK — Teacher Tran Hong Ngoc",
+    "metaDesc": "Learn about Ruby HSK and Ms. Tran Hong Ngoc — MA in Chinese with 10+ years of teaching and HSK preparation experience.",
+    "breadcrumb": "About",
     "title": "Language Bridge, Shaping the Future",
     "desc": "Ruby HSK is not just a place to teach Chinese, we build a community of passionate learners where culture and language meet. Our mission is to help Vietnamese master Chinese naturally and most effectively.",
     "aboutBadge": "ABOUT US",
@@ -168,6 +174,8 @@
     "copyright": "© {year} Ruby HSK. All rights reserved."
   },
   "Contact": {
+    "metaTitle": "Contact — Chinese Course Consultation",
+    "breadcrumb": "Contact",
     "title": "Contact Ruby HSK",
     "sub": "Leave your information to receive a suitable Chinese learning consultation.",
     "submit": "Send request",
@@ -203,11 +211,18 @@
   },
   "Legal": {
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "privacyDesc": "Ruby HSK Privacy Policy — how we collect, use, and protect your information.",
+    "terms": "Terms of Service",
+    "termsDesc": "Ruby HSK Terms of Service — rules when enrolling in Chinese language courses."
   },
   "NotFound": {
-    "title": "Page not found",
-    "sub": "The link may have changed or has not been created yet."
+    "brokenPath": "Broken Path",
+    "error404": "Error 404",
+    "title": "Oops! Ruby can't find this lesson.",
+    "sub": "The link may have changed or has not been created yet.",
+    "goBack": "Go Back",
+    "coursesVocab": "Courses & Vocab",
+    "aboutTeacher": "About Ms. Ngoc"
   },
   "ComingSoon": {
     "title": "Feature coming soon",

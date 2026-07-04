@@ -12,9 +12,7 @@ export async function generateMetadata({
     const path = '/privacy';
     return {
         title: t('privacy'),
-        description: locale === 'vi'
-            ? 'Chính sách bảo mật của Ruby HSK — cách chúng tôi thu thập, sử dụng và bảo vệ thông tin của bạn.'
-            : 'Ruby HSK Privacy Policy — how we collect, use, and protect your information.',
+        description: t('privacyDesc'),
         alternates: {
             canonical: `/${locale}${path}`,
             languages: { vi: `/vi${path}`, en: `/en${path}` },

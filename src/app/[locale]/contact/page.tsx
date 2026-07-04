@@ -15,11 +15,8 @@ export async function generateMetadata({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'Contact' });
   const path = '/contact';
-  const title = locale === 'vi'
-    ? 'Liên Hệ — Tư Vấn Khóa Học Tiếng Trung'
-    : 'Contact — Chinese Course Consultation';
 
-  return getDbMetadata(locale, path, title, t('sub'));
+  return getDbMetadata(locale, path, t('metaTitle'), t('sub'));
 }
 
 import { ContactPageContent } from '@/components/contact/contact-page-content';
@@ -31,9 +28,10 @@ export default async function ContactPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'Contact' });
   const breadcrumbLD = buildBreadcrumbLD(
     locale,
-    locale === 'vi' ? 'Liên hệ' : 'Contact',
+    t('breadcrumb'),
     '/contact',
   );
   return <ContactPageContent locale={locale} breadcrumbLD={breadcrumbLD} />;

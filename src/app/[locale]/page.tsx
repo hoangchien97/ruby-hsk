@@ -21,11 +21,8 @@ export async function generateMetadata({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'Home' });
   const path = '/';
-  const title = locale === 'vi'
-    ? 'Học Tiếng Trung & Luyện Thi HSK cùng cô Trần Hồng Ngọc'
-    : 'Learn Chinese & prepare for HSK with Ruby HSK';
 
-  return getDbMetadata(locale, path, title, t('sub'));
+  return getDbMetadata(locale, path, t('metaTitle'), t('sub'));
 }
 
 async function getFaqsLD(locale: string) {
