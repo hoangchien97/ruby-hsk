@@ -62,9 +62,7 @@ export function LearningPaths({ locale = 'vi' }: LearningPathsProps) {
                     {t('roadmap')}
                 </h2>
                 <p className="mt-2 text-body-md text-[var(--color-on-surface-variant)]">
-                    {isVi
-                        ? 'Được thiết kế chuẩn khung tham chiếu ngôn ngữ HSK mới'
-                        : 'Designed for the new HSK language framework'}
+                    {t('roadmapDesc')}
                 </p>
             </div>
 
@@ -103,7 +101,7 @@ function LearningPathCard({ path, isVi }: { path: LearningPath; isVi: boolean })
                     href="/courses"
                     className="mt-6 inline-flex items-center gap-1 font-bold text-[var(--color-secondary-fixed-dim)] hover:underline"
                 >
-                    {isVi ? 'Khám phá ngay →' : 'Explore now →'}
+                    {isVi ? 'Khám phá ngay \u2192' : 'Explore now \u2192'}
                 </Link>
             </div>
         );
@@ -153,7 +151,7 @@ function LearningPathCard({ path, isVi }: { path: LearningPath; isVi: boolean })
                 href="/courses"
                 className={`mt-6 inline-flex items-center gap-1 font-bold ${linkColor} hover:underline`}
             >
-                {isVi ? 'Chi tiết →' : 'Details →'}
+                {isVi ? 'Chi tiết \u2192' : 'Details \u2192'}
             </Link>
         </Card>
     );

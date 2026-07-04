@@ -4,6 +4,7 @@ import { HomeHero } from '@/components/sections/hero';
 import { LearningPaths } from '@/components/sections/learning-paths';
 import { WhyRuby } from '@/components/sections/why-ruby';
 import { TeacherSection } from '@/components/sections/teacher-section';
+import { ReadyToLearn } from '@/components/sections/ready-to-learn';
 import { buildFaqPageLD } from '@/lib/seo/jsonld';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 
@@ -95,6 +96,9 @@ export default async function HomePage({
         bio={isVi ? teacher?.bio_vi : teacher?.bio_en}
         certifications={teacher?.certifications as string[] | null}
       />
+
+      {/* Ready to Learn CTA section */}
+      <ReadyToLearn />
     </div>
   );
 }

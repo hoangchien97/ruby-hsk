@@ -50,7 +50,21 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
     <>
       {/* ── Hero ── */}
       <section className="relative overflow-hidden pt-16 pb-32">
-        <div className="container max-w-[1400px] px-4 mx-auto grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
+        {/* Mobile Background Slideshow */}
+        <div className="absolute inset-0 md:hidden z-0 pointer-events-none">
+          {heroImages.map((src, index) => (
+            <img
+              key={index}
+              src={src}
+              alt=""
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${index === currentSlide ? 'opacity-20 z-10' : 'opacity-0 z-0'
+                }`}
+            />
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/50 z-20" />
+        </div>
+
+        <div className="container relative z-10 max-w-[1400px] px-4 mx-auto grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
           {/* Left: Copy */}
           <div className="z-10">
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[var(--color-primary-container)] text-[var(--color-on-primary-container)] font-bold text-label-lg mb-6">
@@ -67,14 +81,14 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
               {t('sub')}
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4 mb-8">
-              <Link href="/contact">
-                <Button size="lg" className="rounded-full px-8 py-6 text-base font-bold">
+            <div className="mt-8 grid grid-cols-2 md:flex md:flex-wrap gap-3 md:gap-4 mb-8">
+              <Link href="/contact" className="w-full md:w-auto">
+                <Button className="w-full rounded-full h-12 md:h-14 px-4 md:px-8 text-[13px] md:text-base font-bold bg-[var(--color-primary)] text-[var(--color-on-primary)] shadow-lg shadow-[var(--color-primary)]/20 hover:scale-105 transition-transform">
                   {isVi ? 'Bắt đầu học ngay' : 'Start learning'}
                 </Button>
               </Link>
-              <Link href="/courses">
-                <Button variant="secondary" size="lg" className="rounded-full px-8 py-6 text-base font-bold bg-white hover:bg-neutral-50 text-[var(--color-on-surface)] border border-[var(--color-outline-variant)]">
+              <Link href="/courses" className="w-full md:w-auto">
+                <Button variant="secondary" className="w-full rounded-full h-12 md:h-14 px-4 md:px-8 text-[13px] md:text-base font-bold transition-colors">
                   {isVi ? 'Lộ trình học tập' : 'Learning roadmap'}
                 </Button>
               </Link>
@@ -99,7 +113,7 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
           </div>
 
           {/* Right: Slideshow */}
-          <div className="relative">
+          <div className="relative hidden md:block">
             {/* Decorative blurs */}
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-[var(--color-secondary-container)]/20 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-[var(--color-primary-container)]/10 rounded-full blur-3xl"></div>
@@ -142,8 +156,8 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
                       type="button"
                       onClick={() => setCurrentSlide(idx)}
                       className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${idx === currentSlide
-                          ? 'bg-[var(--color-primary)] w-6'
-                          : 'bg-white/60 hover:bg-white'
+                        ? 'bg-[var(--color-primary)] w-6'
+                        : 'bg-white/60 hover:bg-white'
                         }`}
                     />
                   ))}

@@ -65,7 +65,7 @@ export function MobileBottomNav() {
                 key={item.href}
                 href={item.href}
                 className={`flex flex-col items-center justify-center gap-0.5 rounded-[var(--radius-xl)] px-3 py-1.5 text-[10px] font-bold transition-all ${active
-                  ? 'bg-[var(--color-primary-container)]/20 text-[var(--color-on-surface-variant)]'
+                  ? 'bg-[var(--color-primary-container)]/20 !text-[var(--color-primary)] border border-[var(--color-primary)]/30'
                   : 'text-[var(--color-on-surface-variant)]'
                   }`}
               >
@@ -169,37 +169,45 @@ export function MobileBottomNav() {
             <h3 className="text-label-lg font-bold text-[var(--color-on-surface-variant)] uppercase tracking-widest mb-3 ml-2">
               {t('studentSupport')}
             </h3>
-            <div className="flex gap-3">
+            <div className="flex justify-between gap-3">
               <a
                 href={Contact.zalo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex flex-col items-center justify-center p-3 rounded-2xl bg-[var(--color-surface-container-lowest)] border border-[var(--color-surface-variant)] shadow-sm active:scale-95 transition-transform"
+                className="flex-1 flex flex-col items-center justify-center p-4 rounded-3xl shadow-sm border-0 active:scale-95 transition-all text-center"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#0068FF]/10 flex items-center justify-center mb-2">
-                  <svg viewBox="0 0 460.1 460.1" className="w-5 h-5" fill="#0068FF"><path d="M57.1 270.3C18.6 230.9 0 186.2 0 136.3 0 61.1 82.2 0 183.5 0c101.4 0 183.6 61.1 183.6 136.3 0 75.3-82.2 136.3-183.6 136.3-11.8 0-23.4-1.1-34.7-3.1L57.1 270.3z" /><path fill="#fff" d="M124.9 95.8c-3.1 0-5.7 2.6-5.7 5.7v35.8H91c-3.1 0-5.7 2.6-5.7 5.7v18.7c0 3.1 2.6 5.7 5.7 5.7h28.2v18.4c0 3.1 2.6 5.7 5.7 5.7h18.8c3.1 0 5.7-2.6 5.7-5.7v-18.4h26.7v18.4c0 3.1 2.6 5.7 5.7 5.7h18.8c3.1 0 5.7-2.6 5.7-5.7v-18.4h37.4v-18.7c0-3.1-2.6-5.7-5.7-5.7h-37.4V95.8H124.9zm67.1 35.8v18.7h-37.4v-18.7h37.4z" /></svg>
+                <div className="w-12 h-12 rounded-full bg-[#0068FF]/10 flex items-center justify-center mb-2">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
+                    alt="Zalo"
+                    className="w-6 h-6 object-contain"
+                  />
                 </div>
-                <span className="text-[12px] font-bold text-[var(--color-on-surface)]">{t('zalo')}</span>
+                <span className="text-[13px] font-bold text-[var(--color-on-surface)]">{t('zalo')}</span>
               </a>
               <a
                 href={`https://m.me/rubyhsk`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex flex-col items-center justify-center p-3 rounded-2xl bg-[var(--color-surface-container-lowest)] border border-[var(--color-surface-variant)] shadow-sm active:scale-95 transition-transform"
+                className="flex-1 flex flex-col items-center justify-center p-4 rounded-3xl shadow-sm border-0 active:scale-95 transition-all text-center"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#00B2FF]/10 flex items-center justify-center mb-2">
-                  <svg viewBox="0 0 128 128" className="w-5 h-5 fill-[#00B2FF]"><path d="M64 12C34.42 12 10.43 33.82 10.43 60.74c0 15.22 8.04 28.84 20.65 37.89-.3.92-.85 2.62-1.92 5.39-.77 1.99-2.06 4.88-3.92 8.76-1.57 3.28-1.02 5.06-1.02 5.06s1.61.9 4.89.9c2.81 0 6.64-1.03 11.51-3.08 4.67-1.97 7.78-3.41 9.94-4.5 4.35 1.13 8.94 1.74 13.72 1.74 29.58 0 53.57-21.82 53.57-48.74S93.58 12 64 12zm8.01 49.33-11.75 12.56-11.39-11.96-22.18 11.96 24.36-25.96 11.96-12.82 11.18 11.75 22.38-11.75-24.56 26.22z" /></svg>
+                <div className="w-12 h-12 rounded-full bg-[#00B2FF]/10 flex items-center justify-center mb-2">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg"
+                    alt="Messenger"
+                    className="w-6 h-6 object-contain"
+                  />
                 </div>
-                <span className="text-[12px] font-bold text-[var(--color-on-surface)]">{t('messenger')}</span>
+                <span className="text-[13px] font-bold text-[var(--color-on-surface)]">{t('messenger')}</span>
               </a>
               <a
                 href={`tel:${Contact.phoneTel}`}
-                className="flex-1 flex flex-col items-center justify-center p-3 rounded-2xl bg-[var(--color-surface-container-lowest)] border border-[var(--color-surface-variant)] shadow-sm active:scale-95 transition-transform"
+                className="flex-1 flex flex-col items-center justify-center p-4 rounded-3xl shadow-sm border-0 active:scale-95 transition-all text-center"
               >
-                <div className="w-10 h-10 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center mb-2">
-                  <Phone className="h-5 w-5 text-[var(--color-primary)]" />
+                <div className="w-12 h-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center mb-2">
+                  <Phone className="h-6 w-6 text-[var(--color-primary)]" />
                 </div>
-                <span className="text-[12px] font-bold text-[var(--color-on-surface)]">{t('consultation')}</span>
+                <span className="text-[13px] font-bold text-[var(--color-on-surface)]">{t('consultation')}</span>
               </a>
             </div>
           </div>

@@ -81,8 +81,8 @@ export function TeacherSection({
                     )}
 
                     <div className="mt-8">
-                        <Link href="/about">
-                            <Button size="lg">
+                        <Link href="/about" className="w-full md:w-auto block">
+                            <Button size="lg" className="w-full md:w-auto">
                                 {t('teacherBtn')}
                             </Button>
                         </Link>

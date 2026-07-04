@@ -26,7 +26,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[var(--color-surface-variant)] bg-[var(--color-surface-glass)] shadow-sm backdrop-blur-md">
-      <div className="flex h-20 items-center justify-between px-4 md:px-12 max-w-[1400px] mx-auto">
+      <div className="flex h-16 md:h-20 items-center justify-between px-4 md:px-12 max-w-[1400px] mx-auto">
         {/* Logo */}
         <Link href="/" aria-label="Ruby HSK home" className="shrink-0">
           <LogoIcon className="h-12 w-12 transition-transform hover:rotate-6" />

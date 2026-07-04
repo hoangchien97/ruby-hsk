@@ -34,6 +34,7 @@
     "subtitle": "Effortlessly",
     "sub": "A warm, clear and structured learning pathway to help you confidently master Chinese.",
     "roadmap": "Learning Roadmap",
+    "roadmapDesc": "Designed for the new HSK language framework",
     "paths": "Personalized learning pathways",
     "why": "Why study with Ruby HSK?",
     "teacher": "Learn with Ms. Tran Hong Ngoc",
@@ -137,6 +138,34 @@
     "title": "Contact Ruby HSK",
     "sub": "Leave your information to receive a suitable Chinese learning consultation.",
     "submit": "Send request"
+  },
+  "ContactForm": {
+    "errRequired": "Please enter your name and phone number.",
+    "errGeneral": "An error occurred. Please try again or contact us directly via Zalo/phone.",
+    "successTitle": "Sent successfully!",
+    "successSub": "Ms. Ngoc will contact you within 24 business hours. Thank you for trusting Ruby HSK!",
+    "sendAnother": "Send another request",
+    "nameLabel": "Full name *",
+    "namePlaceholder": "Your full name",
+    "phoneLabel": "Phone number *",
+    "emailLabel": "Email (optional)",
+    "goalLabel": "Learning goal (optional)",
+    "goalPlaceholder": "E.g.: Pass HSK 3 in 6 months, or learn basic conversational Chinese...",
+    "submitting": "Sending...",
+    "submit": "Send consultation request"
+  },
+  "ReadyToLearn": {
+    "badge": "START TODAY",
+    "title": "Ready to start your Chinese journey?",
+    "desc": "Register now for a free trial class and personalized learning path consultation.",
+    "btnRegister": "Register for free trial",
+    "btnTeacher": "About Ms. Ngoc",
+    "statStudents": "500+",
+    "statStudentsLabel": "Students",
+    "statPassRate": "95%",
+    "statPassRateLabel": "HSK Pass Rate",
+    "statExperience": "5 Years",
+    "statExperienceLabel": "Experience"
   },
   "Legal": {
     "privacy": "Privacy Policy",

@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { createBrowserSupabaseClient } from '@/lib/supabase/client';
 import { CheckCircle2 } from 'lucide-react';
 
+import { useTranslations } from 'next-intl';
+
 interface ContactFormProps {
     locale: string;
 }
@@ -12,10 +14,9 @@ interface ContactFormProps {
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function ContactForm({ locale }: ContactFormProps) {
+    const t = useTranslations('ContactForm');
     const [state, setState] = useState<FormState>('idle');
     const [errorMsg, setErrorMsg] = useState('');
-
-    const isVi = locale === 'vi';
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -31,7 +32,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
 
         if (!fullName.trim() || !phone.trim()) {
             setState('error');
-            setErrorMsg(isVi ? 'Vui lòng điền họ tên và số điện thoại.' : 'Please enter your name and phone number.');
+            setErrorMsg(t('errRequired'));
             return;
         }
 
@@ -51,11 +52,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
             form.reset();
         } catch (err) {
             setState('error');
-            setErrorMsg(
-                isVi
-                    ? 'Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo/điện thoại.'
-                    : 'An error occurred. Please try again or contact us directly via Zalo/phone.',
-            );
+            setErrorMsg(t('errGeneral'));
         }
     }
 
@@ -64,15 +61,13 @@ export default function ContactForm({ locale }: ContactFormProps) {
             <div className="glass-card grid place-items-center gap-4 rounded-[2rem] p-8 text-center">
                 <CheckCircle2 className="w-12 h-12 text-[var(--color-primary)]" />
                 <h3 className="text-xl font-black text-[var(--color-title)]">
-                    {isVi ? 'Gửi thành công!' : 'Sent successfully!'}
+                    {t('successTitle')}
                 </h3>
                 <p className="text-[var(--color-text)]">
-                    {isVi
-                        ? 'Cô Ngọc sẽ liên hệ với bạn trong vòng 24 giờ làm việc. Cảm ơn bạn đã tin tưởng Ruby HSK!'
-                        : 'Ms. Ngoc will contact you within 24 business hours. Thank you for trusting Ruby HSK!'}
+                    {t('successSub')}
                 </p>
-                <Button variant="secondary" type="button" onClick={() => setState('idle')}>
-                    {isVi ? 'Gửi yêu cầu khác' : 'Send another request'}
+                <Button variant="secondary" type="button" onClick={() => setState('idle')} className="w-full md:w-auto h-12 px-6">
+                    {t('sendAnother')}
                 </Button>
             </div>
         );
@@ -86,20 +81,20 @@ export default function ContactForm({ locale }: ContactFormProps) {
         >
             <div className="grid gap-1">
                 <label htmlFor="contact-name" className="text-sm font-semibold text-[var(--color-title)]">
-                    {isVi ? 'Họ và tên *' : 'Full name *'}
+                    {t('nameLabel')}
                 </label>
                 <input
                     id="contact-name"
                     name="fullName"
                     required
                     className="rounded-2xl border border-[var(--color-border)] bg-white/60 px-4 py-3 transition focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
-                    placeholder={isVi ? 'Nguyễn Văn A' : 'Your full name'}
+                    placeholder={t('namePlaceholder')}
                     autoComplete="name"
                 />
             </div>
             <div className="grid gap-1">
                 <label htmlFor="contact-phone" className="text-sm font-semibold text-[var(--color-title)]">
-                    {isVi ? 'Số điện thoại *' : 'Phone number *'}
+                    {t('phoneLabel')}
                 </label>
                 <input
                     id="contact-phone"
@@ -113,7 +108,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
             </div>
             <div className="grid gap-1">
                 <label htmlFor="contact-email" className="text-sm font-semibold text-[var(--color-title)]">
-                    {isVi ? 'Email (không bắt buộc)' : 'Email (optional)'}
+                    {t('emailLabel')}
                 </label>
                 <input
                     id="contact-email"
@@ -126,17 +121,13 @@ export default function ContactForm({ locale }: ContactFormProps) {
             </div>
             <div className="grid gap-1">
                 <label htmlFor="contact-goal" className="text-sm font-semibold text-[var(--color-title)]">
-                    {isVi ? 'Mục tiêu học (không bắt buộc)' : 'Learning goal (optional)'}
+                    {t('goalLabel')}
                 </label>
                 <textarea
                     id="contact-goal"
                     name="goal"
                     className="min-h-32 rounded-2xl border border-[var(--color-border)] bg-white/60 px-4 py-3 transition focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
-                    placeholder={
-                        isVi
-                            ? 'Ví dụ: Muốn thi HSK 3 trong 6 tháng, hoặc học giao tiếp cơ bản...'
-                            : 'E.g.: Pass HSK 3 in 6 months, or learn basic conversational Chinese...'
-                    }
+                    placeholder={t('goalPlaceholder')}
                 />
             </div>
             {state === 'error' && (
@@ -144,10 +135,8 @@ export default function ContactForm({ locale }: ContactFormProps) {
                     {errorMsg}
                 </p>
             )}
-            <Button type="submit" disabled={state === 'submitting'}>
-                {state === 'submitting'
-                    ? (isVi ? 'Đang gửi...' : 'Sending...')
-                    : (isVi ? 'Gửi yêu cầu tư vấn' : 'Send consultation request')}
+            <Button type="submit" disabled={state === 'submitting'} className="h-12 w-full md:w-auto mt-2">
+                {state === 'submitting' ? t('submitting') : t('submit')}
             </Button>
         </form>
     );

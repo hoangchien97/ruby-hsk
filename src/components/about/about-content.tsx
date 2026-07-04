@@ -247,7 +247,7 @@ export function AboutContent({
                     <h2 className="text-headline-lg md:text-[40px] font-bold text-[var(--color-on-surface)] mb-4">
                         {t('whyTitle')}
                     </h2>
-                    <p className="text-body-lg text-[var(--color-on-surface-variant)] font-medium">
+                    <p className="text-body-lg block text-[var(--color-on-surface-variant)] font-medium">
                         {t('whyDesc')}
                     </p>
                 </div>

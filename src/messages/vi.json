@@ -34,6 +34,7 @@
     "subtitle": "Thật Nhẹ Nhàng",
     "sub": "Khám phá phương pháp học tập ấm áp, dễ hiểu và có lộ trình rõ ràng để tự tin chinh phục tiếng Trung.",
     "roadmap": "Lộ Trình Học Tập",
+    "roadmapDesc": "Được thiết kế chuẩn khung tham chiếu ngôn ngữ HSK mới",
     "paths": "Lộ trình học tập cá nhân hóa",
     "why": "Vì sao nên học cùng Ruby HSK?",
     "teacher": "Đồng hành cùng cô Trần Hồng Ngọc",
@@ -137,6 +138,34 @@
     "title": "Liên hệ Ruby HSK",
     "sub": "Để lại thông tin để được tư vấn lộ trình học tiếng Trung phù hợp.",
     "submit": "Gửi yêu cầu tư vấn"
+  },
+  "ContactForm": {
+    "errRequired": "Vui lòng điền họ tên và số điện thoại.",
+    "errGeneral": "Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo/điện thoại.",
+    "successTitle": "Gửi thành công!",
+    "successSub": "Cô Ngọc sẽ liên hệ với bạn trong vòng 24 giờ làm việc. Cảm ơn bạn đã tin tưởng Ruby HSK!",
+    "sendAnother": "Gửi yêu cầu khác",
+    "nameLabel": "Họ và tên *",
+    "namePlaceholder": "Nguyễn Văn A",
+    "phoneLabel": "Số điện thoại *",
+    "emailLabel": "Email (không bắt buộc)",
+    "goalLabel": "Mục tiêu học (không bắt buộc)",
+    "goalPlaceholder": "Ví dụ: Muốn thi HSK 3 trong 6 tháng, hoặc học giao tiếp cơ bản...",
+    "submitting": "Đang gửi...",
+    "submit": "Gửi yêu cầu tư vấn"
+  },
+  "ReadyToLearn": {
+    "badge": "BẮT ĐẦU NGAY HÔM NAY",
+    "title": "Sẵn sàng bắt đầu hành trình học tiếng Trung?",
+    "desc": "Đăng ký ngay để nhận buổi học thử miễn phí và tư vấn lộ trình học phù hợp",
+    "btnRegister": "Đăng ký học thử miễn phí",
+    "btnTeacher": "Tìm hiểu về cô Ngọc",
+    "statStudents": "500+",
+    "statStudentsLabel": "Học viên",
+    "statPassRate": "95%",
+    "statPassRateLabel": "Tỷ lệ đỗ HSK",
+    "statExperience": "5 năm",
+    "statExperienceLabel": "Kinh nghiệm"
   },
   "Legal": {
     "privacy": "Chính sách bảo mật",
