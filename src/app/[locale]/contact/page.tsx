@@ -22,7 +22,7 @@ export async function generateMetadata({
   return getDbMetadata(locale, path, title, t('sub'));
 }
 
-import { ContactContent } from '@/components/contact/contact-content';
+import { ContactPageContent } from '@/components/contact/contact-page-content';
 
 export default async function ContactPage({
   params,
@@ -36,5 +36,5 @@ export default async function ContactPage({
     locale === 'vi' ? 'Liên hệ' : 'Contact',
     '/contact',
   );
-  return <ContactContent locale={locale} breadcrumbLD={breadcrumbLD} />;
+  return <ContactPageContent locale={locale} breadcrumbLD={breadcrumbLD} />;
 }

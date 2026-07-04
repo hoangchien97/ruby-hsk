@@ -6,7 +6,7 @@ import { Link } from '@/i18n/navigation';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { getDbMetadata } from '@/lib/seo/metadata';
 import { buildBreadcrumbLD } from '@/lib/seo/jsonld';
-import { AboutContent } from '@/components/about/about-content';
+import { AboutPageContent } from '@/components/about/about-page-content';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://rubyhsk.vn';
 
@@ -57,5 +57,5 @@ export default async function AboutPage({
     '/about',
   );
 
-  return <AboutContent locale={locale} teacher={teacher} breadcrumbLD={breadcrumbLD} />;
+  return <AboutPageContent locale={locale} teacher={teacher} breadcrumbLD={breadcrumbLD} />;
 }

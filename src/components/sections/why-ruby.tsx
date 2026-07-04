@@ -77,9 +77,9 @@ export function WhyRuby({ locale = 'vi' }: WhyRubyProps) {
 
                     {/* Right: Why text + bullets */}
                     <div className="order-1 lg:order-2">
-                        <h2 className="text-headline-lg text-[var(--color-on-surface)] font-bold text-center">
+                        <h2 className="text-headline-lg text-[var(--color-on-surface)] font-bold text-center md:text-left">
                             {t('whyTitle')}{' '}
-                            <span className="text-[var(--color-primary)] block font-bold">Ruby HSK?</span>
+                            <span className="text-[var(--color-primary)] block md:inline font-bold">Ruby HSK?</span>
                         </h2>
                         <p className="mt-4 max-w-lg text-body-lg text-[var(--color-on-surface-variant)]">
                             {t('whyDesc')}

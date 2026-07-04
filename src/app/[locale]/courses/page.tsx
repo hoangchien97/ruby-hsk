@@ -6,7 +6,7 @@ import { Link } from '@/i18n/navigation';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { buildBreadcrumbLD, buildCourseLD } from '@/lib/seo/jsonld';
 import type { Tables } from '@/lib/supabase/types';
-import { CoursesContent } from '@/components/courses/courses-content';
+import { CoursesPageContent } from '@/components/courses/courses-page-content';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://rubyhsk.vn';
 
@@ -73,7 +73,7 @@ export default async function CoursesPage({
   );
 
   return (
-    <CoursesContent
+    <CoursesPageContent
       locale={locale}
       courses={courses}
       breadcrumbLD={breadcrumbLD}

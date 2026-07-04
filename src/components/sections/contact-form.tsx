@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Input, Textarea } from '@/components/ui/input';
 import { createBrowserSupabaseClient } from '@/lib/supabase/client';
 import { CheckCircle2 } from 'lucide-react';
-
 import { useTranslations } from 'next-intl';
 
 interface ContactFormProps {
@@ -50,94 +50,104 @@ export default function ContactForm({ locale }: ContactFormProps) {
             if (error) throw error;
             setState('success');
             form.reset();
-        } catch (err) {
+        } catch {
             setState('error');
             setErrorMsg(t('errGeneral'));
         }
     }
 
+    // ── Success state ──────────────────────────────────────────────
     if (state === 'success') {
         return (
-            <div className="glass-card grid place-items-center gap-4 rounded-[2rem] p-8 text-center">
-                <CheckCircle2 className="w-12 h-12 text-[var(--color-primary)]" />
-                <h3 className="text-xl font-black text-[var(--color-title)]">
+            <div className="rounded-[2rem] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-low)] p-8 text-center flex flex-col items-center justify-center gap-4 h-full min-h-[500px]">
+                <CheckCircle2 className="w-12 h-12 text-[var(--color-primary)] animate-bounce" />
+                <h3 className="text-xl font-bold text-[var(--color-on-surface)]">
                     {t('successTitle')}
                 </h3>
-                <p className="text-[var(--color-text)]">
+                <p className="text-[var(--color-on-surface-variant)] max-w-sm">
                     {t('successSub')}
                 </p>
-                <Button variant="secondary" type="button" onClick={() => setState('idle')} className="w-full md:w-auto h-12 px-6">
+                <Button
+                    variant="secondary"
+                    type="button"
+                    onClick={() => setState('idle')}
+                    className="w-full md:w-auto h-12 px-6 mt-4"
+                >
                     {t('sendAnother')}
                 </Button>
             </div>
         );
     }
 
+    // ── Form ──────────────────────────────────────────────────────
     return (
         <form
-            className="glass-card grid gap-4 rounded-[2rem] p-6"
+            className="rounded-[2rem] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-low)] p-8 flex flex-col justify-between h-full min-h-[500px] space-y-6"
             onSubmit={handleSubmit}
             noValidate
         >
-            <div className="grid gap-1">
-                <label htmlFor="contact-name" className="text-sm font-semibold text-[var(--color-title)]">
-                    {t('nameLabel')}
-                </label>
-                <input
-                    id="contact-name"
-                    name="fullName"
-                    required
-                    className="rounded-2xl border border-[var(--color-border)] bg-white/60 px-4 py-3 transition focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
-                    placeholder={t('namePlaceholder')}
-                    autoComplete="name"
-                />
+            <div className="space-y-6 flex-1">
+                <h2 className="text-title-md font-bold text-[var(--color-on-surface)]">
+                    {t('formTitle')}
+                </h2>
+
+                <div className="grid gap-4">
+                    <Input
+                        id="contact-name"
+                        name="fullName"
+                        required
+                        label={t('nameLabel')}
+                        placeholder={t('namePlaceholder')}
+                        autoComplete="name"
+                        className="bg-[var(--color-surface-container-lowest)] dark:bg-black/20"
+                    />
+                    <Input
+                        id="contact-phone"
+                        name="phone"
+                        type="tel"
+                        required
+                        label={t('phoneLabel')}
+                        placeholder={t('phonePlaceholder')}
+                        autoComplete="tel"
+                        className="bg-[var(--color-surface-container-lowest)] dark:bg-black/20"
+                    />
+                    <Input
+                        id="contact-email"
+                        name="email"
+                        type="email"
+                        label={t('emailLabel')}
+                        placeholder={t('emailPlaceholder')}
+                        autoComplete="email"
+                        className="bg-[var(--color-surface-container-lowest)] dark:bg-black/20"
+                    />
+                    <Textarea
+                        id="contact-goal"
+                        name="goal"
+                        label={t('goalLabel')}
+                        placeholder={t('goalPlaceholder')}
+                        className="bg-[var(--color-surface-container-lowest)] dark:bg-black/20"
+                    />
+                </div>
+
+                {state === 'error' && (
+                    <p
+                        className="rounded-xl bg-red-50 dark:bg-red-950/30 px-4 py-3 text-sm text-red-600 dark:text-red-400"
+                        role="alert"
+                    >
+                        {errorMsg}
+                    </p>
+                )}
             </div>
-            <div className="grid gap-1">
-                <label htmlFor="contact-phone" className="text-sm font-semibold text-[var(--color-title)]">
-                    {t('phoneLabel')}
-                </label>
-                <input
-                    id="contact-phone"
-                    name="phone"
-                    type="tel"
-                    required
-                    className="rounded-2xl border border-[var(--color-border)] bg-white/60 px-4 py-3 transition focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
-                    placeholder="0901 234 567"
-                    autoComplete="tel"
-                />
+
+            <div className="pt-4 flex justify-end">
+                <Button
+                    type="submit"
+                    disabled={state === 'submitting'}
+                    className="h-12 w-full md:w-auto"
+                >
+                    {state === 'submitting' ? t('submitting') : t('submit')}
+                </Button>
             </div>
-            <div className="grid gap-1">
-                <label htmlFor="contact-email" className="text-sm font-semibold text-[var(--color-title)]">
-                    {t('emailLabel')}
-                </label>
-                <input
-                    id="contact-email"
-                    name="email"
-                    type="email"
-                    className="rounded-2xl border border-[var(--color-border)] bg-white/60 px-4 py-3 transition focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
-                    placeholder="email@example.com"
-                    autoComplete="email"
-                />
-            </div>
-            <div className="grid gap-1">
-                <label htmlFor="contact-goal" className="text-sm font-semibold text-[var(--color-title)]">
-                    {t('goalLabel')}
-                </label>
-                <textarea
-                    id="contact-goal"
-                    name="goal"
-                    className="min-h-32 rounded-2xl border border-[var(--color-border)] bg-white/60 px-4 py-3 transition focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
-                    placeholder={t('goalPlaceholder')}
-                />
-            </div>
-            {state === 'error' && (
-                <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600" role="alert">
-                    {errorMsg}
-                </p>
-            )}
-            <Button type="submit" disabled={state === 'submitting'} className="h-12 w-full md:w-auto mt-2">
-                {state === 'submitting' ? t('submitting') : t('submit')}
-            </Button>
         </form>
     );
 }

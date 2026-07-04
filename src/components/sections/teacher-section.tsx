@@ -17,11 +17,9 @@ export function TeacherSection({
     certifications,
 }: TeacherSectionProps) {
     const t = useTranslations('Home');
-    const isVi = locale === 'vi';
-    const displayBio = bio ?? (isVi
-        ? '\"Tiếng Trung không chỉ là một ngôn ngữ, đó là một cánh cửa mở ra thế giới văn hóa rực rỡ. Tại Ruby HSK, tôi mong muốn mỗi học viên đều cảm thấy tiếng Trung thật sự gần gũi và dễ dàng.\"'
-        : '\"Chinese is not just a language — it is a gateway to a rich world of culture. At Ruby HSK, I want every student to feel that Chinese is truly approachable and enjoyable.\"'
-    );
+    const tAbout = useTranslations('About');
+    // Prefer the bio from DB, fallback to i18n translation
+    const displayBio = bio ?? tAbout('teacherQuote');
 
     return (
         <section className="container py-16">

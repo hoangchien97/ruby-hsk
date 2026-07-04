@@ -26,14 +26,21 @@
     "viewCourses": "Xem khóa học",
     "backHome": "Về trang chủ",
     "loading": "Đang tải Ruby HSK...",
-    "loadingSub": "Chuẩn bị hành trình học tiếng Trung của bạn"
+    "loadingSub": "Chuẩn bị hành trình học tiếng Trung của bạn",
+    "details": "Chi tiết",
+    "weeks": "tuần học",
+    "allLevels": "Tất cả trình độ",
+    "scrollToTop": "Cuộn lên đầu trang"
   },
   "Home": {
     "badge": "Chinh phục HSK cùng Ruby",
     "title": "Học Tiếng Trung",
     "subtitle": "Thật Nhẹ Nhàng",
     "sub": "Khám phá phương pháp học tập ấm áp, dễ hiểu và có lộ trình rõ ràng để tự tin chinh phục tiếng Trung.",
-    "roadmap": "Lộ Trình Học Tập",
+    "btnStart": "Bắt đầu học ngay",
+    "btnRoadmap": "Lộ trình học tập",
+    "activeStudents": "Tham gia cùng 2.000+ học viên độc lập",
+    "roadmap": "Lộ trình học tập HSK",
     "roadmapDesc": "Được thiết kế chuẩn khung tham chiếu ngôn ngữ HSK mới",
     "paths": "Lộ trình học tập cá nhân hóa",
     "why": "Vì sao nên học cùng Ruby HSK?",
@@ -72,14 +79,17 @@
     "pathHsk56Desc": "Hoàn thiện kỹ năng ngôn ngữ, đủ trình độ học thuật tại đại học Trung Quốc.",
     "pathHsk56Bullet1": "2500+ Từ vựng",
     "pathHsk56Bullet2": "Phân tích học thuật",
-    "exploreNow": "Khám phá ngay",
-    "details": "Chi tiết"
+    "exploreNow": "Khám phá ngay →",
+    "details": "Chi tiết →"
   },
   "Courses": {
     "title": "Khóa học tiếng Trung & luyện thi HSK",
     "sub": "Chinh phục tiếng Trung cùng lộ trình học tập chuyên sâu từ HSK 1 đến HSK 6.",
     "mobileHeroTitleHtml": "Khai phóng <span class=\"text-[var(--color-primary)]\">tiềm năng HSK</span>",
     "mobileHeroSub": "Lựa chọn khóa học phù hợp để làm học tiếng Trung và bứt phá mục tiêu của bạn.",
+    "heroLine1": "Khóa học tiếng Trung &",
+    "heroLine2": "luyện thi HSK",
+    "heroDesc": "Nâng cao trình độ tiếng Trung cùng Ruby HSK thông qua các bài giảng sinh động, giáo trình chuẩn hóa và môi trường học tập tương tác cao.",
     "list": "Danh sách khóa học",
     "filters": "Bộ lọc HSK",
     "badge": "Lộ trình học tập chuyên sâu",
@@ -88,6 +98,10 @@
     "modeAll": "Tất cả",
     "modeOnline": "Online",
     "modeVideo": "Video quay sẵn",
+    "allLevels": "Tất cả trình độ",
+    "details": "Chi tiết",
+    "weeks": "tuần học",
+    "contactTuition": "Liên hệ học phí",
     "promoTitle": "Combo HSK 4-5-6",
     "promoDesc": "Tiết kiệm 30% khi đăng ký lộ trình trọn gói.",
     "promoAction": "Xem ưu đãi",
@@ -102,6 +116,9 @@
   "About": {
     "title": "Cầu nối ngôn ngữ Kiến tạo tương lai",
     "desc": "Ruby HSK không chỉ là nơi dạy tiếng Trung, chúng tôi xây dựng cộng đồng học tập đam mê, nơi văn hóa và ngôn ngữ giao thoa. Sứ mệnh của chúng tôi là giúp người Việt chinh phục tiếng Trung một cách tự nhiên và hiệu quả nhất.",
+    "aboutBadge": "ABOUT RUBY HSK",
+    "foundingInstructor": "GIẢNG VIÊN SÁNG LẬP",
+    "methodologyBadge": "PHƯƠNG PHÁP & KINH NGHIỆM",
     "introTeacher": "Cô Ngọc (Trần Hồng Ngọc)",
     "teacherQuote": "\"Học tiếng Trung không chỉ là học ngôn ngữ, mà còn là khám phá một nền văn hóa phong phú. Tôi tin rằng mỗi học viên đều có thể thành công nếu được hướng dẫn đúng cách và có động lực phù hợp.\"",
     "teacherBio": "5 năm kinh nghiệm giảng dạy tiếng Trung HSK với phương pháp hiệu quả và tận tâm. Đội ngũ giáo viên chuyên nghiệp đồng hành cùng học viên.",
@@ -132,12 +149,33 @@
     "why3Desc": "Nền tảng E-learning hiện đại tích hợp AI chấm điểm phát âm, kho tài liệu số hóa khổng lồ và cộng đồng hỗ trợ học tập 24/7.",
     "why4Title": "Môi trường học tập chuyên nghiệp",
     "why4Desc": "Không gian học tập hiện đại, thoải mái và đầy đủ trang thiết bị: Phòng học hiện đại, Tài liệu học tập, Thư viện sách, Hoạt động văn hóa.",
+    "ctaTitle": "Bắt đầu hành trình tiếng Trung của bạn",
+    "ctaDesc": "Đăng ký ngay hôm nay để nhận lộ trình tư vấn cá nhân hóa MIỄN PHÍ cùng đội ngũ giảng viên thạc sĩ.",
+    "ctaBtnConsult": "Nhận tư vấn miễn phí",
+    "ctaBtnCourses": "Xem danh sách khóa học",
     "safe": "Thông tin chi tiết được cập nhật theo hồ sơ chính thức của Ruby HSK."
+  },
+  "Footer": {
+    "tagline": "Hành trình chinh phục HSK của bạn trở nên dễ dàng và thú vị hơn cùng đội ngũ giáo viên tận tâm.",
+    "groupStudy": "Học tập",
+    "groupCommunity": "Cộng đồng",
+    "groupSupport": "Hỗ trợ",
+    "linkHsk12": "Khóa học HSK 1-2",
+    "linkHsk34": "Khóa học HSK 3-4",
+    "linkHsk56": "Khóa học HSK 5-6",
+    "linkReviews": "Đánh giá học viên",
+    "linkContact": "Liên hệ",
+    "copyright": "© {year} Ruby HSK. All rights reserved."
   },
   "Contact": {
     "title": "Liên hệ Ruby HSK",
     "sub": "Để lại thông tin để được tư vấn lộ trình học tiếng Trung phù hợp.",
-    "submit": "Gửi yêu cầu tư vấn"
+    "submit": "Gửi yêu cầu tư vấn",
+    "consultationBadge": "Tư vấn miễn phí",
+    "infoTitle": "Thông tin liên hệ",
+    "infoBadgeText": "Tư vấn hoàn toàn miễn phí.",
+    "labelPhone": "Hotline",
+    "labelAddress": "Địa chỉ"
   },
   "ContactForm": {
     "errRequired": "Vui lòng điền họ tên và số điện thoại.",
@@ -148,24 +186,20 @@
     "nameLabel": "Họ và tên *",
     "namePlaceholder": "Nguyễn Văn A",
     "phoneLabel": "Số điện thoại *",
+    "phonePlaceholder": "0901 234 567",
     "emailLabel": "Email (không bắt buộc)",
+    "emailPlaceholder": "email@example.com",
     "goalLabel": "Mục tiêu học (không bắt buộc)",
     "goalPlaceholder": "Ví dụ: Muốn thi HSK 3 trong 6 tháng, hoặc học giao tiếp cơ bản...",
     "submitting": "Đang gửi...",
-    "submit": "Gửi yêu cầu tư vấn"
+    "submit": "Gửi yêu cầu tư vấn",
+    "formTitle": "Gửi lời nhắn cho chúng tôi"
   },
   "ReadyToLearn": {
-    "badge": "BẮT ĐẦU NGAY HÔM NAY",
-    "title": "Sẵn sàng bắt đầu hành trình học tiếng Trung?",
-    "desc": "Đăng ký ngay để nhận buổi học thử miễn phí và tư vấn lộ trình học phù hợp",
-    "btnRegister": "Đăng ký học thử miễn phí",
-    "btnTeacher": "Tìm hiểu về cô Ngọc",
-    "statStudents": "500+",
-    "statStudentsLabel": "Học viên",
-    "statPassRate": "95%",
-    "statPassRateLabel": "Tỷ lệ đỗ HSK",
-    "statExperience": "5 năm",
-    "statExperienceLabel": "Kinh nghiệm"
+    "title": "Sẵn sàng để bắt đầu hành trình của bạn?",
+    "desc": "Hãy để Ruby HSK đồng hành cùng bạn trên con đường chinh phục đỉnh cao ngôn ngữ. Đăng ký tư vấn lộ trình miễn phí ngay hôm nay!",
+    "btnRegister": "Đăng ký ngay",
+    "btnMore": "Tìm hiểu thêm"
   },
   "Legal": {
     "privacy": "Chính sách bảo mật",

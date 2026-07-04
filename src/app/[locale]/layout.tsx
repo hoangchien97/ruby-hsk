@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { MobileBottomNav } from '@/components/layout/mobile-bottom-nav';
 import { FloatingContact } from '@/components/layout/floating-contact';
+import { ScrollToTop } from '@/components/ui/scroll-to-top';
 import { buildOrganizationLD } from '@/lib/seo/jsonld';
 import '../globals.scss';
 
@@ -98,6 +99,7 @@ export default async function LocaleLayout({
               <main>{children}</main>
               <Footer />
               <FloatingContact />
+              <ScrollToTop />
               <MobileBottomNav />
             </div>
           </AppProviders>
