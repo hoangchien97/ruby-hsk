@@ -166,6 +166,30 @@ export type Database = {
         }
         Relationships: []
       }
+      newsletter_subscribers: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          source_locale: string | null
+          status: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+          source_locale?: string | null
+          status?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          source_locale?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
       page_metadata: {
         Row: {
           canonical_url: string | null

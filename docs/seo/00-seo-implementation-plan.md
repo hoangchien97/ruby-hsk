@@ -1,12 +1,14 @@
-# 00 — Kế hoạch triển khai SEO cho Ruby HSK Landing
+# 00 — SEO implementation plan for Ruby HSK Landing
 
-> Hiện trạng: site chỉ có 1 `metadata` tĩnh dùng chung cho mọi trang tại `src/app/[locale]/layout.tsx`.
-> Chưa có `sitemap.ts`, `robots.ts`, `manifest.ts`, chưa có JSON-LD, chưa có `public/` assets.
+> State when written: the site had a single static `metadata` object shared by every page in `src/app/[locale]/layout.tsx`.
+> No `sitemap.ts`, `robots.ts`, `manifest.ts`, no JSON-LD, no `public/` assets yet.
+>
+> **2026-07-06 status note:** most of this plan has since been implemented — `sitemap.ts`, `robots.ts`, `manifest.ts` exist, all 6 route pages have their own `generateMetadata`, and `src/lib/seo/jsonld.ts` is wired into Home/About/Contact/Courses. Treat the checklists below as a reference for verifying completeness, not as a from-scratch task list.
 
-## 1. `metadataBase` và title template
+## 1. `metadataBase` and title template
 
 ```ts
-// src/app/[locale]/layout.tsx (định hướng, chưa áp dụng)
+// src/app/[locale]/layout.tsx (guidance, as originally proposed)
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
   title: {
@@ -16,23 +18,23 @@ export const metadata: Metadata = {
 };
 ```
 
-- `NEXT_PUBLIC_SITE_URL` phải là domain thật khi lên production (Phase 9), không để `localhost` lọt vào build production.
+- `NEXT_PUBLIC_SITE_URL` must be the real domain in production (Phase 9) — never let `localhost` leak into a production build.
 
-## 2. Metadata theo từng trang (`generateMetadata`)
+## 2. Per-page metadata (`generateMetadata`)
 
-Mỗi route trong `src/app/[locale]/*/page.tsx` cần `generateMetadata` riêng (hiện tại **không có route nào có**), tối thiểu gồm: `title`, `description`, `alternates.canonical`, `alternates.languages` (vi/en), `openGraph`, `twitter`.
+Every route under `src/app/[locale]/*/page.tsx` needs its own `generateMetadata`, at minimum: `title`, `description`, `alternates.canonical`, `alternates.languages` (vi/en), `openGraph`, `twitter`.
 
-| Route | Title đề xuất (VI) | Từ khoá chính |
+| Route | Suggested title (VI) | Primary keyword |
 |---|---|---|
 | `/[locale]` | Ruby HSK – Học tiếng Trung & luyện thi HSK cùng cô Trần Hồng Ngọc | học tiếng Trung, trung tâm tiếng Trung |
 | `/[locale]/courses` | Khóa học tiếng Trung & luyện thi HSK 1-6 | khóa học HSK, luyện thi HSK |
 | `/[locale]/about` | Về Ruby HSK – Giáo viên Trần Hồng Ngọc | trung tâm tiếng Trung, giáo viên tiếng Trung |
 | `/[locale]/contact` | Liên hệ tư vấn khóa học tiếng Trung | tư vấn học tiếng Trung |
-| `/[locale]/privacy` | Chính sách bảo mật | (không cần tối ưu từ khoá, `noindex` có thể xem xét nếu nội dung mỏng) |
-| `/[locale]/terms` | Điều khoản sử dụng | (tương tự) |
-| `/[locale]/coming-soon` | Sắp ra mắt | (nên `noindex` — trang tạm) |
+| `/[locale]/privacy` | Chính sách bảo mật | (no keyword optimization needed; consider `noindex` if content stays thin) |
+| `/[locale]/terms` | Điều khoản sử dụng | (same as above) |
+| `/[locale]/coming-soon` | Sắp ra mắt | (should be `noindex` — temporary page) |
 
-### Ví dụ pattern chuẩn cho 1 route
+### Standard pattern for a route
 
 ```ts
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
@@ -52,78 +54,78 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
 }
 ```
 
-Áp dụng pattern tương tự cho từng route ở Phase 5.
+Apply the same pattern to every route.
 
-## 3. `sitemap.ts` (mới — `src/app/sitemap.ts`)
+## 3. `sitemap.ts` (`src/app/sitemap.ts`)
 
-- Liệt kê toàn bộ route công khai × 2 locale (`vi`, `en`).
-- Không đưa `coming-soon` vào sitemap (trang tạm), không đưa 404.
-- Dùng `routing.locales` từ `src/i18n/routing.ts` để tránh lặp danh sách locale.
-- `lastModified` lấy từ thời điểm build hoặc từ `site_settings`/CMS nếu có sau này (Phase 6).
+- List every public route × 2 locales (`vi`, `en`).
+- Never include `coming-soon` (temporary page) or the 404 page in the sitemap.
+- Use `routing.locales` from `src/i18n/routing.ts` to avoid duplicating the locale list.
+- `lastModified` comes from build time, or from `site_settings`/a CMS later if available.
 
-## 4. `robots.ts` (mới — `src/app/robots.ts`)
+## 4. `robots.ts` (`src/app/robots.ts`)
 
-- Allow toàn bộ, disallow `/api/*` nếu sau này có route handler nội bộ.
-- Trỏ `sitemap: `${siteUrl}/sitemap.xml``.
+- Allow everything, disallow `/api/*` if an internal route handler is added later.
+- Point `sitemap` at `${siteUrl}/sitemap.xml`.
 
-## 5. `manifest.ts` (mới — `src/app/manifest.ts`)
+## 5. `manifest.ts` (`src/app/manifest.ts`)
 
 - `name`/`short_name`: "Ruby HSK".
-- `theme_color`: `#804237` (light) — cân nhắc `#191211` cho dark nếu hỗ trợ `manifest` theo theme.
-- Icons: cần asset thật từ Stitch (Phase 2) trước khi hoàn thiện — hiện chưa có `public/`.
+- `theme_color`: `#b52330` (matches the Vibrant Academic Ivory primary color).
+- Icons: need real assets from Stitch (Phase 2) before finalizing.
 
 ## 6. JSON-LD
 
-Thêm helper `src/lib/seo/jsonld.ts` sinh các schema sau, nhúng qua `<script type="application/ld+json">` trong từng layout/page:
+Add a `src/lib/seo/jsonld.ts` helper that generates the following schemas, embedded via `<script type="application/ld+json">` in the relevant layout/page:
 
-| Schema | Vị trí nhúng | Nội dung chính |
+| Schema | Where to embed | Main content |
 |---|---|---|
-| `Organization` | `[locale]/layout.tsx` (toàn site) | name, url, logo, sameAs (Zalo/Facebook khi có) |
-| `EducationalOrganization` (mở rộng `LocalBusiness`) | Home hoặc About | name, address (nếu có địa chỉ vật lý), teacher (`employee` → `Person` cho cô Trần Hồng Ngọc) |
-| `Course` | Mỗi item trong Courses (per-course, lý tưởng là khi có bảng `courses` ở Supabase — Phase 6) | name, description, provider (Organization), hasCourseInstance nếu có lịch khai giảng |
-| `FAQPage` | Home (section FAQ hiện chưa có UI — cần bổ sung ở Phase 4) hoặc Courses | Q&A thật, không placeholder |
-| `BreadcrumbList` | Mọi trang con (Courses, About, Contact, Privacy, Terms) | Home > Trang hiện tại |
+| `Organization` | `[locale]/layout.tsx` (site-wide) | name, url, logo, sameAs (Zalo/Facebook once available) |
+| `EducationalOrganization` (extends `LocalBusiness`) | Home or About | name, address (if there's a physical address), teacher (`employee` → `Person` for Ms. Trần Hồng Ngọc) |
+| `Course` | Each item on the Courses page (ideally once the `courses` Supabase table is live) | name, description, provider (Organization), hasCourseInstance if there's a schedule |
+| `FAQPage` | Home (needs an FAQ UI section) or Courses | real Q&A, never placeholder |
+| `BreadcrumbList` | Every sub-page (Courses, About, Contact, Privacy, Terms) | Home > current page |
 
-Không nhúng `Course`/`FAQPage` với dữ liệu giả — chỉ nhúng khi nội dung thật đã có (tránh vi phạm Google structured data guideline về nội dung không khớp trang).
+Never embed `Course`/`FAQPage` with fake data — only once real content exists (to avoid violating Google's structured-data content-matching guidelines).
 
-## 7. Chiến lược nội dung SEO theo từ khoá
+## 7. Keyword-driven content strategy
 
-| Từ khoá mục tiêu | Trang chính | Gợi ý xử lý on-page |
+| Target keyword | Primary page | On-page handling |
 |---|---|---|
-| học tiếng Trung | Home | H1 chứa cụm từ tự nhiên, không nhồi từ khoá |
-| luyện thi HSK | Courses | Title + H1 + mô tả từng cấp độ HSK 1-6 |
-| khóa học HSK | Courses | Mỗi course card có URL/slug riêng nếu có trang chi tiết sau này (`/courses/[slug]`) |
-| tiếng Trung giao tiếp | Home (feature "Giao tiếp") + Courses (nếu có khoá riêng) | Nội dung mô tả rõ tình huống giao tiếp thực tế |
-| học tiếng Trung cho người mới bắt đầu | Courses (khoá Sơ Cấp) | Nhấn "cho người mới bắt đầu" trong description khoá Sơ Cấp |
-| trung tâm tiếng Trung | About, Home footer | Nhấn thương hiệu "Ruby HSK" + địa bàn hoạt động (cần thông tin thật) |
+| học tiếng Trung | Home | H1 uses the phrase naturally, never stuffed |
+| luyện thi HSK | Courses | Title + H1 + per-level (HSK 1-6) description |
+| khóa học HSK | Courses | Each course card gets its own URL/slug once detail pages exist (`/courses/[slug]`) |
+| tiếng Trung giao tiếp | Home ("Communication" feature) + Courses (if there's a dedicated course) | Content describes real communication scenarios |
+| học tiếng Trung cho người mới bắt đầu | Courses (beginner level) | Emphasize "for beginners" in the beginner course description |
+| trung tâm tiếng Trung | About, Home footer | Emphasize the "Ruby HSK" brand + service area (needs real info) |
 
-Nguyên tắc: viết nội dung tự nhiên cho người đọc trước, từ khoá chỉ xuất hiện tự nhiên trong H1/description/alt text — không nhồi từ khoá (keyword stuffing).
+Principle: write naturally for the reader first — keywords should only appear naturally in H1/description/alt text, never stuffed.
 
 ## 8. Alt text strategy
 
-- Mọi `<Image>`/icon có ý nghĩa nội dung (không phải decorative) phải có `alt` mô tả đúng nội dung + có thể chứa từ khoá tự nhiên (ví dụ ảnh giáo viên: `alt="Cô Trần Hồng Ngọc giảng dạy tiếng Trung tại Ruby HSK"`).
-- Icon thuần trang trí (lucide-react trong button) giữ `aria-hidden` hoặc không cần alt vì đã có `aria-label` ở phần tử cha (đã áp dụng đúng ở `ThemeToggle`, `FloatingContact`).
-- `LogoIcon` hiện có `aria-label="Ruby HSK logo"` + `<span className="sr-only">Ruby HSK</span>` — giữ nguyên pattern này cho mọi icon-only component.
+- Every content-bearing `<Image>`/icon (not decorative) needs alt text describing the content, naturally including a keyword where relevant (e.g. teacher photo: `alt="Cô Trần Hồng Ngọc giảng dạy tiếng Trung tại Ruby HSK"`).
+- Purely decorative icons (lucide-react inside a button) keep `aria-hidden` or skip alt text since the parent element already has `aria-label` (already correct in `ThemeToggle`, `FloatingContact`).
+- `LogoIcon` already has `aria-label="Ruby HSK logo"` + `<span className="sr-only">Ruby HSK</span>` — keep this pattern for every icon-only component.
 
 ## 9. Internal linking strategy
 
-- Header/Footer/MobileNav đã link đầy đủ giữa Home/Courses/About/Contact/Privacy/Terms — giữ nguyên.
-- Bổ sung: Home → Courses (đã có qua Button "Xem khóa học"), Courses → About (nên thêm CTA "Tìm hiểu giáo viên"), About → Contact (đã có "Nhận tư vấn lộ trình" nhưng chưa link — cần bọc `Link` quanh Button đó, hiện tại chỉ là `<Button>` không có `href`).
-- Khi có trang chi tiết khoá học riêng (`/courses/[slug]`) ở giai đoạn sau, thêm breadcrumb + link ngược về `/courses`.
+- Header/Footer/MobileNav already link fully between Home/Courses/About/Contact/Privacy/Terms — keep as is.
+- To add: Home → Courses (already via the "View courses" button), Courses → About (add a "Meet the teacher" CTA), About → Contact (has "Get a study-plan consultation" copy but wasn't wrapped in a `Link` — needs an `href`).
+- Once per-course detail pages (`/courses/[slug]`) exist, add breadcrumbs + a link back to `/courses`.
 
 ## 10. Performance / Core Web Vitals checklist
 
-| Mục | Hiện trạng | Việc cần làm |
+| Item | State at the time | To do |
 |---|---|---|
-| Font loading | `next/font/google` (Noto_Sans) với `display: swap` | Đã tối ưu đúng cách, giữ nguyên |
-| Images | `next.config.ts` cho phép `remotePatterns` toàn `https://**` | Khi có ảnh thật, ưu tiên `next/image` với `sizes`/`priority` cho ảnh above-the-fold (hero) |
-| CLS | Chưa có ảnh thật nên chưa đo được | Đặt `width`/`height` hoặc `fill` + container tỉ lệ cố định khi thêm ảnh |
-| LCP | Hero section dùng gradient + icon, không có ảnh nặng | Giữ nguyên nhẹ; nếu thêm ảnh giáo viên/khoá học, dùng `priority` cho ảnh hero |
-| JS bundle | Toàn bộ page hiện là Server Component trừ phần `'use client'` (ThemeToggle, LanguageToggle, MobileBottomNav, AppProviders) | Giữ nguyên tinh thần "client component tối thiểu" |
-| Turbopack dev | Đã dùng `next dev --turbopack` | Không cần đổi |
+| Font loading | `next/font/google` (Noto Sans) with `display: swap` | Already correct, keep as is |
+| Images | `next.config.ts` allows `remotePatterns` for all `https://**` | Once real images exist, prefer `next/image` with `sizes`/`priority` for above-the-fold (hero) images |
+| CLS | No real images yet, so unmeasured | Set `width`/`height` or `fill` + a fixed-ratio container once images are added |
+| LCP | Hero uses a gradient + icon, no heavy image | Keep it light; use `priority` for a hero image if one is added |
+| JS bundle | Every page is a Server Component except the `'use client'` parts (ThemeToggle, LanguageToggle, MobileBottomNav, AppProviders) | Keep the "minimal client components" approach |
+| Turbopack dev | Already using `next dev --turbopack` | No change needed |
 
-## 11. Việc cần làm trước khi Phase 5 code
+## 11. Before writing Phase 5 code
 
-- [ ] Có domain thật để set `NEXT_PUBLIC_SITE_URL` production.
-- [ ] Có nội dung FAQ thật (hiện chưa có section FAQ nào trên UI) trước khi nhúng `FAQPage` schema.
-- [ ] Có ảnh/logo chính thức (Phase 2, từ Stitch) trước khi tạo `manifest.ts` icons và OG default image.
+- [x] Real domain to set `NEXT_PUBLIC_SITE_URL` in production. *(rubyhsk.vn is already referenced as the default in `sitemap.ts`/`robots.ts`)*
+- [ ] Real FAQ content (no FAQ UI section exists yet) before embedding the `FAQPage` schema.
+- [ ] Official photos/logo (Phase 2, from Stitch) before finalizing `manifest.ts` icons and the default OG image.

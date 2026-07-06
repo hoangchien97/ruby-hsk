@@ -97,7 +97,7 @@ export default async function LocaleLayout({
             <div className="page-shell">
               <Header />
               <main>{children}</main>
-              <Footer />
+              <Footer locale={locale} />
               <FloatingContact />
               <ScrollToTop />
               <MobileBottomNav />

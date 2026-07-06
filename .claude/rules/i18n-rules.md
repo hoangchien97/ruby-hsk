@@ -1,9 +1,9 @@
 # i18n Rules
 
-- Locale hỗ trợ: `vi`, `en`. Locale mặc định: `vi` (xem `src/i18n/routing.ts`, `localePrefix: 'always'`).
-- Dùng `next-intl` cho toàn bộ text hiển thị (`useTranslations` ở Client Component, `getTranslations` ở Server Component).
-- Toggle VI/EN (`LanguageToggle`) phải **giữ nguyên route hiện tại** — dùng `router.replace(pathname, {locale})` từ `@/i18n/navigation`, không redirect về `/`.
-- Mọi content hiển thị cho end-user phải đi qua message key, **trừ** brand text tĩnh (ví dụ "Ruby HSK", "HSK 1-6") có thể hard-code.
-- Message file: `src/messages/vi.json`, `src/messages/en.json` — tổ chức key theo namespace/page (`Nav`, `Home`, `Courses`, `About`, `Contact`, `Legal`, `NotFound`, `ComingSoon`...).
-- Nếu di chuyển vị trí `messages/`, phải cập nhật import trong `src/i18n/request.ts` (hiện đang import `../messages/${locale}.json` — đã ở `src/messages/`, không phải root nữa).
-- Không hard-code chuỗi tiếng Việt trong JSX của component layout/section dùng chung (ví dụ Footer/Courses hiện có một số chuỗi cứng — cần đưa vào message key khi refactor, xem `docs/audit/00-current-state-audit.md` mục 2, phát hiện #11).
+- Supported locales: `vi`, `en`. Default locale: `vi` (see `src/i18n/routing.ts`, `localePrefix: 'always'`).
+- Use `next-intl` for all user-facing text (`useTranslations` in Client Components, `getTranslations` in Server Components).
+- The VI/EN toggle (`LanguageToggle`) must **keep the current route** — use `router.replace(pathname, {locale})` from `@/i18n/navigation`, never redirect back to `/`.
+- All end-user-facing content must go through a message key, **except** static brand text (e.g. "Ruby HSK", "HSK 1-6") which may be hardcoded.
+- Message files: `src/messages/vi.json`, `src/messages/en.json` — organize keys by namespace/page (`Nav`, `Home`, `Courses`, `About`, `Contact`, `Legal`, `NotFound`, `ComingSoon`, ...).
+- If `messages/` is ever relocated again, update the import in `src/i18n/request.ts` accordingly (it currently imports from `../messages/${locale}.json`, i.e. `src/messages/`).
+- Do not hardcode Vietnamese strings in shared layout/section components (e.g. Footer/Courses have historically had some hardcoded strings — move these into message keys during refactors; see `docs/audit/00-current-state-audit.md` §2, finding #11).

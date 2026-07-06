@@ -1,28 +1,28 @@
 # Skill: Stitch → Code
 
 ## Purpose
-Chuyển thiết kế Stitch (Ruby HSK Scholar) thành code Next.js/Tailwind/SCSS.
+Turn a Stitch design (Vibrant Academic Ivory) into Next.js/Tailwind/SCSS code.
 
 ## When to use
-- Khi cần đối chiếu hoặc implement 1 màn hình theo đúng thiết kế Stitch.
+- When you need to compare against or implement a screen per the Stitch design.
 
-## Nguồn tham khảo
-- Ưu tiên MCP Stitch (`mcp__stitch__*`) nếu đã kết nối được (`claude mcp get stitch` → `✔ Connected`).
-- Nếu MCP còn lỗi (`tools fetch failed`), dùng export tĩnh tại `Stitch_Ruby_HSK_HTML/<screen>_<breakpoint>_light/code.html` + `screen.png`.
-- **Chỉ dùng biến thể `ruby_hsk_scholar`** (`Stitch_Ruby_HSK_HTML/ruby_hsk_scholar/DESIGN.md`) — không dùng `vibrant_academic_ivory`.
+## Reference sources
+- Prefer MCP Stitch (`mcp__stitch__*`) if connected (`claude mcp get stitch` → `✔ Connected`).
+- If the MCP is still erroring (`tools fetch failed`), use the static export at `Stitch_Ruby_HSK_HTML/<screen>_<breakpoint>_light/code.html` + `screen.png`.
+- **Only use the `vibrant_academic_ivory` variant** (`Stitch_Ruby_HSK_HTML/vibrant_academic_ivory/`) — this is the only variant present in the repo; the earlier `ruby_hsk_scholar` variant was removed and must not be used or recreated.
 
 ## Steps
-1. Xác định màn hình cần chuyển đổi → tìm thư mục export tương ứng (ví dụ `home_page_desktop_light`, `home_page_mobile_light`).
-2. Đọc `code.html` để lấy cấu trúc/token thực tế (màu, spacing, radius, typography), đối chiếu với `ruby_hsk_scholar/DESIGN.md`.
-3. Map màn hình → route Next.js (xem bảng mapping trong `docs/design/00-stitch-design-integration-plan.md`).
-4. Xác định phần nào là component tái sử dụng (header, card, button...) — implement component trước (`implement-component.md`).
-5. Implement phần nội dung riêng của page sau, dùng lại component vừa tạo/đã có.
-6. Validate responsive theo đúng breakpoint trong `screen.png` (desktop/mobile) — nếu thiếu breakpoint tablet, suy ra từ token `spacing`/`rounded` trong DESIGN.md.
+1. Identify the screen to convert → find the matching export folder (e.g. `home_page_desktop_light`, `home_page_mobile_light`).
+2. Read `code.html` to get the real structure/tokens (color, spacing, radius, typography), cross-checking against the `vibrant_academic_ivory` reference.
+3. Map the screen → Next.js route (see the mapping table in `docs/design/00-stitch-design-integration-plan.md`).
+4. Identify which parts are reusable components (header, card, button, ...) — implement the component first (`implement-component.md`).
+5. Implement the page-specific content next, reusing the component just built/already available.
+6. Validate responsiveness against the breakpoints shown in `screen.png` (desktop/mobile) — if a tablet breakpoint is missing, infer it from the `spacing`/`rounded` tokens.
 
 ## Rules
-- Không copy-paste nguyên `code.html` (HTML tĩnh từ Stitch) vào JSX — phải chuyển thành component React/Tailwind đúng convention project.
-- Giữ đúng kiến trúc hiện tại (App Router, `src/components` convention) — không tạo cấu trúc mới song song.
-- Giữ tinh thần Ruby HSK Scholar: ấm áp, học thuật, không dashboard.
+- Never copy-paste raw Stitch `code.html` into JSX — always convert it into a React/Tailwind component matching the project's conventions.
+- Keep the existing architecture (App Router, `src/components` convention) — never create a parallel structure.
+- Keep the Vibrant Academic Ivory spirit: warm, academic, never dashboard-like.
 
 ## Output
-- Component/page code khớp thiết kế + ghi chú diff (nếu có) vào `docs/design/00-stitch-design-integration-plan.md`.
+- Component/page code matching the design + a diff note (if any) added to `docs/design/00-stitch-design-integration-plan.md`.

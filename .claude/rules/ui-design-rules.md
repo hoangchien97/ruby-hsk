@@ -1,43 +1,44 @@
 # UI / Design Rules
 
-## Design system nguồn
-- Theo phong cách **Ruby HSK Scholar / Luminous Education**.
-- Nguồn tham khảo chính thức: `Stitch_Ruby_HSK_HTML/ruby_hsk_scholar/DESIGN.md` + các thư mục `*_page_*` (mỗi thư mục có `code.html` + `screen.png`).
-- **KHÔNG dùng** biến thể `Stitch_Ruby_HSK_HTML/vibrant_academic_ivory/` — bảng màu (coral đỏ #FF5A5F...) không khớp brand mandate.
+## Source design system
+- Follows the **Vibrant Academic Ivory** style.
+- Official reference: `Stitch_Ruby_HSK_HTML/vibrant_academic_ivory/` (each `*_page_*` subfolder has `code.html` + `screen.png`).
+- The earlier `ruby_hsk_scholar` variant/palette (`#804237` brown-based) was removed from the repo and is **no longer used** — do not resurrect it or its color values.
 
-## Design tokens (bắt buộc)
-- Primary: `#804237`
-- Secondary: `#E78F65`
-- Tertiary: `#191211`
-- Neutral: `#F9F5F0`
-- Token hiện có tại `src/styles/design-tokens.scss` (`--color-primary`, `--color-secondary`...) — đối chiếu với `ruby_hsk_scholar/DESIGN.md` trước khi thêm token mới; không tự ý đổi giá trị hex đã chốt ở trên khi chưa hỏi user.
-- Không dùng màu random ngoài token — mọi màu trong component phải trỏ về CSS variable hoặc Tailwind token.
+## Design tokens (required)
+- Primary: `#b52330` (deep coral red)
+- Primary hover: `#9e1e2a`
+- Secondary: `#785a00` / secondary container `#ffd167` (sunlight yellow)
+- Tertiary: `#006c4f` / tertiary container `#00a87d` (mint green)
+- Background / surface: `#fdf9f4` (ivory cream)
+- Tokens live in `src/styles/design-tokens.scss` (`--color-primary`, `--color-secondary`, ...) — check against `Stitch_Ruby_HSK_HTML/vibrant_academic_ivory/` before adding new tokens; don't change the hex values above without asking the user first.
+- No ad-hoc colors outside the token set — every color in a component must reference a CSS variable or Tailwind token.
 
-## Phong cách hình ảnh
-- Warm, academic, "cute nhưng không trẻ con" — glassmorphism nhẹ (`.glass-card` hiện có), bo góc mềm, shadow tint theo màu primary (không dùng shadow đen thuần).
-- Không dùng visual mạnh kiểu dashboard/coding tool (không neon, không dark-terminal look).
+## Visual style
+- Warm, academic, "cute but not childish" — light glassmorphism (`.glass-card`), soft rounded corners, primary-tinted shadows (never pure black shadows).
+- No strong dashboard/dev-tool visuals (no neon, no dark-terminal look).
 
 ## Header
-- Logo **chỉ icon**, không kèm text thương hiệu (`LogoIcon` hiện tại đúng chuẩn — giữ pattern `aria-label` + `sr-only` text cho a11y).
+- Logo is **icon-only**, no wordmark (`LogoIcon` follows this correctly today — keep the `aria-label` + `sr-only` text pattern for a11y).
 
-## Mobile bottom navigation (bắt buộc 5 item)
-1. Trang chủ
-2. Khóa học
-3. Về Ruby
-4. Liên hệ
-5. Thêm (More)
+## Mobile bottom navigation (5 items required)
+1. Home
+2. Courses
+3. About Ruby
+4. Contact
+5. More
 
-## More bottom sheet (bắt buộc chứa)
-- Link pháp lý (Privacy, Terms)
-- Link liên hệ nhanh / CTA bắt đầu học
-- Toggle VI/EN
+## More bottom sheet (must contain)
+- Legal links (Privacy, Terms)
+- Quick contact link / "start learning" CTA
+- VI/EN toggle
 - Theme icon toggle
-- (Khi có) shortcut liên hệ Zalo/Messenger/Phone
+- (When available) Zalo/Messenger/Phone shortcuts
 
 ## Theme switch
-- Chỉ **1 icon button duy nhất** (Sun/Moon), không dropdown, không 3 lựa chọn light/dark/system hiển thị riêng.
+- **Single icon button only** (Sun/Moon) — no dropdown, no separate light/dark/system tri-state.
 
-## Cấm
-- Không dùng màu ngoài token.
-- Không style kiểu SaaS/dashboard/admin.
-- Không thêm UI library mới (component primitive) khi chưa được duyệt — ưu tiên mở rộng `src/components/ui/`.
+## Forbidden
+- No colors outside the token set.
+- No SaaS/dashboard/admin styling.
+- No new UI library (component primitives) without approval — prefer extending `src/components/ui/`.

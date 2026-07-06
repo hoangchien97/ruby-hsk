@@ -1,21 +1,21 @@
 # SEO Rules
 
-- SEO là mục tiêu chính của toàn project — mọi trang public phải tối ưu SEO trước khi coi là "hoàn thành".
-- Dùng Next.js App Router metadata API (`generateMetadata`), không tự viết `<head>` tay.
-- Mỗi trang bắt buộc có: `title`, `description`, `alternates.canonical`, `alternates.languages` (vi/en).
-- Bắt buộc có `src/app/sitemap.ts`, `src/app/robots.ts`, `src/app/manifest.ts`.
-- JSON-LD thêm khi nội dung thật đã có (không nhúng dữ liệu giả):
+- SEO is the project's primary goal — every public page must be SEO-optimized before it's considered "done".
+- Use the Next.js App Router metadata API (`generateMetadata`); never hand-write `<head>`.
+- Every page must have: `title`, `description`, `alternates.canonical`, `alternates.languages` (vi/en).
+- `src/app/sitemap.ts`, `src/app/robots.ts`, and `src/app/manifest.ts` are required.
+- Add JSON-LD once real content exists (never embed fake/placeholder data):
   - `EducationalOrganization` (site-wide)
-  - `Course` (mỗi khoá học, khi có dữ liệu Supabase thật)
-  - `FAQPage` (khi có FAQ thật)
-  - `BreadcrumbList` (mọi trang con)
-- Từ khoá mục tiêu (dùng tự nhiên, không nhồi):
-  - học tiếng Trung
-  - luyện thi HSK
-  - khóa học HSK
-  - tiếng Trung giao tiếp
-  - học tiếng Trung cho người mới bắt đầu
-  - trung tâm tiếng Trung
-- Không keyword stuffing — từ khoá chỉ xuất hiện tự nhiên trong H1/description/alt text.
-- Alt text mọi ảnh có nội dung; icon trang trí dùng `aria-hidden`/`aria-label` ở phần tử cha.
-- Chi tiết đầy đủ: `docs/seo/00-seo-implementation-plan.md`.
+  - `Course` (per course, once real Supabase data exists)
+  - `FAQPage` (once real FAQ content exists)
+  - `BreadcrumbList` (every sub-page)
+- Target keywords (use naturally, never stuffed):
+  - học tiếng Trung (learn Chinese)
+  - luyện thi HSK (HSK exam prep)
+  - khóa học HSK (HSK courses)
+  - tiếng Trung giao tiếp (conversational Chinese)
+  - học tiếng Trung cho người mới bắt đầu (learn Chinese for beginners)
+  - trung tâm tiếng Trung (Chinese language center)
+- No keyword stuffing — keywords should only appear naturally in H1/description/alt text.
+- Every content-bearing image needs alt text; decorative icons use `aria-hidden`/`aria-label` on the parent element.
+- Full details: `docs/seo/00-seo-implementation-plan.md`.

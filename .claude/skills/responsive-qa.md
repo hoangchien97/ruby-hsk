@@ -1,27 +1,27 @@
 # Skill: Responsive QA
 
 ## Purpose
-Kiểm tra responsive đầy đủ trước khi coi 1 page/component là hoàn thành.
+Run a full responsive check before considering a page/component "done".
 
 ## When to use
-- Sau khi implement/refactor page hoặc layout component.
-- Trước khi merge/deploy.
+- After implementing/refactoring a page or layout component.
+- Before merging/deploying.
 
-## Check ở 3 breakpoint
+## Check at 3 breakpoints
 - Mobile: 375px
 - Tablet: 768px
 - Desktop: 1440px
 
 ## Checklist
-- [ ] Header: logo icon-only hiển thị đúng, nav desktop ẩn dưới `md`, sticky behavior không giật layout.
-- [ ] Mobile bottom navigation: 5 item hiển thị đúng, active state đúng route, không che nội dung cuối trang (`.page-shell` padding-bottom đủ).
-- [ ] More bottom sheet: mở/đóng đúng, đóng khi tap ra ngoài, không lỗi scroll khi mở.
-- [ ] Floating contact buttons: không đè lên bottom nav ở mobile, vị trí hợp lý ở desktop.
-- [ ] Form (Contact): input full-width ở mobile, không overflow ngang, label/placeholder rõ.
-- [ ] Trang pháp lý (Privacy/Terms): mục lục sticky hoạt động đúng ở desktop, chuyển thành list thường ở mobile nếu cần.
-- [ ] Loading screen: hiển thị đúng giữa màn hình, không giật khi chuyển route.
-- [ ] Không có overflow ngang (horizontal scroll) ở bất kỳ breakpoint nào.
-- [ ] Touch target ≥ 44px cho mọi nút bấm ở mobile.
+- [ ] Header: icon-only logo renders correctly, desktop nav hidden below `md`, sticky behavior doesn't jump the layout.
+- [ ] Mobile bottom navigation: all 5 items render correctly, active state matches the route, doesn't cover page-end content (`.page-shell` has enough padding-bottom).
+- [ ] More bottom sheet: opens/closes correctly, closes on outside tap, no scroll bugs while open.
+- [ ] Floating contact buttons: don't overlap the bottom nav on mobile, sensible position on desktop.
+- [ ] Contact form: inputs are full-width on mobile, no horizontal overflow, clear labels/placeholders.
+- [ ] Legal pages (Privacy/Terms): sticky table of contents works on desktop, collapses to a plain list on mobile if needed.
+- [ ] Loading screen: renders centered, no jump on route change.
+- [ ] No horizontal scroll/overflow at any breakpoint.
+- [ ] Touch targets ≥ 44px for every button on mobile.
 
 ## Output
-- Ghi nhận lỗi phát hiện (nếu có) + fix trực tiếp hoặc tạo task riêng nếu fix lớn.
+- Record any bugs found + fix them directly, or file a separate task for larger fixes.

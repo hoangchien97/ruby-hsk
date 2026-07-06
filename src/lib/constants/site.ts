@@ -14,8 +14,8 @@ export const Contact = {
     email: 'tranhongngoc19122001@gmail.com',
     zalo: 'https://zalo.me/0965322136',
     facebook: 'https://facebook.com/rubyhsk',
-    address: 'Số 4 Xóm Cầu Lão, Xã Ô Diên, Huyện Đan Phượng, Thành Phố Hà Nội, Việt Nam',
-    addressEn: 'No. 4 Cau Lao Road, O Dien Commune, Dan Phuong District, Hanoi City, Vietnam',
+    address: 'Số 4 - Xóm Cầu Lão, Xã Ô Diên, Huyện Đan Phượng, Thành Phố Hà Nội, Việt Nam',
+    addressEn: 'No. 4 - Cau Lao Road, O Dien Commune, Dan Phuong District, Hanoi City, Vietnam',
     replyTime: {
         vi: 'Phản hồi trong vòng 24 giờ làm việc',
         en: 'Response within 24 business hours',

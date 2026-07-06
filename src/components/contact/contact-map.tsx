@@ -32,7 +32,7 @@ export function ContactMap({ locale }: { locale: string }) {
         />
 
         {/* Floating Info Panel */}
-        <div className="absolute bottom-6 left-6 z-10 glass-card p-6 md:p-8 rounded-[2rem] max-w-sm border-l-8 border-[var(--color-primary)] shadow-2xl transition-all duration-300 md:translate-y-2 group-hover:translate-y-0 select-none">
+        {/* <div className="absolute bottom-6 left-6 z-10 glass-card p-6 md:p-8 rounded-[2rem] max-w-sm border-l-8 border-[var(--color-primary)] shadow-2xl transition-all duration-300 md:translate-y-2 group-hover:translate-y-0 select-none">
           <div className="flex items-center gap-2.5 mb-2.5">
             <div className="w-10 h-10 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)]">
               <School className="w-5 h-5" />
@@ -74,7 +74,7 @@ export function ContactMap({ locale }: { locale: string }) {
               )}
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

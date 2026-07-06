@@ -20,7 +20,7 @@ export function ContactFaq() {
   };
 
   return (
-    <section className="container pb-24">
+    <section className="container pb-4 md:pb-24">
       <div className="max-w-3xl mx-auto space-y-8">
         {/* FAQ Section Header */}
         <div className="text-center space-y-3">

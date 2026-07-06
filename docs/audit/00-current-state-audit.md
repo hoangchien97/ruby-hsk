@@ -1,40 +1,42 @@
-# 00 — Audit hiện trạng codebase Ruby HSK Landing
+# 00 — Ruby HSK Landing codebase audit
 
-> Ngày audit: 2026-07-03. Audit thực hiện trên nhánh `main`, commit gần nhất `e90cef1 init project`.
-> Mục tiêu: hiểu rõ toàn bộ hiện trạng trước khi lên plan triển khai, **không chỉnh sửa code trong bước này**.
+> Audit date: 2026-07-03. Performed on branch `main`, latest commit at the time `e90cef1 init project`.
+> Goal: understand the full current state before planning implementation — **no code was changed during this step**.
+>
+> **2026-07-06 update:** several open questions below have since been resolved by later commits — see the inline notes. This file is otherwise kept as a historical snapshot; treat any status/finding below as "true as of 2026-07-03" rather than the current state. Re-run the Audit Project skill if you need a fresh snapshot.
 
-## 1. Tổng quan stack thực tế
+## 1. Actual stack overview
 
-| Thành phần | Khai báo trong `package.json` | Ghi chú |
+| Component | Declared in `package.json` | Notes |
 |---|---|---|
-| Framework | `next@latest` (App Router) | dùng `next dev --turbopack` |
-| Ngôn ngữ | TypeScript, `strict: true` | `tsconfig.json` chuẩn Next.js, alias `@/* -> ./src/*` |
-| Styling | Tailwind CSS v4 (`@tailwindcss/postcss`) + SCSS (`sass`) | Tailwind v4 dùng cú pháp `@import "tailwindcss"` trong `globals.scss`, không có `tailwind.config.*` (Tailwind v4 config-less by default) |
+| Framework | `next@latest` (App Router) | uses `next dev --turbopack` |
+| Language | TypeScript, `strict: true` | standard Next.js `tsconfig.json`, alias `@/* -> ./src/*` |
+| Styling | Tailwind CSS v4 (`@tailwindcss/postcss`) + SCSS (`sass`) | Tailwind v4 uses `@import "tailwindcss"` in `globals.scss`, no `tailwind.config.*` (Tailwind v4 is config-less by default) |
 | i18n | `next-intl@latest` | VI/EN, `localePrefix: 'always'` |
-| Theme | `next-themes@latest` | class-based dark mode qua `@custom-variant dark` |
-| Database | `@supabase/supabase-js@latest` | mới có client browser placeholder, **chưa có schema/bảng nào** |
-| Icon | `lucide-react` | dùng trong nav, toggle, floating contact |
-| Utils | `clsx` + `tailwind-merge` (hàm `cn()`) | |
-| Package manager thực tế | **npm** (tồn tại `package-lock.json`) | README hướng dẫn `pnpm install` — **không khớp với lockfile thực tế** |
+| Theme | `next-themes@latest` | class-based dark mode via `@custom-variant dark` |
+| Database | `@supabase/supabase-js@latest` | at the time: only a browser client placeholder, **no schema/tables yet** (resolved — see note below) |
+| Icons | `lucide-react` | used in nav, toggles, floating contact |
+| Utils | `clsx` + `tailwind-merge` (the `cn()` helper) | |
+| Actual package manager | **npm** (`package-lock.json` present) | README instructed `pnpm install` at the time — **mismatched the real lockfile** (fixed since — README now says npm) |
 
-Không có: test runner, Storybook, CI config, `public/` (chưa có favicon/OG image/manifest icon), `tailwind.config.ts`.
+Missing at the time: test runner, Storybook, CI config, `public/` (no favicon/OG image/manifest icon yet), `tailwind.config.ts`.
 
-## 2. Cấu trúc thư mục hiện tại
+## 2. Folder structure at the time
 
 ```
 ruby-hsk-landing/
-├─ messages/                     # message JSON cho next-intl — Ở ROOT, không nằm trong src/
+├─ messages/                     # next-intl message JSON — at ROOT, not under src/ (moved since — see §3)
 │  ├─ en.json
 │  └─ vi.json
 ├─ middleware.ts                 # next-intl middleware, matcher: '/', '/(vi|en)/:path*'
-├─ next.config.ts                # withNextIntl plugin, images.remotePatterns mở toàn bộ https
+├─ next.config.ts                # withNextIntl plugin, images.remotePatterns open to all https
 ├─ src/
 │  ├─ app/
-│  │  ├─ layout.tsx              # RootLayout rỗng, chỉ return children (không có <html>)
+│  │  ├─ layout.tsx              # empty RootLayout, just returns children (no <html>)
 │  │  ├─ not-found.tsx           # global 404 -> redirect('/vi')
 │  │  ├─ globals.scss
 │  │  └─ [locale]/
-│  │     ├─ layout.tsx           # <html>, metadata tĩnh, Header/Footer/MobileNav/FloatingContact
+│  │     ├─ layout.tsx           # <html>, static metadata, Header/Footer/MobileNav/FloatingContact
 │  │     ├─ not-found.tsx        # localized 404 UI
 │  │     ├─ loading.tsx
 │  │     ├─ page.tsx             # Home
@@ -44,7 +46,7 @@ ruby-hsk-landing/
 │  │     ├─ privacy/page.tsx
 │  │     ├─ terms/page.tsx
 │  │     └─ coming-soon/page.tsx
-│  ├─ components/                # ⚠️ thực tế dùng src/components, KHÔNG phải src/components_v2
+│  ├─ components/                # ⚠️ code actually uses src/components, NOT src/components_v2
 │  │  ├─ layout/ (header, footer, mobile-bottom-nav, floating-contact, theme-toggle, language-toggle)
 │  │  ├─ logo/logo-icon.tsx
 │  │  ├─ sections/ (hero, cards)
@@ -58,84 +60,71 @@ ruby-hsk-landing/
 │  └─ styles/design-tokens.scss
 ├─ .mcp.json                     # supabase MCP (project scope)
 ├─ .env.example
-├─ CLAUDE_PROMPT.md              # prompt gốc dùng để sinh boilerplate
+├─ CLAUDE_PROMPT.md              # original prompt used to generate the boilerplate (removed since)
 └─ README.md
 ```
 
-### Phát hiện quan trọng (mismatch cần quyết định trước khi code)
+### Key findings (mismatches to decide on before coding)
 
-1. **`src/components` vs `src/components_v2`** — `README.md` và `CLAUDE_PROMPT.md` đều ghi "Components are created in `src/components_v2`", nhưng toàn bộ code thực tế nằm trong `src/components`. Đây là tài liệu lỗi thời từ lúc sinh boilerplate, không phản ánh code thật. → Xem quyết định ở mục 4.
-2. **Package manager** — README hướng dẫn `pnpm install` nhưng repo chỉ có `package-lock.json` (npm), không có `pnpm-lock.yaml`. → Theo đúng rule "không đổi package manager", ta giữ npm và sửa lại README cho khớp thực tế (chỉ sửa doc, không đổi lockfile).
-3. **`messages/` ở root** — hợp lệ với next-intl nhưng không đồng bộ với convention "mọi thứ nằm trong `src/`" mà project đang theo (app, components, i18n, lib, config, styles). Xem phân tích ở mục 3.
-4. **`RootLayout` (`src/app/layout.tsx`) không có `<html>`/`<body>`** — hợp lệ về kỹ thuật vì `[locale]/layout.tsx` là layout thực sự render `<html>`, nhưng cần lưu ý khi thêm `not-found.tsx` gốc hoặc route ngoài `[locale]` (ví dụ `sitemap.ts`, `robots.ts`, `manifest.ts` sẽ nằm ở `src/app/` gốc, không bị ảnh hưởng vì đó là file đặc biệt không qua layout).
-5. **`src/app/not-found.tsx` (global) redirect cứng về `/vi`** — chưa detect locale từ header `accept-language`; chấp nhận được cho MVP nhưng nên ghi chú trong SEO/UX plan.
-6. **Không có `public/`** — thiếu favicon, `apple-icon`, OG default image, dẫn tới thiếu sót SEO/manifest ngay từ đầu.
-7. **Chưa có trang nào có `generateMetadata` riêng** — toàn bộ site chỉ có 1 `metadata` tĩnh ở `[locale]/layout.tsx`, dùng chung cho mọi trang, không có title/description riêng, không có `alternates`, `canonical`, OpenGraph, Twitter card.
-8. **Chưa có `sitemap.ts`, `robots.ts`, `manifest.ts`** — cần bổ sung ở Phase 5.
-9. **Supabase**: chỉ có `createBrowserSupabaseClient()` phía client, chưa có server client, chưa có bảng nào, `.env.example` chỉ có `NEXT_PUBLIC_SUPABASE_URL`/`NEXT_PUBLIC_SUPABASE_ANON_KEY` (chưa có `SUPABASE_SERVICE_ROLE_KEY` cho server-side, hợp lý vì chưa cần thiết ở giai đoạn public landing read-only).
-10. **Nội dung nhiều trang đang là placeholder/hard-code** (ví dụ contact info "0000 000 000", "hello@rubyhsk.vn", danh sách khóa học cứng trong `courses/page.tsx`, nội dung legal là placeholder lặp lại cho mọi section) — cần thay bằng nội dung SEO thật hoặc Supabase data ở Phase 4/6.
-11. **Header/Footer nav hard-code label tiếng Việt** ở một số nơi (footer: "Trang", "Học tiếng Trung", "Pháp lý") không đi qua `useTranslations` — không đồng bộ khi đổi sang EN.
-12. **Toàn bộ trang tablet dùng chung route với desktop/mobile** (không có breakpoint riêng ở route level — đúng theo kỳ vọng, vì tablet/mobile/desktop trong yêu cầu là *responsive breakpoints của cùng 1 route*, không phải route riêng). Cần đảm bảo bằng CSS responsive, không phải bằng tách route.
+1. **`src/components` vs `src/components_v2`** — `README.md` and `CLAUDE_PROMPT.md` both said "Components are created in `src/components_v2`", but all real code lived in `src/components`. This was stale documentation from the boilerplate-generation step, not a reflection of the real code. → See the decision in §4. **Resolved:** `src/components` is the confirmed official convention; `README.md` no longer mentions `components_v2`, and `CLAUDE_PROMPT.md` has since been removed from the repo entirely.
+2. **Package manager** — README said `pnpm install` but the repo only ever had `package-lock.json` (npm), no `pnpm-lock.yaml`. → Per the "never change the package manager" rule, npm was kept and the README was corrected. **Resolved.**
+3. **`messages/` at repo root** — valid for next-intl, but inconsistent with the "everything lives under `src/`" convention the project otherwise follows (app, components, i18n, lib, config, styles). See the analysis in §3. **Resolved:** `messages/` has since been moved to `src/messages/`.
+4. **`RootLayout` (`src/app/layout.tsx`) has no `<html>`/`<body>`** — technically valid since `[locale]/layout.tsx` is the layout that actually renders `<html>`, but worth remembering when adding root-level special files (`sitemap.ts`, `robots.ts`, `manifest.ts` live under `src/app/` root and are unaffected since they bypass the layout tree).
+5. **`src/app/not-found.tsx` (global) hard-redirects to `/vi`** — doesn't detect locale from the `accept-language` header; acceptable for an MVP but worth flagging in the SEO/UX plan.
+6. **No `public/` directory** — meant no favicon, `apple-icon`, or default OG image, an SEO/manifest gap from day one.
+7. **No page had its own `generateMetadata`** — the whole site had a single static `metadata` object in `[locale]/layout.tsx`, shared by every page, with no per-page title/description, no `alternates`, no OpenGraph/Twitter card. **Resolved:** all 6 route pages now define `generateMetadata`.
+8. **No `sitemap.ts`, `robots.ts`, `manifest.ts`** — flagged for Phase 5. **Resolved:** all three now exist under `src/app/`.
+9. **Supabase**: only had a client-side `createBrowserSupabaseClient()`, no server client, no tables yet, `.env.example` only had `NEXT_PUBLIC_SUPABASE_URL`/`NEXT_PUBLIC_SUPABASE_ANON_KEY` (no `SUPABASE_SERVICE_ROLE_KEY`, which was fine at that stage since it wasn't needed yet). **Partially resolved:** `src/lib/supabase/types.ts` now lists `courses`, `course_categories`, `teacher_profile`, `testimonials`, `faqs`, `contact_submissions`, `newsletter_subscribers`, `site_settings`, `page_metadata` — the schema in `docs/database/00-supabase-schema-plan.md` appears to have been largely implemented since this audit.
+10. **Several pages had placeholder/hardcoded content** (e.g. contact info "0000 000 000", "hello@rubyhsk.vn", a hardcoded course list in `courses/page.tsx`, repeated placeholder legal copy) — needed real SEO content or Supabase data (Phase 4/6).
+11. **Header/Footer nav had hardcoded Vietnamese labels** (footer: "Trang", "Học tiếng Trung", "Pháp lý") not going through `useTranslations` — inconsistent when switching to EN.
+12. **Every tablet view shares its route with desktop/mobile** (no separate route per breakpoint — expected, since tablet/mobile/desktop are responsive breakpoints of the *same* route, not separate routes). This must be guaranteed via responsive CSS, not by splitting routes.
 
-## 3. `messages/` ở root vs `src/messages/`
+## 3. `messages/` at root vs `src/messages/`
 
-### Hiện trạng
-- `src/i18n/request.ts` import bằng đường dẫn tương đối: `../../messages/${locale}.json` → tức từ `src/i18n/` đi lên 2 cấp ra root, vào `messages/`.
-- Đây là pattern hợp lệ và được chính next-intl dùng trong official example (`create-next-app` template của next-intl để `messages/` ở root).
-- Không có công cụ nào khác (ESLint, Jest, Vercel build) phụ thuộc vào vị trí này ngoài `request.ts`.
+### State at the time
+- `src/i18n/request.ts` imported via a relative path: `../../messages/${locale}.json` → i.e. up two levels from `src/i18n/` to the repo root, into `messages/`.
+- This is a valid pattern and is what next-intl's own official example uses (the `create-next-app` template keeps `messages/` at the root).
+- No other tool (ESLint, Jest, Vercel build) depended on this location besides `request.ts`.
 
-### So sánh
+### Comparison (as assessed at the time)
 
-| Tiêu chí | Giữ `messages/` ở root | Chuyển vào `src/messages/` |
+| Criteria | Keep `messages/` at root | Move to `src/messages/` |
 |---|---|---|
-| Tính hợp lệ kỹ thuật | ✅ Hoạt động bình thường | ✅ Hoạt động bình thường (chỉ đổi 1 import path) |
-| Nhất quán với convention hiện tại (mọi logic nằm trong `src/`) | ❌ Lệch — `app`, `components`, `i18n`, `lib`, `config`, `styles` đều trong `src/`, chỉ `messages/` ở ngoài | ✅ Đồng bộ 100% với cấu trúc hiện tại |
-| Quy ước phổ biến trong cộng đồng Next.js + next-intl | Cả hai đều phổ biến; nhiều boilerplate to lớn (có `src/`) đặt `messages` trong `src/` | Cũng phổ biến, đặc biệt khi project đã dùng `src/` triệt để |
-| Chi phí thay đổi | Không cần thay đổi gì | Rất thấp — chỉ 1 dòng import + di chuyển 2 file JSON |
-| Rủi ro | Không có | Gần như không có (không có tool ngoài phụ thuộc path cũ) |
+| Technically valid | ✅ Works fine | ✅ Works fine (one import path change) |
+| Consistency with the current convention (everything under `src/`) | ❌ Inconsistent — `app`, `components`, `i18n`, `lib`, `config`, `styles` are all under `src/`, only `messages/` sat outside | ✅ Fully consistent |
+| Common in the Next.js + next-intl community | Both are common; many larger boilerplates with a `src/` folder still keep `messages` outside it | Also common, especially once a project already uses `src/` everywhere |
+| Cost to change | None | Very low — one import line + moving two JSON files |
+| Risk | None | Essentially none (no other tool depended on the old path) |
 
-### Khuyến nghị
+### Recommendation (at the time)
+Move `messages/` into `src/messages/` for full consistency with the "everything lives under `src/`" convention.
 
-**Nên chuyển `messages/` vào `src/messages/`** để nhất quán 100% với convention "toàn bộ source code nằm trong `src/`" mà project đang tuân theo. Đây là thay đổi rẻ, rủi ro thấp, và giúp cấu trúc dự án gọn hơn khi build/deploy (Vercel build root vẫn là repo root nhưng mọi source nằm gọn trong 1 thư mục `src/`, dễ set `include`/watch pattern nếu cần sau này).
+**Status: done.** `messages/` now lives at `src/messages/{vi,en}.json`, and `src/i18n/request.ts` imports from `../messages/${locale}.json`.
 
-**Danh sách file cần cập nhật nếu thực hiện di chuyển** (chỉ thực hiện khi được yêu cầu rõ ràng ở phase sau, KHÔNG làm ở bước audit này):
+## 4. `src/components` vs `src/components_v2` decision
 
-1. Di chuyển vật lý: `messages/en.json` → `src/messages/en.json`, `messages/vi.json` → `src/messages/vi.json`.
-2. Sửa import trong `src/i18n/request.ts`:
-   - Từ: `(await import(`../../messages/${locale}.json`)).default`
-   - Thành: `(await import(`../messages/${locale}.json`)).default`
-3. Không cần sửa file nào khác — không có nơi thứ 2 nào reference tới `messages/` (đã grep toàn repo, chỉ có 1 kết quả duy nhất tại `src/i18n/request.ts:11`).
-4. Cập nhật `README.md` nếu README có nhắc tới đường dẫn `messages/` (hiện tại README không đề cập path cụ thể nên không cần sửa).
+- All real code uses `src/components`. No file ever existed under `src/components_v2`.
+- `README.md` and `CLAUDE_PROMPT.md` were **initial planning docs** that had gone stale relative to the real code.
+- Renaming `src/components` → `src/components_v2` would bring no technical benefit and only risk (dozens of imports to fix) just to match one stale doc line.
 
-→ Đây là thay đổi **không bắt buộc** để hệ thống hoạt động, chỉ là dọn dẹp cấu trúc. Đề xuất thực hiện ở Phase 1 (Architecture cleanup) cùng lúc với quyết định `components` vs `components_v2`.
+**Decision:** keep `src/components` as the project's official convention. `README.md` and `CLAUDE.md` reflect this (no more mentions of `components_v2`), and `CLAUDE_PROMPT.md` has since been deleted from the repo.
 
-## 4. Quyết định `src/components` vs `src/components_v2`
+## 5. tsconfig / alias check
 
-- Code thực tế 100% dùng `src/components`. Không có bất kỳ file nào trong `src/components_v2`.
-- `README.md` và `CLAUDE_PROMPT.md` là tài liệu **định hướng ban đầu**, đã lỗi thời so với code thực tế.
-- Đổi tên toàn bộ `src/components` → `src/components_v2` không mang lại lợi ích kỹ thuật, chỉ gây rủi ro (phải sửa hàng chục import) để khớp với 1 dòng tài liệu cũ.
+- `@/*` → `./src/*`: works for every current import (`@/components/...`, `@/i18n/...`, `@/lib/...`).
+- No dedicated alias for `messages` — not required since only one place imports it.
 
-**Quyết định (ghi nhận, không tự động áp dụng — cần user xác nhận ở Phase 1):**
-> Giữ nguyên `src/components` làm convention chính thức của project. Cập nhật `README.md` và `CLAUDE_PROMPT.md` để phản ánh đúng thực tế (xoá cụm "components_v2"), thay vì đổi tên thư mục code.
+## 6. Overall risk summary (at the time)
 
-Rule của yêu cầu gốc: "If current project uses `src/components`, use it consistently." — codebase hiện dùng `src/components` nhất quán ở mọi nơi, nên tiếp tục dùng `src/components` cho toàn bộ component mới.
-
-## 5. Kiểm tra tsconfig / alias
-
-- `@/*` → `./src/*`: hoạt động tốt cho tất cả import hiện tại (`@/components/...`, `@/i18n/...`, `@/lib/...`).
-- Không có alias riêng cho `messages` — nếu chuyển vào `src/messages`, có thể thêm alias `@/messages/*` nhưng không bắt buộc vì chỉ có 1 nơi import.
-
-## 6. Rủi ro tổng thể trước khi triển khai tiếp
-
-| Rủi ro | Mức độ | Ghi chú xử lý |
+| Risk | Level | Handling note |
 |---|---|---|
-| Thiếu `public/` (favicon, OG image, manifest icons) | Trung bình | Xử lý ở Phase 2/5 |
-| Metadata dùng chung toàn site | Cao (ảnh hưởng SEO trực tiếp) | Xử lý ở Phase 5 |
-| Nội dung placeholder (liên hệ, khoá học, legal) | Cao (rủi ro pháp lý/SEO nội dung mỏng) | Cần nội dung thật từ khách hàng trước khi launch |
-| MCP Supabase ở trạng thái "Pending approval" | Thấp — chặn tạm thời việc dùng MCP để inspect DB | Cần chạy `claude` để approve kết nối (xem Step 3) |
-| MCP Stitch "Connected · tools fetch failed" | Trung bình — chặn việc dùng MCP để lấy design context tự động | Cần kiểm tra lại API key / endpoint Stitch (xem Step 3) |
-| Package manager doc sai (pnpm vs npm thực tế) | Thấp | Sửa doc ở Phase 1, không đổi lockfile |
+| No `public/` (favicon, OG image, manifest icons) | Medium | Handled in Phase 2/5 |
+| Metadata shared across the whole site | High (direct SEO impact) | Handled in Phase 5 |
+| Placeholder content (contact, courses, legal) | High (thin-content/legal risk) | Needs real content from the client before launch |
+| Supabase MCP "Pending approval" | Low — temporarily blocked MCP-based DB inspection | Needed the user to run `claude` to approve the connection |
+| Stitch MCP "Connected · tools fetch failed" | Medium — blocked automated design-context extraction | Needed the Stitch API key/endpoint checked |
+| Wrong package manager in docs (pnpm vs actual npm) | Low | Fixed in docs, lockfile untouched |
 
-## 7. Kết luận audit
+## 7. Audit conclusion
 
-Codebase hiện tại là một **boilerplate đã chạy được** (dev server, routing i18n, theme, layout responsive cơ bản) nhưng **chưa sẵn sàng production** về mặt: SEO metadata, nội dung thật, design system hoàn chỉnh theo Stitch, và tích hợp Supabase thực sự (mới có placeholder). Không có gì trong hiện trạng cần phải xoá — toàn bộ có thể giữ và mở rộng dần theo các phase ở `docs/plan/00-master-implementation-plan.md`.
+At the time, the codebase was a **working boilerplate** (dev server, i18n routing, theming, basic responsive layout) but **not production-ready** in terms of SEO metadata, real content, a complete design system matching Stitch, and real Supabase integration (only a placeholder existed). Nothing needed to be deleted — everything could be kept and extended per the phases in `docs/plan/00-master-implementation-plan.md`. As of 2026-07-06, several of those phases (SEO metadata/sitemap/JSON-LD, Supabase schema, real contact/teacher content) already show meaningful progress — see the inline "Resolved" notes above.

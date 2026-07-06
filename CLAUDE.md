@@ -1,57 +1,65 @@
 # Ruby HSK Landing — Claude Guide
 
 ## Project Mission
-Xây dựng website landing SEO-friendly, mobile-first cho Ruby HSK — trung tâm dạy tiếng Trung và luyện thi HSK, hiện có một giáo viên chính: **cô Trần Hồng Ngọc**.
+Build a mobile-first, SEO-friendly landing site for Ruby HSK — a Chinese-language and HSK exam-prep center with one lead instructor: **Ms. Trần Hồng Ngọc**.
 
 ## Stack
 Next.js App Router · TypeScript · Tailwind CSS · SCSS · next-intl (VI/EN) · next-themes (light/dark) · Supabase · Vercel · MCP Stitch · MCP Supabase
 
 ## Non-Negotiable Rules
-- Đây là **website SEO công khai**, không phải SaaS/dashboard/admin portal.
-- Mobile-first cho mọi trang và component.
-- Header logo **chỉ icon**, không kèm text.
-- Toggle VI/EN phải giữ nguyên route hiện tại.
-- Theme switch chỉ 1 icon button duy nhất.
-- Mobile bắt buộc có bottom navigation + More bottom sheet.
-- Ruby HSK chỉ có **một** giáo viên chính (cô Trần Hồng Ngọc) — không tạo grid nhiều giáo viên giả.
-- Chỉ dùng màu trong design tokens, không random màu ngoài token.
-- Không chạy Supabase operation destructive (DROP/TRUNCATE/xoá dữ liệu) khi chưa được xác nhận rõ.
-- Không commit secret (API key, service role key, `.env`).
-- Không thêm UI library mới khi chưa được duyệt.
+- This is a **public SEO website**, not a SaaS/dashboard/admin portal.
+- Mobile-first for every page and component.
+- Header logo is **icon-only**, no wordmark.
+- The VI/EN toggle must keep the current route.
+- Theme switch is a single icon button only.
+- Mobile must have a bottom navigation + a "More" bottom sheet.
+- Ruby HSK has **one** lead instructor (Ms. Trần Hồng Ngọc) — never fabricate a multi-teacher grid.
+- Only use colors from the design tokens — no ad-hoc colors outside the token set.
+- Never run destructive Supabase operations (DROP/TRUNCATE/bulk delete) without explicit confirmation.
+- Never commit secrets (API keys, service role keys, `.env` files).
+- Never add a new UI library without approval.
 
-Chi tiết đầy đủ nằm ở `.claude/rules/*.md` — luôn áp dụng các rule đó song song với file này.
+Full details live in `.claude/rules/*.md` — always apply those rules alongside this file.
 
 ## Folder Conventions
-- App routes: `src/app/[locale]/**` (App Router, i18n qua segment `[locale]`)
-- Components: `src/components/**` (convention chính thức, KHÔNG dùng `src/components_v2`)
-- i18n logic: `src/i18n/` (`routing.ts`, `navigation.ts`, `request.ts`) — messages tại `src/messages/{vi,en}.json`
+- App routes: `src/app/[locale]/**` (App Router, i18n via the `[locale]` segment)
+- Components: `src/components/**` (the official convention — do NOT use `src/components_v2`)
+- i18n logic: `src/i18n/` (`routing.ts`, `navigation.ts`, `request.ts`) — messages at `src/messages/{vi,en}.json`
 - Styles/tokens: `src/styles/design-tokens.scss` + `src/app/globals.scss`
-- Supabase client: `src/lib/supabase/` (`client.ts` hiện có; `server.ts` sẽ bổ sung khi cần Server Component/Route Handler)
-- Tài liệu plan/audit: `docs/{audit,plan,design,seo,database,deploy}/`
-- Design reference từ Stitch: `Stitch_Ruby_HSK_HTML/` — **dùng biến thể `ruby_hsk_scholar`** (khớp bảng màu bắt buộc #804237/#E78F65/#191211/#F9F5F0), **không dùng** `vibrant_academic_ivory` (bảng màu khác, không đúng brand).
+- Supabase client: `src/lib/supabase/` (`client.ts` exists; add `server.ts` when a Server Component/Route Handler needs it)
+- Plan/audit docs: `docs/{audit,plan,design,seo,database,deploy}/`
+- Stitch design reference: `Stitch_Ruby_HSK_HTML/` — **use the `vibrant_academic_ivory` variant** (matches the mandated palette below). The earlier `ruby_hsk_scholar` variant/palette was removed from the repo and is no longer in use.
+
+## Design Tokens (source of truth: `src/styles/design-tokens.scss`)
+- Primary: `#b52330` (deep coral red — CTAs, active nav, headings)
+- Secondary: `#785a00` / container `#ffd167` (sunlight yellow)
+- Tertiary: `#006c4f` / container `#00a87d` (mint green)
+- Background/surface: `#fdf9f4` (ivory cream)
+- Never hardcode hex values in components — always reference the CSS variables (`var(--color-*)`, `var(--radius-*)`, `var(--shadow-*)`).
 
 ## Commands
 ```
-npm install       # cài dependencies
+npm install       # install dependencies
 npm run dev       # dev server (Turbopack)
 npm run typecheck # tsc --noEmit
 npm run lint      # next lint
 npm run build     # production build
-npm run start     # chạy bản build
+npm run start     # run the production build
 ```
 
 ## Required Workflow
-1. Đọc file liên quan trước khi sửa (không giả định cấu trúc).
-2. Lập plan ngắn cho thay đổi.
-3. Làm bước nhỏ nhất, an toàn nhất trước.
-4. Chạy `typecheck`/`build` khi thay đổi có ảnh hưởng build.
-5. Cập nhật `docs/` khi thay đổi kiến trúc/SEO/database.
+1. Read the relevant files before editing — never assume structure.
+2. Make a short plan for the change.
+3. Do the smallest, safest step first.
+4. Run `typecheck`/`build` when the change affects the build.
+5. Update `docs/` when architecture/SEO/database changes.
 
 ## MCP Usage
-- **Stitch MCP**: trích xuất design context, mapping screen → route, tokens, component inventory. (Nếu server báo lỗi schema, xem `docs/design/00-stitch-design-integration-plan.md`.)
-- **Supabase MCP**: kiểm tra schema, đề xuất migration. **Chỉ read-only** trừ khi user xác nhận rõ ràng chạy migration.
+- **Stitch MCP**: extract design context, map screens → routes, tokens, component inventory. (If the server reports a schema error, see `docs/design/00-stitch-design-integration-plan.md`.)
+- **Supabase MCP**: inspect schema, propose migrations. **Read-only only**, unless the user explicitly confirms running a migration.
 
 ## Output Style
-- Ưu tiên viết tài liệu bằng tiếng Việt.
-- Thay đổi tập trung, đúng phạm vi yêu cầu — không over-engineering.
-- Giữ UI đồng nhất với style Ruby HSK Scholar / Luminous Education (ấm áp, học thuật, không giống dashboard/SaaS).
+- Write project documentation (`.md` files) in **English** — this keeps future Claude Code context/prompt size smaller than mixed-language docs.
+- Conversational replies to the user can stay in whichever language they use.
+- Keep changes focused and scoped to what was asked — no over-engineering.
+- Keep the UI consistent with the Vibrant Academic Ivory style (warm, academic, high-circularity radii) — never a dashboard/SaaS look.

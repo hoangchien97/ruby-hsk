@@ -1,6 +1,6 @@
-# Ruby HSK Next.js Boilerplate
+# Ruby HSK Landing
 
-Base boilerplate for a SEO-friendly Chinese learning / HSK center website.
+SEO-friendly, mobile-first landing site for Ruby HSK — a Chinese-language and HSK exam-prep center.
 
 ## Stack
 
@@ -10,7 +10,7 @@ Base boilerplate for a SEO-friendly Chinese learning / HSK center website.
 - SCSS support
 - next-intl: VI/EN routing and messages
 - next-themes: light/dark theme icon switch
-- Supabase client placeholder
+- Supabase: content tables (courses, FAQs, testimonials, teacher profile, site settings) + contact/newsletter form submissions
 - Mobile-first responsive layout
 
 ## Pages
@@ -28,16 +28,15 @@ Base boilerplate for a SEO-friendly Chinese learning / HSK center website.
 ## Quick start
 
 ```bash
-pnpm install
+npm install
 cp .env.example .env.local
-pnpm dev
+npm run dev
 ```
 
 Open `http://localhost:3000/vi`.
 
 ## Notes
 
-- Components are created in `src/components`.
+- Components live in `src/components` (do not use `src/components_v2`).
 - Public landing content is static-ready and SEO-oriented.
-- Supabase is configured as a placeholder for database usage.
-# ruby-hsk
+- See `CLAUDE.md` and `.claude/rules/*.md` for the full set of project conventions and rules.

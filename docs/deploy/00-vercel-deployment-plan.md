@@ -1,59 +1,59 @@
-# 00 — Kế hoạch deploy Vercel cho Ruby HSK Landing
+# 00 — Vercel deployment plan for Ruby HSK Landing
 
-> Không có hành động deploy thực tế nào được thực hiện trong tài liệu này — đây là kế hoạch, cần user xác nhận trước khi thực thi (deploy là hành động ảnh hưởng hệ thống chia sẻ/công khai).
+> No actual deployment action is taken in this document — this is a plan, and it requires user confirmation before execution (deployment is a public, shared-system action).
 
-## 1. Điều kiện tiên quyết trước khi deploy
+## 1. Prerequisites before deploying
 
-- [ ] Phase 1–8 (architecture cleanup → QA/build) đã hoàn tất và `npm run build` chạy sạch cục bộ.
-- [ ] Có domain thật (hoặc dùng domain `*.vercel.app` tạm cho giai đoạn preview).
-- [ ] Có project Supabase thật (đã có sẵn: project ref `vqukxdeymnmweacovmup`) với schema đã được review ở `docs/database/00-supabase-schema-plan.md`.
-- [ ] Có đủ nội dung thật (không placeholder) cho các trang bắt buộc, theo Phase 4.
+- [ ] Phases 1–8 (architecture cleanup → QA/build) are complete and `npm run build` runs clean locally.
+- [ ] A real domain exists (or use a temporary `*.vercel.app` domain for the preview stage).
+- [ ] A real Supabase project exists (already provisioned: project ref `vqukxdeymnmweacovmup`) with a schema reviewed per `docs/database/00-supabase-schema-plan.md`.
+- [ ] Real (non-placeholder) content exists for every required page, per Phase 4.
 
-## 2. Kết nối repo với Vercel
+## 2. Connecting the repo to Vercel
 
-1. Import repository GitHub vào Vercel (Next.js framework preset — Vercel tự nhận diện App Router).
-2. Root Directory: giữ mặc định (repo root), vì `package.json` nằm ở root.
-3. Build command: mặc định `next build` (khớp với `"build": "next build"` trong `package.json`).
-4. Install command: **giữ `npm install`** — không đổi sang `pnpm`/`yarn` (đúng rule "không đổi package manager"; đồng thời khớp với `package-lock.json` thực tế, không phải hướng dẫn `pnpm` sai trong README hiện tại).
-5. Node.js version: dùng version LTS mà Vercel mặc định hỗ trợ cho Next.js mới nhất (kiểm tra `engines` trong `package.json` nếu cần pin cứng — hiện chưa có `engines`, có thể bổ sung ở Phase 1 nếu muốn khoá version).
+1. Import the GitHub repository into Vercel (Next.js framework preset — Vercel auto-detects the App Router).
+2. Root Directory: keep the default (repo root), since `package.json` is at the root.
+3. Build command: default `next build` (matches `"build": "next build"` in `package.json`).
+4. Install command: **keep `npm install`** — do not switch to `pnpm`/`yarn` (per the "never change the package manager" rule; it also matches the real `package-lock.json`, not the outdated `pnpm` instructions the README used to have).
+5. Node.js version: use whichever LTS version Vercel defaults to for the latest Next.js (check `engines` in `package.json` if a hard pin is ever needed — there isn't one today; add it in Phase 1 if you want to lock a version).
 
 ## 3. Environment variables (Production + Preview)
 
-| Key | Nguồn | Bắt buộc trước khi deploy production |
+| Key | Source | Required before deploying to production |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | domain thật (ví dụ `https://rubyhsk.vn`) | ✅ — dùng cho `metadataBase`, sitemap, canonical |
+| `NEXT_PUBLIC_SITE_URL` | real domain (e.g. `https://rubyhsk.vn`) | ✅ — used for `metadataBase`, sitemap, canonical URLs |
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project settings | ✅ |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase project settings | ✅ |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase project settings (nếu Phase 6 cần server client) | Chỉ cần nếu có Route Handler xử lý `contact_submissions`/admin phía server |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase project settings (if Phase 6 needs a server client) | Only needed if a Route Handler processes `contact_submissions`/admin data server-side |
 
-- Set riêng cho **Production** và **Preview** environment trong Vercel dashboard — Preview có thể dùng cùng Supabase project (bảng public read không rủi ro) nhưng cân nhắc Supabase project riêng cho Preview nếu có ghi dữ liệu test qua `contact_submissions`.
-- Không commit giá trị thật vào `.env.example` (hiện tại `.env.example` chỉ có key rỗng — đúng chuẩn, giữ nguyên).
+- Set these separately for **Production** and **Preview** environments in the Vercel dashboard — Preview can share the same Supabase project (public-read tables carry no risk) but consider a separate Supabase project for Preview if test data gets written to `contact_submissions`.
+- Never commit real values into `.env.example` (it currently only has empty keys — correct, keep it that way).
 
 ## 4. Domain & routing
 
-- Middleware hiện tại (`middleware.ts`) đã xử lý redirect locale qua matcher `['/', '/(vi|en)/:path*']` — không cần cấu hình redirect thêm ở Vercel.
-- Set custom domain trong Vercel → domain provider (CNAME/A record theo hướng dẫn Vercel).
-- Xác nhận `www` vs non-`www` redirect theo quyết định của khách hàng (Vercel hỗ trợ redirect domain phụ → domain chính).
+- The existing middleware (`middleware.ts`) already handles locale redirects via the matcher `['/', '/(vi|en)/:path*']` — no extra redirect config needed on Vercel.
+- Set the custom domain in Vercel → the domain provider (CNAME/A record per Vercel's instructions).
+- Confirm the `www` vs non-`www` decision with the client (Vercel supports redirecting a secondary domain to the primary one).
 
 ## 5. Preview → Production flow
 
-1. Mọi PR/branch tạo Preview Deployment tự động (Vercel default).
-2. Review Preview URL cho **cả 2 locale** (`/vi`, `/en`) trước khi merge — đặc biệt kiểm tra:
-   - Header/Footer/MobileNav hiển thị đúng ngôn ngữ.
-   - Theme toggle light/dark không lỗi hydration (đã có `mounted` guard trong `ThemeToggle`, giữ nguyên pattern này).
-   - Form Contact không lỗi console (kể cả khi chưa nối Supabase thật ở Preview).
-3. Merge vào `main` → Production Deployment.
-4. **Chỉ promote domain chính thức sau khi user xác nhận rõ ràng** — đây là hành động công khai, cần confirm trước khi thực hiện.
+1. Every PR/branch gets an automatic Preview Deployment (Vercel default).
+2. Review the Preview URL for **both locales** (`/vi`, `/en`) before merging — check in particular:
+   - Header/Footer/MobileNav render in the correct language.
+   - Theme toggle light/dark has no hydration errors (already has a `mounted` guard in `ThemeToggle` — keep this pattern).
+   - The Contact form has no console errors (even before it's wired to real Supabase in Preview).
+3. Merging into `main` triggers a Production Deployment.
+4. **Only promote the official domain after explicit user confirmation** — this is a public action and needs sign-off first.
 
-## 6. Kiểm tra sau khi deploy (liên kết với Phase 10)
+## 6. Post-deploy checks (ties into Phase 10)
 
-- [ ] `https://<domain>/` redirect đúng về locale mặc định (`vi`).
-- [ ] `https://<domain>/sitemap.xml` và `/robots.txt` truy cập được (sau khi Phase 5 hoàn tất).
-- [ ] `https://<domain>/vi` và `/en` trả 200, không lỗi hydration trên console.
-- [ ] Ảnh/OG preview hiển thị đúng khi share link (Facebook/Zalo debugger).
-- [ ] Lighthouse chạy trên URL production thật (không phải localhost) để có số Core Web Vitals chính xác.
+- [ ] `https://<domain>/` redirects correctly to the default locale (`vi`).
+- [ ] `https://<domain>/sitemap.xml` and `/robots.txt` are reachable (once Phase 5 is complete).
+- [ ] `https://<domain>/vi` and `/en` return 200, no hydration errors in the console.
+- [ ] OG image/preview renders correctly when sharing a link (Facebook/Zalo debugger).
+- [ ] Run Lighthouse against the real production URL (not localhost) for accurate Core Web Vitals.
 
 ## 7. Rollback plan
 
-- Vercel giữ lịch sử deployment — nếu production lỗi, dùng "Instant Rollback" về deployment trước đó ngay trên dashboard, không cần revert git.
-- Không dùng `git push --force`/`git reset --hard` để rollback — luôn rollback qua Vercel dashboard hoặc tạo commit revert mới.
+- Vercel keeps deployment history — if production breaks, use "Instant Rollback" to the previous deployment directly from the dashboard, no git revert needed.
+- Never use `git push --force`/`git reset --hard` to roll back — always roll back via the Vercel dashboard or a new revert commit.

@@ -1,8 +1,8 @@
 # Project Rules
 
-- Ruby HSK Landing là **website SEO công khai**, không phải SaaS/dashboard/admin portal — không mang vibe ứng dụng quản trị.
-- Ruby HSK hiện có **một** giáo viên chính: **cô Trần Hồng Ngọc**. Không tạo grid/carousel nhiều giáo viên giả định.
-- Trang bắt buộc:
+- Ruby HSK Landing is a **public SEO website**, not a SaaS/dashboard/admin portal — it must not feel like an admin app.
+- Ruby HSK currently has **one** lead instructor: **Ms. Trần Hồng Ngọc**. Do not build a grid/carousel implying multiple teachers.
+- Required pages:
   - Home (`/[locale]`)
   - Courses (`/[locale]/courses`)
   - About (`/[locale]/about`)
@@ -12,7 +12,7 @@
   - 404 (`not-found.tsx`)
   - Coming Soon (`/[locale]/coming-soon`)
   - Loading screen (`loading.tsx`)
-- Breakpoint bắt buộc kiểm tra: **Desktop 1440**, **Tablet 768**, **Mobile 375**.
-- Mobile phải hoàn chỉnh 100% cho mọi trang bắt buộc — không để phiên bản mobile là bản rút gọn thiếu nội dung.
-- Không copy phong cách SaaS/coding tool/admin dashboard — giữ tinh thần giáo dục, ấm áp (xem `ui-design-rules.md`).
-- Không giả định cấu trúc project — luôn đọc file thật trước khi sửa (folder convention có thể đã đổi theo quyết định trong `docs/audit/`).
+- Required breakpoints to check: **Desktop 1440**, **Tablet 768**, **Mobile 375**.
+- Mobile must be 100% complete for every required page — never ship a stripped-down mobile version missing content.
+- Do not copy a SaaS/dev-tool/admin-dashboard look — keep the warm, educational tone (see `ui-design-rules.md`).
+- Never assume project structure — always read the actual files before editing (folder conventions may have changed; check decisions recorded in `docs/audit/`).
