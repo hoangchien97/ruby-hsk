@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { GraduationCap, Award, Trophy, Sparkles, Quote } from 'lucide-react';
+import { GraduationCap, Award, Trophy, Sparkles } from 'lucide-react';
 import { IconBox } from '@/components/ui/icon-box';
 import type { TeacherProfile } from '@/types/models';
 
@@ -10,23 +10,39 @@ interface AboutTeacherSectionProps {
 }
 
 const ACHIEVEMENTS_CONFIG = [
-    { key: 'edu1', icon: GraduationCap, color: 'primary' as const },
-    { key: 'edu2', icon: Award, color: 'tertiary' as const },
-    { key: 'edu3', icon: Trophy, color: 'amber' as const },
-    { key: 'edu4', icon: Sparkles, color: 'indigo' as const },
+    { key: 'edu1', icon: GraduationCap },
+    { key: 'edu2', icon: Award },
+    { key: 'edu3', icon: Trophy },
+    { key: 'edu4', icon: Sparkles },
 ];
+
+const TEACHER_IMAGE_URL =
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuA_HLR14qslYkcLobQ_5yQ8j8NpWtFzIdqU5CZ10zu9nRGGkwNKwNrVBjsyHdzI6YF5-jG7g5YGY5aqHgsWl-UPtpr_4OHDrAzGJ1-s4vUy7QtRrzfhs6cL_iIAoV5J_oDzgjapoypIoIm75UFy9p6xXbM4le3Ka-W_8TsFqxJKsfrLedPIAEw-pJzHOuhUgN74V8-kWGUzNQ9xJwNCZpiFMoPGdGdAMEF6ZZg0pyzhnHO-BTtygCOOuO_ze6AJrH3hXFu0hIaVMLU';
 
 /**
  * Teacher Portrait & Academy Credentials section (About page).
+ * Portrait sits left / content right, matching Stitch's about_new Teacher Spotlight layout.
  */
 export function AboutTeacherSection({ teacher }: AboutTeacherSectionProps) {
     const t = useTranslations('About');
 
     return (
         <section className="container max-w-[1400px] px-4 py-16 md:py-24 mx-auto">
-            <div className="grid gap-12 lg:grid-cols-12 items-start">
-                {/* Left: Intro + Achievement Grid */}
-                <div className="lg:col-span-7 space-y-8">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+                {/* Left: Portrait */}
+                <div className="w-full lg:w-1/3 shrink-0">
+                    <div className="relative group max-w-sm mx-auto lg:max-w-none">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary-container)] to-[var(--color-primary)] rounded-[2rem] transform rotate-3 scale-105 opacity-20 group-hover:rotate-0 transition-transform duration-300" />
+                        <img
+                            src={TEACHER_IMAGE_URL}
+                            alt={t('introTeacher')}
+                            className="relative z-10 w-full aspect-square object-cover rounded-[2rem] shadow-xl"
+                        />
+                    </div>
+                </div>
+
+                {/* Right: Intro + Achievement Grid + Quote */}
+                <div className="w-full lg:w-2/3 space-y-8">
                     <div>
                         <span className="text-label-lg font-bold tracking-widest text-[var(--color-secondary)] uppercase">
                             {t('foundingInstructor')}
@@ -39,14 +55,14 @@ export function AboutTeacherSection({ teacher }: AboutTeacherSectionProps) {
                         </p>
                     </div>
 
-                    <div className="grid gap-6 sm:grid-cols-2">
-                        {ACHIEVEMENTS_CONFIG.map(({ key, icon, color }) => (
+                    <div className="grid gap-4 sm:grid-cols-2">
+                        {ACHIEVEMENTS_CONFIG.map(({ key, icon }) => (
                             <div
                                 key={key}
-                                className="p-6 rounded-[2rem] bg-[var(--color-surface-container-lowest)] border border-[var(--color-surface-variant)] shadow-sm hover:shadow-md transition-all duration-300"
+                                className="p-5 rounded-xl bg-[var(--color-surface-container-lowest)] border-l-4 border-[var(--color-primary)] shadow-sm hover:shadow-md transition-all duration-300"
                             >
-                                <IconBox icon={icon} color={color} className="mb-4" />
-                                <h4 className="text-title-lg font-bold text-[var(--color-on-surface)] mb-2 leading-tight">
+                                <IconBox icon={icon} color="primary" size="sm" className="mb-3" />
+                                <h4 className="text-title-md font-bold text-[var(--color-on-surface)] mb-1 leading-tight">
                                     {t(`${key}Title`)}
                                 </h4>
                                 <p className="text-body-md text-[var(--color-on-surface-variant)] leading-relaxed">
@@ -55,32 +71,10 @@ export function AboutTeacherSection({ teacher }: AboutTeacherSectionProps) {
                             </div>
                         ))}
                     </div>
-                </div>
 
-                {/* Right: Portrait + Quote */}
-                <div className="lg:col-span-5 space-y-6">
-                    <div className="relative aspect-[4/3] sm:aspect-video lg:aspect-square rounded-[2.5rem] overflow-hidden bg-[var(--color-surface-container-low)] border border-[var(--color-surface-variant)] shadow-inner flex items-center justify-center p-8 group">
-                        <img
-                            className="w-48 h-48 sm:w-64 sm:h-64 object-contain group-hover:scale-105 transition-transform duration-500"
-                            alt="Ruby HSK Mascot Teacher"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhsU2Z3ybUP4TdNm9JnFlzTcGsHf7DoQsVJWScgcRrSJO9h9MOa2GEJLiGRQFfoQn6_6SpAAn0R9LfUGAPKhwLRhuwWpgTwMQJJAnSZjspImTnZeW50hOORglqUFMF09KQ5XfDapMHxjZ7KxUYaWxoPvQIpMFmfMw2JrX2LSuUQLDJpnL_9-t6F-koMB4D7697AwTv62gon7HQpiBc29xZWU-puSjVGAFYtgdrRHmjURqk_sn82kIK6brLc1ZQEdrRaY1NgNkBTy8"
-                        />
-                        <div className="absolute bottom-6 left-6 right-6 bg-[var(--color-surface-glass)] backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center">
-                            <span className="text-label-md font-bold text-[var(--color-primary)]">
-                                {t('introTeacher')}
-                            </span>
-                            <p className="text-[11px] text-[var(--color-on-surface-variant)] font-semibold mt-0.5">
-                                {t('methodologyBadge')}
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="p-8 rounded-[2rem] bg-gradient-to-br from-[var(--color-primary-container)] to-[var(--color-surface-container-low)] border border-[var(--color-primary)]/20 shadow-sm relative overflow-hidden">
-                        <Quote className="absolute right-6 top-6 w-16 h-16 text-[var(--color-primary)]/10 pointer-events-none" />
-                        <p className="text-body-lg italic font-medium text-[var(--color-on-background)] leading-relaxed relative z-10">
-                            {t('teacherQuote')}
-                        </p>
-                    </div>
+                    <p className="text-body-lg italic text-[var(--color-on-surface-variant)] leading-relaxed border-l-2 border-[var(--color-primary)]/20 pl-6 py-1">
+                        {t('teacherQuote')}
+                    </p>
                 </div>
             </div>
         </section>

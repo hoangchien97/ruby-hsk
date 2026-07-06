@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Giới Thiệu | Ruby HSK Scholar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#fdf9f4",
+                        "surface-tint": "#b52330",
+                        "primary": "#ff5a5f", // Coral Accent
+                        "on-primary": "#ffffff",
+                        "background": "#fdf9f4", // Ivory Background
+                        "surface-container": "#f1ede8",
+                        "on-background": "#1c1c19",
+                        "on-surface-variant": "#5a403f",
+                        "outline-variant": "#e2bebc",
+                        "glass-bg": "rgba(253, 249, 244, 0.8)",
+                        "glass-border": "rgba(255, 90, 95, 0.1)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "8px",
+                        "lg": "12px",
+                        "xl": "16px",
+                        "2xl": "24px",
+                        "3xl": "32px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "display": ["Noto Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 90, 95, 0.1);
+        }
+        .scholar-gradient {
+            background: linear-gradient(135deg, #ff5a5f 0%, #b52330 100%);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary/20">
+<!-- Header -->
+<nav class="fixed top-0 w-full z-50 bg-glass-bg backdrop-blur-xl border-b border-glass-border">
+<div class="flex justify-between items-center h-20 px-6 md:px-12 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<img alt="Ruby HSK Logo" class="h-10 w-10 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLskT1pQ2ni67JOaJv4XB70CqPptPniaB7QBH9dcsUs7DA9zMAHrn1mlnF3Riiieg654HjOwC99RbrbOP1PTu-9XCv_24fceHh3auum4M053f1r3HGjSLG9nQD8Mw1E-4E-SB7evNnpxyw5Y1NFbk_WsyugichOUqh_gMV02l8rPNjG-wQHadr9nQzQQ8n5Qzt9A2UiWyhW3CsRanFe_q36DPd3iDqXRYqfD6SfJOGKbitGewJ7lQIHt4aU"/>
+<div class="font-bold text-xl text-primary tracking-tight hidden sm:block">Ruby HSK Scholar</div>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-semibold text-sm" href="#">Trang chủ</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-semibold text-sm" href="#">Khóa học</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-bold text-sm" href="#">Giới thiệu</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-semibold text-sm" href="#">Liên hệ</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-xs font-bold px-3 py-1 rounded-full border border-primary/20 text-primary hover:bg-primary/5">EN/VI</button>
+<button class="hidden md:block px-6 py-2 rounded-full bg-primary text-on-primary font-bold text-sm hover:opacity-90 transition-all shadow-md shadow-primary/20">Đăng Nhập</button>
+<button class="material-symbols-outlined md:hidden p-2">menu</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden">
+<div class="px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-bold text-xs uppercase tracking-widest">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                        Về chúng tôi
+                    </div>
+<h1 class="font-display text-4xl md:text-6xl font-extrabold text-on-background leading-tight">
+                        Cầu nối ngôn ngữ <br/>
+<span class="text-primary">— Kiến tạo tương lai</span>
+</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed max-w-xl">
+                        Ruby HSK không chỉ là nơi dạy tiếng Trung, chúng tôi xây dựng cộng đồng học tập đam mê, nơi tri thức và văn hóa hòa quyện để thắp sáng con đường sự nghiệp của bạn.
+                    </p>
+<div class="grid grid-cols-3 gap-4 py-4 border-t border-primary/10">
+<div>
+<p class="text-2xl font-bold text-primary">5+</p>
+<p class="text-xs text-on-surface-variant uppercase font-medium">Năm hoạt động</p>
+</div>
+<div>
+<p class="text-2xl font-bold text-primary">10k+</p>
+<p class="text-xs text-on-surface-variant uppercase font-medium">Học viên</p>
+</div>
+<div>
+<p class="text-2xl font-bold text-primary">98%</p>
+<p class="text-xs text-on-surface-variant uppercase font-medium">Đậu HSK</p>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative z-20 group">
+<img alt="Ruby HSK Community" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT3jR_1t344lMF6ppu1RTo7eluMUxd2SiK-zz4zHOQ-JYIA-VWnpAe_RbE54TlR0f51bHU3LaF5oA-OzWAxlNeG2FoGaaetLf6_kN6XJDWaAF_Re1V64jdHW3jshdOS-LpNlxhTfIPbi-Nsths6PrcNit1r991P0jue5ZUx4Im_mF-Z2ha1DUyRpYD6_jLOryLPYpTUbXMuKfm-6HAjdO-DFGpXHe-mjBjeVX4AT4vOVZ01VNO2ixAJ0ueUZGO1W59YmUOpgYfeCs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-10 -left-10 w-60 h-60 bg-primary/10 rounded-full blur-3xl"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Teacher Spotlight -->
+<section class="py-24 bg-white/50 border-y border-primary/5">
+<div class="px-6 md:px-12 max-w-7xl mx-auto">
+<div class="flex flex-col lg:flex-row gap-16 items-center">
+<div class="w-full lg:w-1/3">
+<div class="relative group">
+<div class="absolute inset-0 scholar-gradient rounded-2xl transform rotate-3 scale-105 opacity-20 group-hover:rotate-0 transition-transform"></div>
+<img alt="Cô Trần Hồng Ngọc" class="relative z-10 w-full aspect-square object-cover rounded-2xl shadow-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_HLR14qslYkcLobQ_5yQ8j8NpWtFzIdqU5CZ10zu9nRGGkwNKwNrVBjsyHdzI6YF5-jG7g5YGY5aqHgsWl-UPtpr_4OHDrAzGJ1-s4vUy7QtRrzfhs6cL_iIAoV5J_oDzgjapoypIoIm75UFy9p6xXbM4le3Ka-W_8TsFqxJKsfrLedPIAEw-pJzHOuhUgN74V8-kWGUzNQ9xJwNCZpiFMoPGdGdAMEF6ZZg0pyzhnHO-BTtygCOOuO_ze6AJrH3hXFu0hIaVMLU"/>
+</div>
+</div>
+<div class="w-full lg:w-2/3 space-y-6">
+<div class="space-y-2">
+<h2 class="text-3xl font-extrabold text-on-background">Cô Ngọc (Trần Hồng Ngọc)</h2>
+<p class="text-primary font-bold text-lg">Giám đốc Học thuật &amp; Nhà sáng lập</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-card p-5 rounded-xl border-l-4 border-primary">
+<span class="material-symbols-outlined text-primary mb-2">school</span>
+<p class="text-sm font-bold">Thạc sĩ Giáo dục</p>
+<p class="text-xs text-on-surface-variant">Chuyên ngành Hán ngữ đối ngoại</p>
+</div>
+<div class="glass-card p-5 rounded-xl border-l-4 border-primary">
+<span class="material-symbols-outlined text-primary mb-2">history_edu</span>
+<p class="text-sm font-bold">5 Năm Kinh Nghiệm</p>
+<p class="text-xs text-on-surface-variant">Giảng dạy &amp; luyện thi chuyên sâu</p>
+</div>
+<div class="glass-card p-5 rounded-xl border-l-4 border-primary">
+<span class="material-symbols-outlined text-primary mb-2">workspace_premium</span>
+<p class="text-sm font-bold">Giải Nhất NCKH</p>
+<p class="text-xs text-on-surface-variant">Về phương pháp tiếp cận ngôn ngữ</p>
+</div>
+</div>
+<p class="text-on-surface-variant leading-relaxed italic border-l-2 border-primary/20 pl-6 py-2">
+                        "Học tiếng Trung không chỉ là học ngôn ngữ, mà còn là khám phá một nền văn hóa phong phú, mở rộng thế giới quan và tạo dựng những giá trị bền vững cho bản thân."
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Ruby HSK -->
+<section class="py-24">
+<div class="px-6 md:px-12 max-w-7xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+<h2 class="text-3xl font-extrabold text-on-background">Tại sao chọn Ruby HSK?</h2>
+<p class="text-on-surface-variant">Sự khác biệt tạo nên kết quả vượt trội cho từng học viên.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-primary/5 text-center group">
+<div class="w-16 h-16 scholar-gradient text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">verified</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Lộ trình HSK Chuẩn</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Giáo trình cập nhật sát thực tế, tập trung vào 4 kỹ năng Nghe-Nói-Đọc-Viết theo khung năng lực mới nhất.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-primary/5 text-center group">
+<div class="w-16 h-16 scholar-gradient text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">groups</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Giảng viên chất lượng</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Đội ngũ giảng viên 100% có chứng chỉ cao cấp, tận tâm và giàu kinh nghiệm truyền cảm hứng.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-primary/5 text-center group">
+<div class="w-16 h-16 scholar-gradient text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">smart_toy</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Công nghệ hỗ trợ</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Hệ thống học tập trực tuyến, App luyện phát âm AI và kho tài liệu số hóa độc quyền 24/7.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Learning Environment -->
+<section class="py-24 bg-surface-container/30">
+<div class="px-6 md:px-12 max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div class="max-w-xl space-y-4">
+<h2 class="text-3xl font-extrabold text-on-background">Không gian học tập hiện đại</h2>
+<p class="text-on-surface-variant">Một môi trường văn minh, đầy cảm hứng là chìa khóa để tiếp thu kiến thức hiệu quả.</p>
+</div>
+<a class="text-primary font-bold flex items-center gap-2 hover:underline" href="#">Xem thêm hình ảnh <span class="material-symbols-outlined">arrow_right_alt</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="space-y-4">
+<div class="aspect-video rounded-xl overflow-hidden shadow-md">
+<img alt="Phòng học" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJbT2xGW9pOXPprqLgsgOhNIiGQjgSq6ODiOXFFL7vpUyYkiRGJ3J1BHls-2Hutk4OXyvyKciIiCemMgNkxbFmP4tkPyAIpRwVF_8gGzQ0bhAl6hCZQoEY6uwQxtopEJtlsa1olTjnf_wr3zU8K7AYKVO63D28k59H-3UeVS5Oup0CWe247uPZvaREULPP9Q2qvz7fD10B4E0AoBVFZAtrK4nKdyh_7_RUVjh37VKqCP97LUEI25DHU7cT-dRs-LTMZSRYhIlZPWI"/>
+</div>
+<div>
+<h4 class="font-bold">Phòng học tiện nghi</h4>
+<p class="text-xs text-on-surface-variant">Trang bị màn hình tương tác hiện đại.</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="aspect-video rounded-xl overflow-hidden shadow-md">
+<img alt="Thư viện" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEKkSR78lZ91kO1FE0afretCmpX-aRglt9Fyi2g50cIRHtfCn72ZWK_SmFpRsHJViTll5MOm_oLCykyBgTsRVxu91bgNPPUgTf1KgYGPVT8wWIhOiogsYjTwVSz60HOGTAwlw-sgoJwmvlPiNpBxARcsPK2rU5BlrLlZ8OwfhwbaT78T8l3UuZ3ZrWQ7yL02Aq-C_jMtbSq68TptQ2Kubl1qkVdJN3cYIU1Vzi0AcqyWzYBt1tjAFQgJz2n3DIPlKW0tf-A2m5_AY"/>
+</div>
+<div>
+<h4 class="font-bold">Thư viện &amp; Tài liệu</h4>
+<p class="text-xs text-on-surface-variant">Hàng nghìn đầu sách và giáo trình Ruby.</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="aspect-video rounded-xl overflow-hidden shadow-md">
+<img alt="Hoạt động" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr0gOnpmdjB-BxMPbBmnyjdrFbrFGjUry96sHfPHtwpfiIW9ZZIAxIlWkrFlfqr0L9jsen_NU7-RPz2EMidHFCy9OO83WGQXnFzJh1P-K-G9NHOk1rQRGc0tKGkHyxjdpeWHCfuyJ5k9b6ORE1Ca4hmNmnzssEB0rmckb-3EkdUj4ElnBmK6U8sNEM4oLZFal_S2TSppEnhhrv-CCm56dP7LZRyBNnBWuAlcV7md8sdoGxD1tEh6XSrjH7hiwYpEDt8P6LwkYAQ5s"/>
+</div>
+<div>
+<h4 class="font-bold">Hoạt động văn hóa</h4>
+<p class="text-xs text-on-surface-variant">Trải nghiệm Trà đạo, Thư pháp mỗi tuần.</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="aspect-video rounded-xl overflow-hidden shadow-md">
+<img alt="Góc sáng tạo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnrZ2U_7j2I0_Y28SshS92-07-26_12:26_63200361_CSKV"/>
+</div>
+<div>
+<h4 class="font-bold">Góc tự học sáng tạo</h4>
+<p class="text-xs text-on-surface-variant">Không gian yên tĩnh để ôn luyện tập trung.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-24 px-6">
+<div class="max-w-5xl mx-auto scholar-gradient rounded-3xl p-10 md:p-20 text-center relative overflow-hidden shadow-2xl shadow-primary/30">
+<div class="absolute -top-20 -left-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+<div class="relative z-10 space-y-8">
+<h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Sẵn sàng tỏa sáng cùng Ruby?</h2>
+<p class="text-white/80 text-lg max-w-2xl mx-auto">Gia nhập cộng đồng học viên Ruby HSK ngay hôm nay để nhận ưu đãi học phí lên đến 20%.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+<button class="px-10 py-4 bg-white text-primary rounded-full font-bold shadow-lg hover:bg-surface-bright transition-all">Đăng ký ngay</button>
+<button class="px-10 py-4 border border-white/30 text-white rounded-full font-bold hover:bg-white/10 transition-all">Xem lịch khai giảng</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-white pt-20 pb-10 border-t border-primary/5">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<img alt="Logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida/AP1WRLskT1pQ2ni67JOaJv4XB70CqPptPniaB7QBH9dcsUs7DA9zMAHrn1mlnF3Riiieg654HjOwC99RbrbOP1PTu-9XCv_24fceHh3auum4M053f1r3HGjSLG9nQD8Mw1E-4E-SB7evNnpxyw5Y1NFbk_WsyugichOUqh_gMV02l8rPNjG-wQHadr9nQzQQ8n5Qzt9A2UiWyhW3CsRanFe_q36DPd3iDqXRYqfD6SfJOGKbitGewJ7lQIHt4aU"/>
+<span class="font-bold text-xl text-primary">Ruby HSK</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">Lớp học tiếng Trung truyền cảm hứng. Đồng hành cùng bạn chinh phục mọi cấp độ HSK 3.0.</p>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded-full border border-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-sm">public</span></a>
+<a class="w-8 h-8 rounded-full border border-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-sm">alternate_email</span></a>
+</div>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-on-background uppercase text-xs tracking-widest">Khóa học</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Tiếng Trung Sơ Cấp</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Luyện thi HSK 3-4</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">HSK 5-6 Chuyên sâu</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-on-background uppercase text-xs tracking-widest">Về Ruby</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Đội ngũ giảng viên</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Tin tức &amp; Sự kiện</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Thư viện tài liệu</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6 text-on-background uppercase text-xs tracking-widest">Liên hệ</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm">location_on</span>
+<span>123 Đường Sáng Tạo, Quận Học Thuật, Hà Nội</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm">call</span>
+<span>0987.654.321</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-primary/5 text-center text-xs text-on-surface-variant/60">
+            © 2024 Ruby HSK Scholar. Tỏa sáng cùng tri thức ngôn ngữ.
+        </div>
+</div>
+</footer>
+<!-- Back to Top -->
+<button class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg shadow-primary/20 flex items-center justify-center opacity-0 pointer-events-none transition-all hover:scale-110 active:scale-95 z-50" id="backToTop">
+<span class="material-symbols-outlined">arrow_upward</span>
+</button>
+<script>
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 400) {
+            btt.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+            btt.classList.add('opacity-0', 'pointer-events-none');
+        }
+    });
+    btt.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+</body></html>

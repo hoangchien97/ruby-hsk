@@ -34,7 +34,7 @@ export function AboutMethodologySection() {
                             className="p-8 rounded-[2rem] bg-[var(--color-surface-container-lowest)] border border-[var(--color-surface-variant)] shadow-sm hover:-translate-y-1 transition-all duration-300"
                         >
                             <IconBox icon={icon} color="primary" className="mb-6" />
-                            <h4 className="text-title-xl font-bold text-[var(--color-on-surface)] mb-3">
+                            <h4 className="text-title-md font-bold text-[var(--color-on-surface)] mb-3">
                                 {t(`${key}Title`)}
                             </h4>
                             <p className="text-body-md text-[var(--color-on-surface-variant)] leading-relaxed">

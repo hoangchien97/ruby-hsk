@@ -36,7 +36,7 @@ export function AboutWhySection() {
                     >
                         <IconBox icon={icon} color="tertiary" />
                         <div>
-                            <h4 className="text-title-xl font-bold text-[var(--color-on-surface)] mb-2">
+                            <h4 className="text-title-md font-bold text-[var(--color-on-surface)] mb-2">
                                 {t(`${key}Title`)}
                             </h4>
                             <p className="text-body-md text-[var(--color-on-surface-variant)] leading-relaxed">

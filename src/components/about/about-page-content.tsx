@@ -5,6 +5,7 @@ import { AboutHeaderBanner } from './about-header-banner';
 import { AboutTeacherSection } from './about-teacher-section';
 import { AboutMethodologySection } from './about-methodology-section';
 import { AboutWhySection } from './about-why-section';
+import { AboutLearningEnvironmentSection } from './about-learning-environment-section';
 import { AboutCtaSection } from './about-cta-section';
 
 export function AboutPageContent({
@@ -34,6 +35,9 @@ export function AboutPageContent({
 
             {/* Section: Why Choose Ruby HSK */}
             <AboutWhySection />
+
+            {/* Section: Learning Environment gallery */}
+            <AboutLearningEnvironmentSection />
 
             {/* Section: CTA Banner */}
             <AboutCtaSection />
