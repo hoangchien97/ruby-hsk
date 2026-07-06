@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Liên hệ - Ruby HSK Scholar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 190, 188, 0.3);
+        }
+        .soft-shadow {
+            box-shadow: 0 10px 30px -10px rgba(181, 35, 48, 0.15);
+        }
+        /* Custom Accordion styling */
+        .faq-accordion[open] .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#f1ede8",
+                        "on-primary-container": "#61000e",
+                        "tertiary-fixed": "#54fdc4",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#ffb3b0",
+                        "outline-variant": "#e2bebc",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-tertiary-fixed-variant": "#00513b",
+                        "on-tertiary-fixed": "#002116",
+                        "secondary-fixed-dim": "#edc157",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#006c4f",
+                        "surface-variant": "#e6e2dd",
+                        "on-tertiary-container": "#003424",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f4f0eb",
+                        "surface": "#fdf9f4",
+                        "primary-container": "#ff5a5f",
+                        "outline": "#8e706f",
+                        "surface-dim": "#ddd9d5",
+                        "surface-container-highest": "#e6e2dd",
+                        "on-secondary-fixed": "#251a00",
+                        "on-background": "#1c1c19",
+                        "surface-container-high": "#ebe8e3",
+                        "on-primary-fixed": "#410007",
+                        "tertiary-fixed-dim": "#27e0a9",
+                        "surface-container-low": "#f7f3ee",
+                        "secondary": "#785a00",
+                        "surface-tint": "#b52330",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#ffd167",
+                        "on-surface-variant": "#5a403f",
+                        "inverse-surface": "#31302d",
+                        "on-surface": "#1c1c19",
+                        "tertiary-container": "#00a87d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffdad8",
+                        "on-primary-fixed-variant": "#92001b",
+                        "on-secondary-container": "#765900",
+                        "background": "#fdf9f4",
+                        "surface-bright": "#fdf9f4",
+                        "primary": "#b52330",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb3b0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "64px",
+                        "sm": "12px",
+                        "lg": "40px",
+                        "margin-desktop": "48px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "20px",
+                        "md": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-lg": ["Noto Sans"],
+                        "title-md": ["Noto Sans"],
+                        "label-sm": ["Noto Sans"],
+                        "headline-lg": ["Noto Sans"],
+                        "body-lg": ["Noto Sans"],
+                        "headline-lg-mobile": ["Noto Sans"],
+                        "body-md": ["Noto Sans"],
+                        "display-lg": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_4px_20px_-5px_rgba(181,35,48,0.1)] h-20 flex items-center">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<img alt="Ruby HSK Logo" class="h-10 w-10 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+<div class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Ruby HSK</div>
+</div>
+<nav class="hidden md:flex gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Courses</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">About</a>
+<a class="text-primary border-b-2 border-primary font-bold pb-1 font-label-md text-label-md" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-2 rounded-full hover:bg-surface-variant/50 transition-all">dark_mode</span>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-lg text-label-lg scale-95 active:opacity-80 transition-transform">Sign In</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-xl">
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-xl relative">
+<div class="absolute -top-20 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
+<div class="text-center md:text-left">
+<span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-sm text-label-sm mb-md inline-block">CHẠM ĐẾN ƯỚC MƠ HSK</span>
+<h1 class="font-display-lg text-display-lg md:text-display-lg mb-sm text-primary tracking-tight">Liên hệ Ruby HSK</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                    Sẵn sàng bắt đầu hành trình chinh phục tiếng Trung? Đội ngũ Ruby HSK luôn sẵn lòng hỗ trợ bạn tìm ra lộ trình học tập tối ưu nhất.
+                </p>
+</div>
+</section>
+<!-- Main Content Area: Form & Illustration -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<!-- Contact Form Section -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-3xl p-lg soft-shadow border border-outline-variant/20">
+<div class="flex flex-col md:flex-row gap-lg items-start">
+<div class="flex-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-lg">Gửi lời nhắn cho chúng tôi</h2>
+<form class="space-y-md">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="font-label-lg text-label-lg text-on-surface-variant ml-2">Họ tên</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full px-5 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-outline/50" placeholder="Nguyễn Văn A" type="text"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-lg text-label-lg text-on-surface-variant ml-2">Số điện thoại</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full px-5 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-outline/50" placeholder="090x xxx xxx" type="tel"/>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-lg text-label-lg text-on-surface-variant ml-2">Email</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full px-5 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-outline/50" placeholder="example@gmail.com" type="email"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="space-y-xs relative">
+<label class="font-label-lg text-label-lg text-on-surface-variant ml-2">Mục tiêu học</label>
+<select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full px-5 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none">
+<option>HSK 1-2 (Cơ bản)</option>
+<option>HSK 3-4 (Trung cấp)</option>
+<option>HSK 5-6 (Cao cấp)</option>
+<option>Tiếng Trung giao tiếp</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-[42px] pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<div class="space-y-xs relative">
+<label class="font-label-lg text-label-lg text-on-surface-variant ml-2">Hình thức học</label>
+<select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full px-5 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none">
+<option>Học Online qua Zoom</option>
+<option>Học Offline tại trung tâm</option>
+<option>Kèm 1-1</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-[42px] pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-lg text-label-lg text-on-surface-variant ml-2">Tin nhắn</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant/30 rounded-3xl px-5 py-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-outline/50" placeholder="Bạn cần hỗ trợ thêm thông tin gì?" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary font-title-md text-title-md py-4 rounded-full hover:scale-[1.01] active:scale-[0.99] transition-all shadow-lg shadow-primary/20 mt-4" type="submit">Gửi yêu cầu tư vấn</button>
+</form>
+</div>
+</div>
+</div>
+<!-- Mascot Section -->
+<div class="lg:col-span-5 hidden lg:flex flex-col items-center justify-center p-lg">
+<div class="relative">
+<div class="absolute inset-0 bg-primary/10 rounded-full blur-3xl scale-125 -z-10 animate-pulse"></div>
+<img alt="Ruby HSK Scholar Mascot" class="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+<div class="mt-8 text-center">
+<h3 class="font-headline-lg text-primary">Ruby Scholar</h3>
+<p class="text-on-surface-variant mt-2 italic">"Cùng bạn chinh phục tiếng Trung mỗi ngày!"</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Info Cards Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-xl">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1: Hotline -->
+<div class="glass-card p-lg rounded-3xl flex items-start gap-md hover:translate-y-[-4px] transition-transform cursor-pointer soft-shadow">
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-3xl">call</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Hotline tư vấn</p>
+<p class="font-title-md text-title-md text-on-surface">0931 234 567</p>
+<p class="text-xs text-on-surface-variant mt-2">Hỗ trợ 24/7, trừ ngày lễ</p>
+</div>
+</div>
+<!-- Card 2: Email -->
+<div class="glass-card p-lg rounded-3xl flex items-start gap-md hover:translate-y-[-4px] transition-transform cursor-pointer soft-shadow border-l-4 border-tertiary">
+<div class="w-14 h-14 bg-tertiary-container/20 rounded-2xl flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-3xl">mail</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Email đào tạo</p>
+<p class="font-title-md text-title-md text-on-surface">contact@rubyhsk.edu.vn</p>
+<p class="text-xs text-on-surface-variant mt-2">Phản hồi trong vòng 24h</p>
+</div>
+</div>
+<!-- Card 3: Socials -->
+<div class="glass-card p-lg rounded-3xl flex flex-col gap-md soft-shadow">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Kết nối nhanh</p>
+<div class="grid grid-cols-2 gap-2">
+<a class="bg-[#0068ff]/10 p-3 rounded-xl flex items-center gap-2 hover:bg-[#0068ff]/20 transition-all text-[#0068ff]" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-lg">Zalo</span>
+</a>
+<a class="bg-[#0084ff]/10 p-3 rounded-xl flex items-center gap-2 hover:bg-[#0084ff]/20 transition-all text-[#0084ff]" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-label-lg">Messenger</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Campus Locations Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-xl">
+<div class="text-center mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Hệ thống cơ sở đào tạo</h2>
+<p class="text-on-surface-variant mt-2">Tìm kiếm cơ sở Ruby HSK gần bạn nhất</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Campus 1 -->
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant/30 hover:border-primary/30 transition-all group shadow-sm">
+<div class="h-48 overflow-hidden">
+<img alt="Hanoi Campus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7iqyK0VCnd_rXAKlNzhYdVTSCLEyFcGs29WfqH2SddRH_7573OJ7AEtRh_heksXPsCbCTphDiv8JgOH2vt3OXNO2QiSqBirDeXuzQgcCXuZsw1YWDcdVH9cvSsCsvGPjTliVB55tr4tXSBo9A0pGR9rvHBwoQ0UQ9j3q8O528QRtAWITVtKCvuMsQ-WOiZWjReQ-9jRAhnrToti-AD-MUeXxGElvzvG3q_Cn9Zedtsv-_bo8mk2axskJN4d05nH13YhYiORRZaGE"/>
+</div>
+<div class="p-md">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase">Cơ sở chính</span>
+<h3 class="font-title-md text-on-surface">Ruby HSK Đống Đa</h3>
+</div>
+<div class="space-y-2 mb-4">
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm mt-1">location_on</span>
+<p class="text-sm">Tầng 5, Tòa nhà Ruby, 123 Đường Láng, Hà Nội</p>
+</div>
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm mt-1">schedule</span>
+<p class="text-sm">08:00 - 21:00 (Thứ 2 - Chủ nhật)</p>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container-low text-primary border border-primary/20 rounded-xl hover:bg-primary hover:text-white transition-all text-label-lg flex items-center justify-center gap-2">
+                    Chỉ đường <span class="material-symbols-outlined text-base">directions</span>
+</button>
+</div>
+</div>
+<!-- Campus 2 -->
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant/30 hover:border-primary/30 transition-all group shadow-sm">
+<div class="h-48 overflow-hidden">
+<img alt="Hanoi Campus 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_j2iZKrdJgqA-INhXlU7ITB4VqqOhHhbkvUsS0_RjEDcUuuZxVOUsls4wxnS5-Ka27GoFeVi4xcil__Ww1ms9vctoZLTvzIXP6H_S2IIjpzwdYgAt2eKtKPLfgr3BBmH5oBc_h2wQmZ2JJDdtONmlCdXOS9i6gQdGTB7UWnTuUGQPDGB0xPUxgkZYwgBD-Hf48_tsglzvpJfsxKNDPY2wfFzCuG39S7FKUB8qmn3rGbi2VRBw7WunVJ_YWlfmmtDqLm9FkU0BnBM"/>
+</div>
+<div class="p-md">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase">Cơ sở 2</span>
+<h3 class="font-title-md text-on-surface">Ruby HSK Cầu Giấy</h3>
+</div>
+<div class="space-y-2 mb-4">
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm mt-1">location_on</span>
+<p class="text-sm">Số 10 Nguyễn Phong Sắc, Cầu Giấy, Hà Nội</p>
+</div>
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm mt-1">schedule</span>
+<p class="text-sm">08:00 - 21:00 (Thứ 2 - Thứ 7)</p>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container-low text-primary border border-primary/20 rounded-xl hover:bg-primary hover:text-white transition-all text-label-lg flex items-center justify-center gap-2">
+                    Chỉ đường <span class="material-symbols-outlined text-base">directions</span>
+</button>
+</div>
+</div>
+<!-- Campus 3 -->
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant/30 hover:border-primary/30 transition-all group shadow-sm">
+<div class="h-48 overflow-hidden">
+<img alt="HCM Campus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHc31MmtgkILc3dzXVaKKURO6ZEF-3tJG8k76p0DJiNJZ9JUbD4-aGj-29ENAWtf55ob3Mk4_s9VocHUNqCLl2rqb4ZnSy_5uBpti9JhIVoWdGfwWuU45V9F7rQIVM0j38gx0R5wZyrfSC39uLiWBiHClO8v7f5h82ZeW58Qk00DlxwQ0egzOmFTQTmwgAvYiAegYdN2ulEekQqUpYvO8RrIX64218Cwr2RBsHVEe2Lz4uqF85RymYwFONM8lS3XFHtHmZaTWWziM"/>
+</div>
+<div class="p-md">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase">Sắp khai trương</span>
+<h3 class="font-title-md text-on-surface">Ruby HSK TP.HCM</h3>
+</div>
+<div class="space-y-2 mb-4">
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm mt-1">location_on</span>
+<p class="text-sm">Quận 1, TP. Hồ Chí Minh (Đang cập nhật)</p>
+</div>
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm mt-1">schedule</span>
+<p class="text-sm">Hotline đặt chỗ: 0931 234 567</p>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container-low text-primary border border-primary/20 rounded-xl hover:bg-primary hover:text-white transition-all text-label-lg flex items-center justify-center gap-2">
+                    Liên hệ ngay <span class="material-symbols-outlined text-base">phone_in_talk</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Custom Map Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-xl">
+<div class="rounded-[2rem] overflow-hidden soft-shadow h-[500px] relative border border-outline-variant/30 group">
+<!-- Map Styling Override Overlay -->
+<div class="absolute inset-0 z-0 bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="High-fidelity custom map of Hanoi for Ruby HSK. Warm cream roads, subtle grey city blocks. A large coral-red heart pin marks the location at Dong Da district. The map has a clean, academic look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXrIU-H6TdYXAdYPksGsgEk-Ke54OItHwVguByKfXWMKZDe9gU9-1-C4zs0QlvaYX0rDQgG-KlEgtY9xD8011seZVtagHk_ROMcFh-xi23LtDY0DoA3CDb2ztGfDx1YAqsIgEaTLW6_xwgL5fHauQJ8pxfImTp8U1uDdeDU9Pe9p4vC8ZqYh1Rn6vxwz2tTGNYdIanTw9ZPSJtXHO9ytFF7ao7BmCryVNLQZPb82hJnUVfifg_SX7zF40AQ--eySxcc2x5_jM0QnQ"/>
+</div>
+<!-- Floating Info Panel -->
+<div class="absolute bottom-md left-md z-10 glass-card p-lg rounded-3xl max-w-sm border-l-8 border-primary shadow-2xl translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">school</span>
+<p class="font-headline-sm text-primary font-bold">Trụ sở chính Ruby HSK</p>
+</div>
+<p class="font-body-md text-on-surface mb-4 leading-relaxed">Tầng 5, Tòa nhà Ruby, 123 Đường Láng, Ngã Tư Sở, Đống Đa, Hà Nội</p>
+<div class="flex gap-3">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-xl font-label-lg flex items-center gap-2 hover:brightness-110 transition-all shadow-md">
+                Chỉ đường <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+<button class="bg-white text-primary border border-primary/20 px-4 py-2 rounded-xl font-label-lg hover:bg-primary/5 transition-all">
+                Lưu địa chỉ
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-xl">
+<div class="max-w-3xl mx-auto">
+<div class="text-center mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Câu hỏi thường gặp</h2>
+<p class="text-on-surface-variant mt-2">Giải đáp nhanh những thắc mắc của bạn về lộ trình học tập</p>
+</div>
+<div class="space-y-sm">
+<details class="faq-accordion group bg-surface-container-low border border-outline-variant/30 rounded-2xl overflow-hidden cursor-pointer">
+<summary class="list-none p-md flex items-center justify-between font-title-md text-on-surface group-hover:text-primary transition-colors">
+                    Trung tâm có dạy online không?
+                    <span class="faq-icon material-symbols-outlined">expand_more</span>
+</summary>
+<div class="px-md pb-md text-on-surface-variant leading-relaxed">
+                    Có, Ruby HSK cung cấp các khóa học online chất lượng cao qua nền tảng Zoom với sĩ số lớp giới hạn, đảm bảo sự tương tác tối đa giữa giảng viên và học viên tương đương với học offline.
+                </div>
+</details>
+<details class="faq-accordion group bg-surface-container-low border border-outline-variant/30 rounded-2xl overflow-hidden cursor-pointer">
+<summary class="list-none p-md flex items-center justify-between font-title-md text-on-surface group-hover:text-primary transition-colors">
+                    Học phí của trung tâm là bao nhiêu?
+                    <span class="faq-icon material-symbols-outlined">expand_more</span>
+</summary>
+<div class="px-md pb-md text-on-surface-variant leading-relaxed">
+                    Học phí dao động tùy theo cấp độ HSK và lộ trình bạn chọn. Ruby HSK luôn có các gói học bổng và ưu đãi lên đến 30% cho học viên đăng ký theo combo lộ trình. Liên hệ hotline để nhận báo giá chi tiết.
+                </div>
+</details>
+<details class="faq-accordion group bg-surface-container-low border border-outline-variant/30 rounded-2xl overflow-hidden cursor-pointer" open="">
+<summary class="list-none p-md flex items-center justify-between font-title-md text-on-surface group-hover:text-primary transition-colors">
+                    Tôi hoàn toàn chưa biết gì có học được không?
+                    <span class="faq-icon material-symbols-outlined">expand_more</span>
+</summary>
+<div class="px-md pb-md text-on-surface-variant leading-relaxed">
+                    Hoàn toàn được! Chúng tôi có khóa học "Xóa mù chữ Hán - HSK 1-2" dành riêng cho người mới bắt đầu. Giáo trình được thiết kế trực quan, giúp bạn nắm vững phát âm và bộ thủ cơ bản chỉ sau 8 buổi học.
+                </div>
+</details>
+<details class="faq-accordion group bg-surface-container-low border border-outline-variant/30 rounded-2xl overflow-hidden cursor-pointer">
+<summary class="list-none p-md flex items-center justify-between font-title-md text-on-surface group-hover:text-primary transition-colors">
+                    Trung tâm có cam kết đầu ra không?
+                    <span class="faq-icon material-symbols-outlined">expand_more</span>
+</summary>
+<div class="px-md pb-md text-on-surface-variant leading-relaxed">
+                    Ruby HSK cam kết bằng văn bản đầu ra cho tất cả các khóa học. Nếu học viên đi học đầy đủ và làm bài tập theo đúng lộ trình nhưng không đạt kết quả mong muốn, trung tâm sẽ hỗ trợ học lại hoàn toàn miễn phí.
+                </div>
+</details>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-24 pb-12 bg-surface-container-low border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-md">
+<img alt="Ruby Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLt4T4UoxXTD23_1DkpMnw-2prVY6b_fbeiZwmO3x8TuOH5qB9sygiJ8d29_bhIuTGnSiGJYCZEByLD56FIo9723Y9mUOmFI1CNO8HM8Ge_IMpLmQU1qIVyXmmUDkDisd225NbiixS6F5xetyuBajwB11KxjQLM37MwrZW8OES4Fin0-WPF0qSNKhOwW0G0eONdCK7MuXs9yvYLtr2xeoeLB8fJbKPCXGazFdEXUXD3Uf5yK1QbEVno-Mt8"/>
+<div class="font-headline-md text-headline-md text-primary font-bold">Ruby HSK</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant/80">Học viện tiếng Trung uy tín hàng đầu cho học viên hiện đại. Tỏa sáng cùng tri thức.</p>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface mb-md">Liên kết nhanh</h4>
+<ul class="space-y-sm">
+<li><a class="font-label-sm text-label-sm text-on-surface-variant/80 hover:text-primary hover:translate-x-1 transition-transform inline-block" href="#">HSK Guide</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant/80 hover:text-primary hover:translate-x-1 transition-transform inline-block" href="#">Scholarships</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant/80 hover:text-primary hover:translate-x-1 transition-transform inline-block" href="#">Partner Schools</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface mb-md">Hỗ trợ</h4>
+<ul class="space-y-sm">
+<li><a class="font-label-sm text-label-sm text-on-surface-variant/80 hover:text-primary hover:translate-x-1 transition-transform inline-block" href="#">Privacy Policy</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant/80 hover:text-primary hover:translate-x-1 transition-transform inline-block" href="#">Terms of Service</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant/80 hover:text-primary hover:translate-x-1 transition-transform inline-block" href="#">Support Center</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface mb-md">Bản tin</h4>
+<p class="font-body-md text-body-md text-on-surface-variant/80 mb-sm">Nhận thông tin học bổng mới nhất.</p>
+<div class="flex gap-2">
+<input class="bg-surface rounded-full px-4 py-2 border border-outline-variant/30 w-full outline-none focus:border-primary transition-all" placeholder="Email của bạn" type="email"/>
+<button class="bg-primary text-on-primary p-2 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-xl text-center font-label-sm text-label-sm text-on-surface-variant/60">
+            © 2024 Ruby HSK. Illuminated Learning for the Modern Scholar.
+        </div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full px-6 py-3 z-50 md:hidden bg-surface/90 backdrop-blur-lg border border-outline-variant/30 shadow-[0_10px_30px_-10px_rgba(181,35,48,0.2)] flex justify-around items-center">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-sm text-label-sm">Courses</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">info</span>
+<span class="font-label-sm text-label-sm">About</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-4 py-2 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-sm text-label-sm">Contact</span>
+</a>
+</nav>
+<script>
+    // Micro-interactions for form inputs
+    const inputs = document.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            const label = input.parentElement.querySelector('label');
+            if (label) label.classList.add('text-primary', 'font-bold');
+        });
+        input.addEventListener('blur', () => {
+            const label = input.parentElement.querySelector('label');
+            if (label) label.classList.remove('text-primary', 'font-bold');
+        });
+    });
+
+    // Simple form submission feedback
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        const originalText = btn.innerText;
+        btn.innerHTML = '<span class="flex items-center gap-2 justify-center">Đang gửi... <span class="animate-spin text-xl">⏳</span></span>';
+        btn.disabled = true;
+        
+        setTimeout(() => {
+            btn.innerText = 'Gửi thành công! ✨';
+            btn.classList.replace('bg-primary', 'bg-tertiary-container');
+            btn.classList.replace('text-on-primary', 'text-on-tertiary-container');
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+                btn.classList.replace('bg-tertiary-container', 'bg-primary');
+                btn.classList.replace('text-on-tertiary-container', 'text-on-primary');
+                e.target.reset();
+            }, 3000);
+        }, 1500);
+    });
+</script>
+</body></html>
