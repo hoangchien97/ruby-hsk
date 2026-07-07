@@ -78,6 +78,10 @@ textarea {
   -webkit-backdrop-filter: blur(12px);
 }
 
+.scholar-gradient {
+  background: linear-gradient(135deg, #ff5a5f 0%, #b52330 100%);
+}
+
 /* ─── Type scale aliases ─── */
 .text-display-lg {
   font-size: 48px;
