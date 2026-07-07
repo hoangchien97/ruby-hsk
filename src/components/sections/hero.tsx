@@ -128,7 +128,7 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
       </section>
 
       {/* ── Trust Stats bar ── */}
-      <TrustStats locale={locale} />
+      <TrustStats />
     </>
   );
 }

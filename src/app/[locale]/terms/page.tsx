@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LegalPage } from '@/components/legal/legal-page';
 
 export async function generateMetadata({
@@ -21,23 +21,20 @@ export async function generateMetadata({
     };
 }
 
-export default async function TermsPage() {
+export default async function TermsPage({
+    params,
+}: {
+    params: Promise<{ locale: string }>;
+}) {
+    const { locale } = await params;
+    setRequestLocale(locale);
     const t = await getTranslations('Legal');
     return (
         <LegalPage
             title={t('terms')}
-            sections={[
-                'Chấp nhận điều khoản',
-                'Dịch vụ của Ruby HSK',
-                'Tài khoản người dùng',
-                'Đăng ký khóa học',
-                'Thanh toán và hoàn phí',
-                'Quy định học tập',
-                'Quyền sở hữu nội dung',
-                'Giới hạn trách nhiệm',
-                'Thay đổi điều khoản',
-                'Liên hệ',
-            ]}
+            tocLabel={t('tocLabel')}
+            placeholderText={t('placeholderContent')}
+            sections={t.raw('termsSections')}
         />
     );
 }

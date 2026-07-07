@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LegalPage } from '@/components/legal/legal-page';
 
 export async function generateMetadata({
@@ -21,21 +21,20 @@ export async function generateMetadata({
     };
 }
 
-export default async function PrivacyPage() {
+export default async function PrivacyPage({
+    params,
+}: {
+    params: Promise<{ locale: string }>;
+}) {
+    const { locale } = await params;
+    setRequestLocale(locale);
     const t = await getTranslations('Legal');
     return (
         <LegalPage
             title={t('privacy')}
-            sections={[
-                'Thông tin chúng tôi thu thập',
-                'Mục đích sử dụng thông tin',
-                'Bảo mật dữ liệu',
-                'Chia sẻ thông tin',
-                'Cookies và công nghệ theo dõi',
-                'Quyền của người dùng',
-                'Thời gian lưu trữ dữ liệu',
-                'Liên hệ về bảo mật',
-            ]}
+            tocLabel={t('tocLabel')}
+            placeholderText={t('placeholderContent')}
+            sections={t.raw('privacySections')}
         />
     );
 }

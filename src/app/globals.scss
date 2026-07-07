@@ -79,7 +79,7 @@ textarea {
 }
 
 .scholar-gradient {
-  background: linear-gradient(135deg, #ff5a5f 0%, #b52330 100%);
+  background: linear-gradient(135deg, var(--color-primary-container) 0%, var(--color-primary) 100%);
 }
 
 /* ─── Type scale aliases ─── */
@@ -88,6 +88,13 @@ textarea {
   line-height: 56px;
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+.text-display-sm {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .text-headline-lg {
@@ -117,6 +124,12 @@ textarea {
 .text-body-md {
   font-size: 16px;
   line-height: 24px;
+  font-weight: 400;
+}
+
+.text-body-sm {
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 400;
 }
 

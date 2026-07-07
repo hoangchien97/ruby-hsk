@@ -60,9 +60,9 @@ export function CourseCard({
                     <h3 className="font-bold text-title-md text-[var(--color-on-surface)] group-hover:text-[var(--color-primary)] transition-colors leading-tight">
                         {title}
                     </h3>
-                    <div className="flex items-center gap-1.5 bg-[#fff7e5] px-2 py-0.5 rounded-lg border border-[#ffecbf] shrink-0">
-                        <Star className="w-4 h-4 text-orange-400 fill-orange-400" />
-                        <span className="text-xs font-bold text-orange-700">5.0</span>
+                    <div className="flex items-center gap-1.5 bg-[var(--color-secondary-container)]/15 px-2 py-0.5 rounded-lg border border-[var(--color-secondary-container)]/40 shrink-0">
+                        <Star className="w-4 h-4 text-[var(--color-secondary)] fill-[var(--color-secondary-fixed-dim)]" />
+                        <span className="text-xs font-bold text-[var(--color-secondary)]">5.0</span>
                     </div>
                 </div>
 

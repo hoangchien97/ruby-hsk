@@ -19,6 +19,21 @@
     "consultation": "Consult",
     "quote": "The more you learn, the wiser you become"
   },
+  "SiteMeta": {
+    "title": "Ruby HSK - Learn Chinese & Prepare for HSK",
+    "description": "A Chinese language and HSK exam-prep center with Ms. Tran Hong Ngoc. HSK 1-6 pathway, small classes, a gentle and effective teaching method.",
+    "descriptionShort": "A Chinese language and HSK exam-prep center with Ms. Tran Hong Ngoc.",
+    "ogImageAlt": "Ruby HSK - Learn Chinese & prepare for HSK with Ms. Tran Hong Ngoc",
+    "keywords": [
+      "learn Chinese",
+      "HSK exam prep",
+      "Chinese language center",
+      "HSK courses",
+      "Ruby HSK",
+      "Tran Hong Ngoc",
+      "conversational Chinese"
+    ]
+  },
   "Common": {
     "consult": "Free consultation",
     "startNow": "Start now",
@@ -41,6 +56,10 @@
     "btnStart": "Start learning now",
     "btnRoadmap": "Learning roadmap",
     "activeStudents": "Join 2,000+ active students",
+    "statStudentsLabel": "Students trust us",
+    "statPassRateLabel": "HSK pass rate",
+    "statCoursesLabel": "Specialized courses",
+    "statSupportLabel": "Learning support",
     "roadmap": "HSK Learning Roadmap",
     "roadmapDesc": "Designed according to the new HSK language reference framework",
     "paths": "Personalized learning paths",
@@ -267,7 +286,31 @@
     "privacy": "Privacy Policy",
     "privacyDesc": "Ruby HSK Privacy Policy — how we collect, use, and protect your information.",
     "terms": "Terms of Service",
-    "termsDesc": "Ruby HSK Terms of Service — rules when enrolling in Chinese language courses."
+    "termsDesc": "Ruby HSK Terms of Service — rules when enrolling in Chinese language courses.",
+    "tocLabel": "Table of Contents",
+    "placeholderContent": "Policy content will be updated by Ruby HSK according to official operating regulations. This is placeholder content in the boilerplate.",
+    "privacySections": [
+      "Information We Collect",
+      "How We Use Information",
+      "Data Security",
+      "Information Sharing",
+      "Cookies & Tracking Technologies",
+      "Your Rights",
+      "Data Retention Period",
+      "Contact Us About Privacy"
+    ],
+    "termsSections": [
+      "Acceptance of Terms",
+      "Ruby HSK's Services",
+      "User Accounts",
+      "Course Enrollment",
+      "Payment & Refunds",
+      "Learning Policies",
+      "Content Ownership",
+      "Limitation of Liability",
+      "Changes to Terms",
+      "Contact"
+    ]
   },
   "NotFound": {
     "brokenPath": "Broken Path",

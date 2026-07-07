@@ -36,10 +36,10 @@ export const Teacher = {
 } as const;
 
 export const Stats = [
-    { value: '10k+', labelVi: 'Học viên tin tưởng', labelEn: 'Students trust us' },
-    { value: '95%', labelVi: 'Tỉ lệ đỗ HSK', labelEn: 'HSK pass rate' },
-    { value: '15+', labelVi: 'Khóa học chuyên sâu', labelEn: 'Specialized courses' },
-    { value: '24/7', labelVi: 'Hỗ trợ học tập', labelEn: 'Learning support' },
+    { value: '10k+', labelKey: 'statStudentsLabel' },
+    { value: '95%', labelKey: 'statPassRateLabel' },
+    { value: '15+', labelKey: 'statCoursesLabel' },
+    { value: '24/7', labelKey: 'statSupportLabel' },
 ] as const;
 
 export const NavLinks = {

@@ -19,6 +19,21 @@
     "consultation": "Tư vấn",
     "quote": "Càng học càng thông tuệ"
   },
+  "SiteMeta": {
+    "title": "Ruby HSK - Học Tiếng Trung & Luyện Thi HSK",
+    "description": "Trung tâm dạy tiếng Trung và luyện thi HSK cùng cô Trần Hồng Ngọc. Lộ trình HSK 1-6, lớp nhỏ, phương pháp học nhẹ nhàng và hiệu quả.",
+    "descriptionShort": "Trung tâm dạy tiếng Trung và luyện thi HSK cùng cô Trần Hồng Ngọc.",
+    "ogImageAlt": "Ruby HSK - Học tiếng Trung & luyện thi HSK cùng cô Trần Hồng Ngọc",
+    "keywords": [
+      "học tiếng Trung",
+      "luyện thi HSK",
+      "trung tâm tiếng Trung",
+      "khóa học HSK",
+      "Ruby HSK",
+      "Trần Hồng Ngọc",
+      "tiếng Trung giao tiếp"
+    ]
+  },
   "Common": {
     "consult": "Tư vấn miễn phí",
     "startNow": "Bắt đầu ngay",
@@ -41,6 +56,10 @@
     "btnStart": "Bắt đầu học ngay",
     "btnRoadmap": "Lộ trình học tập",
     "activeStudents": "Tham gia cùng 2.000+ học viên độc lập",
+    "statStudentsLabel": "Học viên tin tưởng",
+    "statPassRateLabel": "Tỉ lệ đỗ HSK",
+    "statCoursesLabel": "Khóa học chuyên sâu",
+    "statSupportLabel": "Hỗ trợ học tập",
     "roadmap": "Lộ trình học tập HSK",
     "roadmapDesc": "Được thiết kế chuẩn khung tham chiếu ngôn ngữ HSK mới",
     "paths": "Lộ trình học tập cá nhân hóa",
@@ -267,7 +286,31 @@
     "privacy": "Chính sách bảo mật",
     "privacyDesc": "Chính sách bảo mật của Ruby HSK — cách chúng tôi thu thập, sử dụng và bảo vệ thông tin của bạn.",
     "terms": "Điều khoản sử dụng",
-    "termsDesc": "Điều khoản sử dụng của Ruby HSK — quy định khi tham gia các khóa học tiếng Trung."
+    "termsDesc": "Điều khoản sử dụng của Ruby HSK — quy định khi tham gia các khóa học tiếng Trung.",
+    "tocLabel": "Mục lục",
+    "placeholderContent": "Nội dung chính sách sẽ được Ruby HSK cập nhật theo quy định vận hành chính thức. Đây là nội dung placeholder trong boilerplate.",
+    "privacySections": [
+      "Thông tin chúng tôi thu thập",
+      "Mục đích sử dụng thông tin",
+      "Bảo mật dữ liệu",
+      "Chia sẻ thông tin",
+      "Cookies và công nghệ theo dõi",
+      "Quyền của người dùng",
+      "Thời gian lưu trữ dữ liệu",
+      "Liên hệ về bảo mật"
+    ],
+    "termsSections": [
+      "Chấp nhận điều khoản",
+      "Dịch vụ của Ruby HSK",
+      "Tài khoản người dùng",
+      "Đăng ký khóa học",
+      "Thanh toán và hoàn phí",
+      "Quy định học tập",
+      "Quyền sở hữu nội dung",
+      "Giới hạn trách nhiệm",
+      "Thay đổi điều khoản",
+      "Liên hệ"
+    ]
   },
   "NotFound": {
     "brokenPath": "Đứt quãng",

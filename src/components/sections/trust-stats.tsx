@@ -7,9 +7,8 @@ import { Stats } from '@/lib/constants/site';
  * TrustStats — floating stats bar below the hero section.
  * Extracted from hero.tsx for easier maintenance.
  */
-export function TrustStats({ locale }: { locale: string }) {
+export function TrustStats() {
     const t = useTranslations('Home');
-    const isVi = locale === 'vi';
 
     return (
         <section className="container max-w-[1400px] px-4 mx-auto relative -mt-16 z-20">
@@ -23,7 +22,7 @@ export function TrustStats({ locale }: { locale: string }) {
                             {stat.value}
                         </div>
                         <div className="mt-1 text-label-lg text-[var(--color-on-surface-variant)] font-semibold">
-                            {isVi ? stat.labelVi : stat.labelEn}
+                            {t(stat.labelKey)}
                         </div>
                     </div>
                 ))}

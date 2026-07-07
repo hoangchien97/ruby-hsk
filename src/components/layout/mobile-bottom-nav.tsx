@@ -213,9 +213,9 @@ export function MobileBottomNav() {
           </div>
 
           <div className="flex justify-center mt-6">
-            <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[var(--color-surface-container-low)] shadow-sm border border-[var(--color-surface-variant)] text-[#6d4c41]">
-              <Sparkles className="h-4 w-4 fill-current text-[#6d4c41]" />
-              <span className="font-semibold text-[15px] italic">Càng học càng thông tuệ</span>
+            <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[var(--color-surface-container-low)] shadow-sm border border-[var(--color-surface-variant)] text-[var(--color-on-surface-variant)]">
+              <Sparkles className="h-4 w-4 fill-current text-[var(--color-on-surface-variant)]" />
+              <span className="font-semibold text-[15px] italic">{t('quote')}</span>
             </div>
           </div>
         </div>

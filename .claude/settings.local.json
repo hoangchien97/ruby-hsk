@@ -3,7 +3,8 @@
     "allow": [
       "Bash(claude mcp *)",
       "Read(//tmp/**)",
-      "Bash(netstat -ano)"
+      "Bash(netstat -ano)",
+      "Bash(cd /tmp/audit *)"
     ]
   },
   "enableAllProjectMcpServers": true,

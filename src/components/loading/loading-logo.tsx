@@ -1,6 +1,6 @@
 import {LogoIcon} from '@/components/logo/logo-icon';
 
-export function LoadingLogo({label = 'Đang tải Ruby HSK...'}: {label?: string}) {
+export function LoadingLogo({label}: {label: string}) {
   return (
     <div className="grid min-h-[60vh] place-items-center">
       <div className="text-center">

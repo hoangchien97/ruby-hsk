@@ -112,7 +112,7 @@ export function CourseFilters({
             </Card>
 
             {/* Promo Banner */}
-            <div className="bg-[var(--color-secondary-container)] p-8 rounded-2xl coral-shadow relative overflow-hidden group cursor-pointer border border-[#ffd57d]">
+            <div className="bg-[var(--color-secondary-container)] p-8 rounded-2xl coral-shadow relative overflow-hidden group cursor-pointer border border-[var(--color-secondary-fixed-dim)]">
                 <div className="relative z-10">
                     <h4 className="text-title-md font-bold text-[var(--color-on-secondary-container)] mb-2">
                         {t('promoTitle')}

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Noto_Sans } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { AppProviders } from '@/components/providers/app-providers';
 import { Header } from '@/components/layout/header';
@@ -20,56 +20,55 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: 'Ruby HSK - Học Tiếng Trung & Luyện Thi HSK',
-    template: '%s | Ruby HSK',
-  },
-  description:
-    'Trung tâm dạy tiếng Trung và luyện thi HSK cùng cô Trần Hồng Ngọc. Lộ trình HSK 1-6, lớp nhỏ, phương pháp học nhẹ nhàng và hiệu quả.',
-  keywords: [
-    'học tiếng Trung',
-    'luyện thi HSK',
-    'trung tâm tiếng Trung',
-    'khóa học HSK',
-    'Ruby HSK',
-    'Trần Hồng Ngọc',
-    'tiếng Trung giao tiếp',
-  ],
-  authors: [{ name: 'Ruby HSK', url: siteUrl }],
-  creator: 'Ruby HSK',
-  openGraph: {
-    type: 'website',
-    siteName: 'Ruby HSK',
-    title: 'Ruby HSK - Học Tiếng Trung & Luyện Thi HSK',
-    description:
-      'Trung tâm dạy tiếng Trung và luyện thi HSK cùng cô Trần Hồng Ngọc. Lộ trình HSK 1-6, lớp nhỏ, phương pháp học nhẹ nhàng và hiệu quả.',
-    images: [
-      {
-        url: '/og-default.png',
-        width: 1200,
-        height: 630,
-        alt: 'Ruby HSK - Học tiếng Trung & luyện thi HSK cùng cô Trần Hồng Ngọc',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Ruby HSK - Học Tiếng Trung & Luyện Thi HSK',
-    description:
-      'Trung tâm dạy tiếng Trung và luyện thi HSK cùng cô Trần Hồng Ngọc.',
-    images: ['/og-default.png'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true },
-  },
-  verification: {
-    google: 'ADD_YOUR_GSC_CODE_HERE',
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'SiteMeta' });
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: t('title'),
+      template: '%s | Ruby HSK',
+    },
+    description: t('description'),
+    keywords: t.raw('keywords'),
+    authors: [{ name: 'Ruby HSK', url: siteUrl }],
+    creator: 'Ruby HSK',
+    openGraph: {
+      type: 'website',
+      siteName: 'Ruby HSK',
+      title: t('title'),
+      description: t('description'),
+      locale: locale === 'vi' ? 'vi_VN' : 'en_US',
+      images: [
+        {
+          url: '/og-default.png',
+          width: 1200,
+          height: 630,
+          alt: t('ogImageAlt'),
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('descriptionShort'),
+      images: ['/og-default.png'],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true },
+    },
+    verification: {
+      google: 'ADD_YOUR_GSC_CODE_HERE',
+    },
+  };
+}
 
 export default async function LocaleLayout({
   children,

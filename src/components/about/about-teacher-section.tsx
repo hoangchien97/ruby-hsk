@@ -67,7 +67,7 @@ export function AboutTeacherSection({ teacher }: AboutTeacherSectionProps) {
             {ACHIEVEMENTS_CONFIG.map(({ key, icon: Icon }) => (
               <div
                 key={key}
-                className="p-5 rounded-xl bg-[var(--color-surface-container-lowest)] scholar-gradient border border-l-4 border-[var(--color-primary)] shadow-sm hover:shadow-md transition-all duration-300"
+                className="p-5 rounded-xl bg-[var(--color-surface-container-lowest)] border border-l-4 border-[var(--color-primary)] shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <Icon className="w-6 h-6 text-[var(--color-primary)] mb-2" />
                 <p className="text-sm font-bold text-[var(--color-on-surface)] leading-tight">

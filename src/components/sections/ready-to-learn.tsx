@@ -9,7 +9,7 @@ export function ReadyToLearn() {
     const t = useTranslations('ReadyToLearn');
 
     return (
-        <section className="relative py-16 md:py-28 overflow-hidden bg-gradient-to-br from-[#FFF8F3] via-white to-[#FFF0F0] dark:from-[#1b1917] dark:via-[#1c1c19] dark:to-[#221717]">
+        <section className="relative py-16 md:py-28 overflow-hidden bg-gradient-to-br from-[var(--color-surface-container-low)] via-[var(--color-bg)] to-[var(--color-primary-fixed)]/10">
             <div className="max-w-4xl mx-auto px-4 relative z-10">
                 <div
                     className="relative bg-white dark:bg-[var(--color-surface-container-low)] rounded-3xl p-6 py-12 md:p-16 text-center shadow-[0_20px_50px_-12px_rgba(181,35,48,0.12)] dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] border border-[var(--color-outline-variant)] dark:border-[var(--color-primary)]/20 transition-all duration-300"
