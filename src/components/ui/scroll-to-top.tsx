@@ -31,10 +31,12 @@ export function ScrollToTop() {
             onClick={scrollToTop}
             aria-label={t('scrollToTop')}
             className={[
-                'fixed bottom-24 right-5 md:bottom-8 md:right-8 z-50',
-                'w-10 h-10 md:w-11 md:h-11 rounded-full',
+                // bottom-72 (288px) clears the FloatingContact stack (3×44px buttons
+                // + gaps, starting at bottom-28/112px) so the two floating groups never overlap on mobile.
+                'fixed bottom-72 right-5 md:bottom-8 md:right-8 z-50',
+                'w-11 h-11 rounded-full',
                 'bg-[var(--color-primary)] text-white',
-                'shadow-lg shadow-[var(--color-primary)]/25',
+                'shadow-[var(--shadow-button)]',
                 'border border-white/20',
                 'flex items-center justify-center',
                 'hover:scale-110 active:scale-95',

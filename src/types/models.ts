@@ -15,7 +15,6 @@ export type CourseRow = Pick<
     | 'description_en'
     | 'level_tag'
     | 'duration_weeks'
-    | 'price_note'
     | 'sort_order'
 >;
 

@@ -57,16 +57,16 @@ export function WhyRuby({ locale = 'vi' }: WhyRubyProps) {
                             return (
                                 <div
                                     key={f.title}
-                                    className="rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] p-6 shadow-sm flex flex-col items-center text-center sm:items-start sm:text-left gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                                    className="rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] p-6 shadow-[var(--shadow-soft)] flex flex-col items-center text-center sm:items-start sm:text-left gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-card)]"
                                 >
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-[var(--radius-xl)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                                         <Icon className="h-6 w-6" />
                                     </div>
                                     <div>
                                         <h4 className="text-title-md font-semibold text-[var(--color-on-surface)]">
                                             {f.title}
                                         </h4>
-                                        <p className="mt-1 text-label-lg text-[var(--color-on-surface-variant)] leading-relaxed">
+                                        <p className="mt-1 text-label-lg text-[var(--color-on-surface-variant)]">
                                             {f.desc}
                                         </p>
                                     </div>
@@ -77,9 +77,9 @@ export function WhyRuby({ locale = 'vi' }: WhyRubyProps) {
 
                     {/* Right: Why text + bullets */}
                     <div className="order-1 lg:order-2">
-                        <h2 className="text-headline-lg text-[var(--color-on-surface)] font-bold text-center md:text-left">
+                        <h2 className="text-headline-lg-mobile md:text-headline-lg text-[var(--color-on-surface)] text-center md:text-left">
                             {t('whyTitle')}{' '}
-                            <span className="text-[var(--color-primary)] block md:inline font-bold">Ruby HSK?</span>
+                            <span className="text-[var(--color-primary)] block md:inline">Ruby HSK?</span>
                         </h2>
                         <p className="mt-4 max-w-lg text-body-lg text-[var(--color-on-surface-variant)]">
                             {t('whyDesc')}

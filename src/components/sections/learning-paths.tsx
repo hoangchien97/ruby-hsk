@@ -85,9 +85,9 @@ function LearningPathCard({ path }: { path: LearningPath }) {
     // Featured (primary) card — dark background
     if (path.featured) {
         return (
-            <div className="relative overflow-hidden rounded-[var(--radius-2xl)] bg-[var(--color-primary)] p-8 text-white shadow-xl transition-all duration-300 hover:-translate-y-2">
+            <div className="relative overflow-hidden rounded-[var(--radius-2xl)] bg-[var(--color-primary)] p-8 text-[var(--color-on-primary)] shadow-[var(--shadow-button)] transition-all duration-300 hover:-translate-y-2">
                 <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 text-white">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-[var(--radius-xl)] bg-white/20 text-[var(--color-on-primary)]">
                     <Icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-headline-lg font-bold">{path.title}</h3>
@@ -118,7 +118,7 @@ function LearningPathCard({ path }: { path: LearningPath }) {
 
     return (
         <Card hover className="group relative overflow-hidden p-8">
-            <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${iconBg} ${iconColor}`}>
+            <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-[var(--radius-xl)] ${iconBg} ${iconColor}`}>
                 <Icon className="h-6 w-6" />
             </div>
             <h3 className="text-headline-lg font-bold text-[var(--color-on-surface)]">{path.title}</h3>

@@ -15,9 +15,12 @@ export function CourseMobileFilter({
 
     const chips = [
         { key: 'all', label: t('modeAll') },
-        { key: 'hsk-1-2', label: 'HSK 1-2' },
-        { key: 'hsk-3-4', label: 'HSK 3-4' },
-        { key: 'hsk-5-6', label: 'HSK 5-6' },
+        { key: 'hsk-1', label: 'HSK 1' },
+        { key: 'hsk-2', label: 'HSK 2' },
+        { key: 'hsk-3', label: 'HSK 3' },
+        { key: 'hsk-4', label: 'HSK 4' },
+        { key: 'hsk-5', label: 'HSK 5' },
+        { key: 'hsk-6', label: 'HSK 6' },
     ];
 
     return (

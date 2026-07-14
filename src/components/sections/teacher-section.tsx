@@ -23,7 +23,7 @@ export function TeacherSection({
 
     return (
         <section className="container py-16">
-            <div className="overflow-hidden rounded-[var(--radius-3xl)] border border-[var(--color-surface-variant)] bg-white coral-shadow flex flex-col lg:flex-row">
+            <div className="overflow-hidden rounded-[var(--radius-3xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] coral-shadow flex flex-col lg:flex-row">
                 {/* Teacher photo */}
                 <div className="lg:w-2/5 h-80 lg:h-auto relative overflow-hidden bg-gradient-to-br from-[var(--color-primary-fixed)] via-[var(--color-surface-container-low)] to-[var(--color-secondary-fixed)] flex items-center justify-center min-h-[320px]">
                     <img
@@ -35,14 +35,14 @@ export function TeacherSection({
 
                 {/* Content */}
                 <div className="lg:w-3/5 p-8 md:p-12 flex flex-col justify-center">
-                    <span className="text-label-sm font-bold uppercase tracking-wider text-[var(--color-primary)]">
+                    <span className="text-label-sm uppercase tracking-wider text-[var(--color-primary)]">
                         {t('teacherFounding')}
                     </span>
                     <h2 className="mt-2 text-headline-lg font-bold text-[var(--color-on-surface)]">
                         {t('teacherTitle')}
                     </h2>
 
-                    <p className="mt-4 text-body-lg italic leading-relaxed text-[var(--color-on-surface-variant)]">
+                    <p className="mt-4 text-body-lg italic text-[var(--color-on-surface-variant)]">
                         {displayBio}
                     </p>
 

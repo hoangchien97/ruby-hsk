@@ -20,11 +20,11 @@ export function ContactFaq() {
   };
 
   return (
-    <section className="container pb-4 md:pb-24">
+    <section className="container pb-12 md:pb-24">
       <div className="max-w-3xl mx-auto space-y-8">
         {/* FAQ Section Header */}
         <div className="text-center space-y-3">
-          <h2 className="text-headline-lg md:text-[40px] font-bold text-[var(--color-on-surface)]">
+          <h2 className="text-headline-lg md:text-display-sm text-[var(--color-on-surface)]">
             {t('faqTitle')}
           </h2>
           <p className="text-body-lg text-[var(--color-on-surface-variant)] max-w-xl mx-auto">
@@ -42,8 +42,8 @@ export function ContactFaq() {
               <div
                 key={key}
                 className={cn(
-                  'border border-[var(--color-surface-variant)] rounded-2xl bg-[var(--color-surface-container-low)] overflow-hidden transition-all duration-300 shadow-sm',
-                  isOpen && 'border-[var(--color-outline-variant)] shadow-md'
+                  'border border-[var(--color-surface-variant)] rounded-[var(--radius-2xl)] bg-[var(--color-surface-container-low)] overflow-hidden transition-all duration-300 shadow-[var(--shadow-soft)]',
+                  isOpen && 'border-[var(--color-outline-variant)] shadow-[var(--shadow-card)]'
                 )}
               >
                 <button

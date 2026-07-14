@@ -15,7 +15,7 @@ export function ContactHeader() {
           {/* Left: copy */}
           <div>
             <SectionBadge className="mb-4">{t('consultationBadge')}</SectionBadge>
-            <h1 className="text-headline-lg md:text-[40px] font-bold text-[var(--color-primary)] max-w-xl tracking-tight leading-tight">
+            <h1 className="text-headline-lg md:text-display-sm text-[var(--color-primary)] max-w-xl tracking-tight">
               {t('title')}
             </h1>
             <p className="mt-3 max-w-xl text-body-lg text-[var(--color-on-surface-variant)] leading-relaxed">

@@ -24,9 +24,9 @@ export function Card({ className, variant = 'white', hover = false, ...props }: 
                 variant === 'glass' &&
                 'glass-card',
                 variant === 'primary' &&
-                'bg-[var(--color-primary)] border-[var(--color-primary)] text-white shadow-xl',
+                'bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)] shadow-[var(--shadow-button)]',
                 // Hover lift
-                hover && 'hover:-translate-y-2 hover:shadow-xl',
+                hover && 'hover:-translate-y-2 hover:shadow-[var(--shadow-coral)]',
                 className,
             )}
             {...props}

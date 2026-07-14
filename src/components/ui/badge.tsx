@@ -15,13 +15,13 @@ export function Badge({ className, variant = 'primary', ...props }: BadgeProps) 
     return (
         <span
             className={cn(
-                'inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider',
+                'inline-flex items-center gap-1 rounded-full px-3 py-1 text-label-sm font-bold uppercase tracking-wider',
                 variant === 'primary' &&
-                'bg-[var(--color-primary)] text-white',
+                'bg-[var(--color-primary)] text-[var(--color-on-primary)]',
                 variant === 'secondary' &&
                 'bg-[var(--color-secondary-container)] text-[var(--color-on-secondary-container)]',
                 variant === 'tertiary' &&
-                'bg-[var(--color-tertiary)] text-white',
+                'bg-[var(--color-tertiary)] text-[var(--color-on-tertiary)]',
                 variant === 'surface' &&
                 'bg-[var(--color-surface-container)] text-[var(--color-on-surface-variant)]',
                 variant === 'outline' &&

@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { SectionBadge } from '@/components/ui/section-badge';
-import { AVATARS, COURSE_COVERS } from './course-constants';
+import { AVATARS, FALLBACK_COVER } from './course-constants';
 
 export function CoursesHero() {
     const t = useTranslations('Courses');
@@ -47,11 +47,11 @@ export function CoursesHero() {
                     <div className="relative hidden md:block select-none">
                         <div className="absolute -top-10 -right-10 w-64 h-64 bg-[var(--color-secondary-container)]/20 rounded-full blur-3xl" />
                         <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-[var(--color-primary-container)]/10 rounded-full blur-3xl" />
-                        <div className="relative bg-white rounded-[2rem] p-6 coral-shadow rotate-2 hover:rotate-0 transition-transform duration-500 max-w-lg ml-auto border border-[var(--color-surface-variant)]/45">
+                        <div className="relative bg-[var(--color-surface-container-lowest)] rounded-[var(--radius-3xl)] p-6 coral-shadow rotate-2 hover:rotate-0 transition-transform duration-500 max-w-lg ml-auto border border-[var(--color-surface-variant)]/45">
                             <img
-                                className="rounded-2xl w-full h-[360px] object-cover"
+                                className="rounded-[var(--radius-2xl)] w-full h-[360px] object-cover"
                                 alt="Cozy Chinese study space"
-                                src={COURSE_COVERS['tieng-trung-so-cap']}
+                                src={FALLBACK_COVER}
                             />
                         </div>
                     </div>

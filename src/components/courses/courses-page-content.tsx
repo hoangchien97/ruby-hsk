@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
+import { Select } from '@/components/ui/select';
 import { Link } from '@/i18n/navigation';
 import { ChevronLeft, ChevronRight, Award } from 'lucide-react';
 import type { CourseRow } from '@/types/models';
@@ -10,6 +11,8 @@ import { CoursesHero } from './courses-hero';
 import { CourseMobileFilter } from './course-mobile-filter';
 import { CourseFilters } from './course-filters';
 import { CourseCard } from './course-card';
+
+const HSK_LEVEL_KEYS = ['hsk-1', 'hsk-2', 'hsk-3', 'hsk-4', 'hsk-5', 'hsk-6'] as const;
 
 export function CoursesPageContent({
     locale,
@@ -49,15 +52,14 @@ export function CoursesPageContent({
         setFavorites((prev) => ({ ...prev, [slug]: !prev[slug] }));
 
     // ── Computed counts per level ──────────────────────────────────
-    const counts = useMemo(
-        () => ({
-            all: courses.length,
-            'hsk-1-2': courses.filter((c) => c.level_tag === 'HSK 1-2').length,
-            'hsk-3-4': courses.filter((c) => c.level_tag === 'HSK 3-4' || c.level_tag === 'HSK 4+').length,
-            'hsk-5-6': courses.filter((c) => c.level_tag === 'HSK 5-6').length,
-        }),
-        [courses],
-    );
+    const counts = useMemo(() => {
+        const base: Record<string, number> = { all: courses.length };
+        for (const key of HSK_LEVEL_KEYS) {
+            const label = key.replace('hsk-', 'HSK ');
+            base[key] = courses.filter((c) => c.level_tag === label).length;
+        }
+        return base;
+    }, [courses]);
 
     // ── Filtered & sorted list ─────────────────────────────────────
     const filteredCourses = useMemo(() => {
@@ -66,12 +68,7 @@ export function CoursesPageContent({
         if (!selectedLevels.includes('all')) {
             result = result.filter((c) => {
                 const tag = c.level_tag?.toLowerCase() ?? '';
-                return selectedLevels.some((sel) => {
-                    if (sel === 'hsk-1-2') return tag === 'hsk 1-2';
-                    if (sel === 'hsk-3-4') return tag === 'hsk-3-4' || tag === 'hsk 3-4' || tag === 'hsk 4+';
-                    if (sel === 'hsk-5-6') return tag === 'hsk 5-6';
-                    return false;
-                });
+                return selectedLevels.some((sel) => tag === sel.replace('hsk-', 'hsk '));
             });
         }
 
@@ -83,7 +80,7 @@ export function CoursesPageContent({
             }
         }
 
-        if (sortBy === 'price-asc') {
+        if (sortBy === 'duration-asc') {
             result.sort((a, b) => (a.duration_weeks ?? 0) - (b.duration_weeks ?? 0));
         } else if (sortBy === 'popular') {
             result.sort((a, b) => (b.sort_order ?? 0) - (a.sort_order ?? 0));
@@ -144,15 +141,16 @@ export function CoursesPageContent({
                                 <span className="text-label-lg text-[var(--color-on-surface-variant)] shrink-0 font-medium">
                                     {t('sortBy')}:
                                 </span>
-                                <select
+                                <Select
                                     value={sortBy}
-                                    onChange={(e) => setSortBy(e.target.value)}
-                                    className="bg-[var(--color-surface-container-lowest)] text-[var(--color-on-surface)] border border-[var(--color-border)] rounded-xl text-label-lg font-semibold coral-shadow px-4 py-2 cursor-pointer focus:ring-2 focus:ring-[var(--color-primary)]/20"
-                                >
-                                    <option value="newest">{t('sortNewest')}</option>
-                                    <option value="price-asc">{t('sortPriceAsc')}</option>
-                                    <option value="popular">{t('sortPopular')}</option>
-                                </select>
+                                    onChange={setSortBy}
+                                    className="min-w-[180px] py-2"
+                                    options={[
+                                        { value: 'newest', label: t('sortNewest') },
+                                        { value: 'duration-asc', label: t('sortDurationAsc') },
+                                        { value: 'popular', label: t('sortPopular') },
+                                    ]}
+                                />
                             </div>
                         </div>
 

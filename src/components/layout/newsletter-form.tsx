@@ -78,13 +78,13 @@ export function NewsletterForm({ locale }: NewsletterFormProps) {
           type="submit"
           disabled={state === 'submitting'}
           aria-label={t('newsletterTitle')}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-[var(--color-on-primary)] transition-transform hover:scale-105 disabled:opacity-50 disabled:pointer-events-none"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-[var(--color-on-primary)] transition-transform hover:scale-105 disabled:opacity-50 disabled:pointer-events-none"
         >
           <Send className="h-4 w-4" />
         </button>
       </div>
       {state === 'error' && (
-        <p className="text-xs font-semibold text-[var(--color-error)]" role="alert">
+        <p className="text-label-sm font-semibold text-[var(--color-error)]" role="alert">
           {errorMsg}
         </p>
       )}

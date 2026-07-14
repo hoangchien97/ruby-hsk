@@ -35,7 +35,7 @@ export function ContactPageContent({
       </section>
 
       {/* Map Embed Section */}
-      <ContactMap locale={locale} />
+      <ContactMap />
 
       {/* FAQ Section */}
       <ContactFaq />

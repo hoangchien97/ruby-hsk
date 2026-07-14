@@ -10,9 +10,9 @@ export function ContactInfoSidebar({ locale }: { locale: string }) {
       {/* Hotline Card */}
       <a
         href={`tel:${SiteContact.phoneTel}`}
-        className="bg-[var(--color-surface-glass)] backdrop-blur-md p-7 rounded-[2rem] flex items-start gap-4 hover:translate-y-[-4px] transition-transform shadow-[var(--shadow-coral)] border border-l-4 border-[var(--color-primary)]"
+        className="bg-[var(--color-surface-glass)] backdrop-blur-md p-8 rounded-[var(--radius-3xl)] flex items-start gap-4 hover:translate-y-[-4px] transition-transform shadow-[var(--shadow-coral)] border border-l-4 border-[var(--color-primary)]"
       >
-        <div className="w-14 h-14 bg-[var(--color-primary)]/10 rounded-2xl flex items-center justify-center text-[var(--color-primary)] shrink-0">
+        <div className="w-14 h-14 bg-[var(--color-primary)]/10 rounded-[var(--radius-2xl)] flex items-center justify-center text-[var(--color-primary)] shrink-0">
           <Phone className="w-7 h-7" />
         </div>
         <div>
@@ -22,7 +22,7 @@ export function ContactInfoSidebar({ locale }: { locale: string }) {
           <p className="text-body-md font-bold text-[var(--color-on-surface)]">
             {SiteContact.phone}
           </p>
-          <p className="text-xs text-[var(--color-on-surface-variant)] mt-2">
+          <p className="text-label-sm text-[var(--color-on-surface-variant)] mt-2">
             {t('labelPhoneSub')}
           </p>
         </div>
@@ -31,9 +31,9 @@ export function ContactInfoSidebar({ locale }: { locale: string }) {
       {/* Email Card */}
       <a
         href={`mailto:${SiteContact.email}`}
-        className="bg-[var(--color-surface-glass)] backdrop-blur-md p-7 rounded-[2rem] flex items-start gap-4 hover:translate-y-[-4px] transition-transform shadow-[var(--shadow-coral)] border border-l-4 border-[var(--color-tertiary)]"
+        className="bg-[var(--color-surface-glass)] backdrop-blur-md p-8 rounded-[var(--radius-3xl)] flex items-start gap-4 hover:translate-y-[-4px] transition-transform shadow-[var(--shadow-coral)] border border-l-4 border-[var(--color-tertiary)]"
       >
-        <div className="w-14 h-14 bg-[var(--color-tertiary)]/10 rounded-2xl flex items-center justify-center text-[var(--color-tertiary)] shrink-0">
+        <div className="w-14 h-14 bg-[var(--color-tertiary)]/10 rounded-[var(--radius-2xl)] flex items-center justify-center text-[var(--color-tertiary)] shrink-0">
           <Mail className="w-7 h-7" />
         </div>
         <div className="min-w-0 flex-1">
@@ -43,15 +43,15 @@ export function ContactInfoSidebar({ locale }: { locale: string }) {
           <p className="text-body-md font-bold text-[var(--color-on-surface)] truncate">
             {SiteContact.email}
           </p>
-          <p className="text-xs text-[var(--color-on-surface-variant)] mt-2">
+          <p className="text-label-sm text-[var(--color-on-surface-variant)] mt-2">
             {t('labelEmailSub')}
           </p>
         </div>
       </a>
 
       {/* Address Card */}
-      <div className="bg-[var(--color-surface-glass)] backdrop-blur-md p-7 rounded-[2rem] flex items-start gap-4 hover:translate-y-[-4px] transition-transform shadow-[var(--shadow-coral)] border border-l-4 border-[var(--color-secondary)]">
-        <div className="w-14 h-14 bg-[var(--color-secondary)]/10 rounded-2xl flex items-center justify-center text-[var(--color-secondary)] shrink-0">
+      <div className="bg-[var(--color-surface-glass)] backdrop-blur-md p-8 rounded-[var(--radius-3xl)] flex items-start gap-4 hover:translate-y-[-4px] transition-transform shadow-[var(--shadow-coral)] border border-l-4 border-[var(--color-secondary)]">
+        <div className="w-14 h-14 bg-[var(--color-secondary)]/10 rounded-[var(--radius-2xl)] flex items-center justify-center text-[var(--color-secondary)] shrink-0">
           <MapPin className="w-7 h-7" />
         </div>
         <div>
@@ -61,7 +61,7 @@ export function ContactInfoSidebar({ locale }: { locale: string }) {
           <p className="text-body-md font-bold text-[var(--color-on-surface)] leading-snug">
             {locale === 'vi' ? SiteContact.address : SiteContact.addressEn}
           </p>
-          <p className="text-xs text-[var(--color-on-surface-variant)] mt-2">
+          <p className="text-label-sm text-[var(--color-on-surface-variant)] mt-2">
             {t('labelAddressSub')}
           </p>
         </div>

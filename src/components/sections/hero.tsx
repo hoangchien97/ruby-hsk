@@ -57,7 +57,7 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
                 }`}
             />
           ))}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/50 z-20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-[var(--color-bg)]/90 to-[var(--color-bg)]/50 z-20" />
         </div>
 
         <div className="container relative z-10 max-w-[1400px] px-4 mx-auto grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
@@ -65,7 +65,7 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
           <div className="z-10">
             <SectionBadge className="mb-6">{t('badge')}</SectionBadge>
 
-            <h1 className="text-display-lg md:text-7xl font-extrabold text-[var(--color-on-background)] mb-6 leading-tight">
+            <h1 className="text-display-lg md:text-7xl md:font-extrabold md:leading-[1.05] text-[var(--color-on-background)] mb-6">
               {t('title')} <br />
               <span className="text-[var(--color-primary)]">{t('subtitle')}</span>
             </h1>
@@ -78,8 +78,8 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
             <div className="mt-8 grid grid-cols-2 md:flex md:flex-wrap gap-3 md:gap-4 mb-8">
               <Link href="/contact" className="w-full md:w-auto">
                 <Button
-                  className="w-full rounded-full h-12 md:h-14 px-4 md:px-8 text-[13px] md:text-base font-bold
-                    bg-[var(--color-primary)] text-white shadow-lg shadow-[var(--color-primary)]/20
+                  className="w-full rounded-full h-12 md:h-14 px-4 md:px-8 text-label-lg md:text-body-md font-bold
+                    bg-[var(--color-primary)] text-white shadow-[var(--shadow-button)]
                     hover:scale-105 transition-transform"
                 >
                   {t('btnStart')}
@@ -88,7 +88,7 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
               <Link href="/courses" className="w-full md:w-auto">
                 <Button
                   variant="secondary"
-                  className="w-full rounded-full h-12 md:h-14 px-4 md:px-8 text-[13px] md:text-base font-bold transition-colors"
+                  className="w-full rounded-full h-12 md:h-14 px-4 md:px-8 text-label-lg md:text-body-md font-bold transition-colors"
                 >
                   {t('btnRoadmap')}
                 </Button>
@@ -101,12 +101,12 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
                 {STUDENT_AVATARS.map((av, idx) => (
                   <div
                     key={idx}
-                    className="w-10 h-10 rounded-full border-2 border-[var(--color-surface)] bg-slate-200 overflow-hidden shadow-sm"
+                    className="w-10 h-10 rounded-full border-2 border-[var(--color-surface)] bg-[var(--color-surface-container)] overflow-hidden shadow-[var(--shadow-soft)]"
                   >
                     <img className="w-full h-full object-cover" alt="Student profile" src={av} />
                   </div>
                 ))}
-                <div className="w-10 h-10 rounded-full border-2 border-[var(--color-surface)] bg-[var(--color-primary-container)] flex items-center justify-center text-[var(--color-primary)] text-xs font-bold shadow-sm">
+                <div className="w-10 h-10 rounded-full border-2 border-[var(--color-surface)] bg-[var(--color-primary-container)] flex items-center justify-center text-[var(--color-primary)] text-label-sm font-bold shadow-[var(--shadow-soft)]">
                   +2k
                 </div>
               </div>
@@ -150,8 +150,8 @@ function HeroSlideshow({ images, currentSlide, onPrev, onNext, onDotClick }: Her
       <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-[var(--color-primary-container)]/10 rounded-full blur-3xl" />
 
       {/* Carousel Frame */}
-      <div className="relative bg-white rounded-[2rem] p-6 coral-shadow rotate-2 hover:rotate-0 transition-transform duration-500 max-w-lg ml-auto border border-[var(--color-surface-variant)]/45 z-10 group">
-        <div className="relative rounded-2xl w-full h-[360px] overflow-hidden bg-slate-100">
+      <div className="relative bg-[var(--color-surface-container-lowest)] rounded-[var(--radius-3xl)] p-6 coral-shadow rotate-2 hover:rotate-0 transition-transform duration-500 max-w-lg ml-auto border border-[var(--color-surface-variant)]/45 z-10 group">
+        <div className="relative rounded-[var(--radius-2xl)] w-full h-[360px] overflow-hidden bg-[var(--color-surface-container-low)]">
           {/* Slides */}
           {images.map((src, index) => (
             <img
@@ -168,7 +168,7 @@ function HeroSlideshow({ images, currentSlide, onPrev, onNext, onDotClick }: Her
             type="button"
             onClick={onPrev}
             aria-label="Previous slide"
-            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-[var(--color-on-surface)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-neutral-300/40 shadow-sm"
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-[var(--color-on-surface)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-[var(--color-outline-variant)]/40 shadow-[var(--shadow-soft)]"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -176,7 +176,7 @@ function HeroSlideshow({ images, currentSlide, onPrev, onNext, onDotClick }: Her
             type="button"
             onClick={onNext}
             aria-label="Next slide"
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-[var(--color-on-surface)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-neutral-300/40 shadow-sm"
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-[var(--color-on-surface)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-[var(--color-outline-variant)]/40 shadow-[var(--shadow-soft)]"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
