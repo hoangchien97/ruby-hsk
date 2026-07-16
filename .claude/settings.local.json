@@ -4,7 +4,8 @@
       "Bash(claude mcp *)",
       "Read(//tmp/**)",
       "Bash(netstat -ano)",
-      "Bash(cd /tmp/audit *)"
+      "Bash(cd /tmp/audit *)",
+      "Bash(npm run *)"
     ]
   },
   "enableAllProjectMcpServers": true,

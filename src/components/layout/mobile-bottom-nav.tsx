@@ -121,7 +121,7 @@ export function MobileBottomNav() {
             <h3 className="text-label-lg font-bold text-[var(--color-on-surface-variant)] uppercase tracking-widest mb-3 ml-2">
               {t('navigation')}
             </h3>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2">
               {drawerLinks.map((link) => {
                 const Icon = link.icon;
                 const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
@@ -130,16 +130,16 @@ export function MobileBottomNav() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className={`flex min-h-11 items-center gap-3 p-4 rounded-[var(--radius-2xl)] border transition-all drawer-link-animated ${isActive
+                    className={`flex min-h-10 items-center gap-2 p-2.5 rounded-[var(--radius-xl)] border transition-all drawer-link-animated ${isActive
                       ? 'border-[var(--color-primary)]/30 text-[var(--color-primary)] bg-[var(--color-primary-container)]/20 active'
                       : 'border-[var(--color-outline-variant)]/10 text-[var(--color-on-surface)] bg-[var(--color-surface-container-low)] hover:bg-[var(--color-surface-container)]'
                       }`}
                   >
-                    <div className={`p-2 rounded-[var(--radius-xl)] flex items-center justify-center ${isActive ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]' : 'bg-[var(--color-surface-container)] text-[var(--color-on-surface-variant)]'
+                    <div className={`p-1.5 rounded-[var(--radius-md)] flex items-center justify-center ${isActive ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]' : 'bg-[var(--color-surface-container)] text-[var(--color-on-surface-variant)]'
                       }`}>
-                      <Icon className="h-5 w-5" />
+                      <Icon className="h-4 w-4" />
                     </div>
-                    <span className={`text-body-md font-bold ${isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-on-surface)]'}`}>
+                    <span className={`text-label-lg ${isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-on-surface)]'}`}>
                       {link.label}
                     </span>
                   </Link>
@@ -179,18 +179,18 @@ export function MobileBottomNav() {
             <h3 className="text-label-lg font-bold text-[var(--color-on-surface-variant)] uppercase tracking-widest mb-3 ml-2">
               {t('studentSupport')}
             </h3>
-            <div className="flex justify-between gap-3">
+            <div className="flex justify-between gap-2">
               <a
                 href={Contact.zalo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex flex-col items-center justify-center min-h-11 p-4 rounded-[var(--radius-3xl)] shadow-[var(--shadow-soft)] active:scale-95 transition-all text-center"
+                className="flex-1 flex flex-col items-center justify-center min-h-10 p-3 rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] coral-shadow active:scale-95 transition-all text-center"
               >
-                <div className="w-12 h-12 rounded-full bg-[#0068FF]/10 flex items-center justify-center mb-2">
+                <div className="w-10 h-10 rounded-full bg-[#0068FF]/10 flex items-center justify-center mb-1.5">
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
                     alt="Zalo"
-                    className="w-6 h-6 object-contain"
+                    className="w-5 h-5 object-contain"
                   />
                 </div>
                 <span className="text-label-sm font-bold text-[var(--color-on-surface)]">{t('zalo')}</span>
@@ -199,23 +199,23 @@ export function MobileBottomNav() {
                 href={`https://m.me/rubyhsk`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex flex-col items-center justify-center min-h-11 p-4 rounded-[var(--radius-3xl)] shadow-[var(--shadow-soft)] active:scale-95 transition-all text-center"
+                className="flex-1 flex flex-col items-center justify-center min-h-10 p-3 rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] coral-shadow active:scale-95 transition-all text-center"
               >
-                <div className="w-12 h-12 rounded-full bg-[#00B2FF]/10 flex items-center justify-center mb-2">
+                <div className="w-10 h-10 rounded-full bg-[#00B2FF]/10 flex items-center justify-center mb-1.5">
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg"
                     alt="Messenger"
-                    className="w-6 h-6 object-contain"
+                    className="w-5 h-5 object-contain"
                   />
                 </div>
                 <span className="text-label-sm font-bold text-[var(--color-on-surface)]">{t('messenger')}</span>
               </a>
               <a
                 href={`tel:${Contact.phoneTel}`}
-                className="flex-1 flex flex-col items-center justify-center min-h-11 p-4 rounded-[var(--radius-3xl)] shadow-[var(--shadow-soft)] active:scale-95 transition-all text-center"
+                className="flex-1 flex flex-col items-center justify-center min-h-10 p-3 rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] coral-shadow active:scale-95 transition-all text-center"
               >
-                <div className="w-12 h-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center mb-2">
-                  <Phone className="h-6 w-6 text-[var(--color-primary)]" />
+                <div className="w-10 h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center mb-1.5">
+                  <Phone className="h-5 w-5 text-[var(--color-primary)]" />
                 </div>
                 <span className="text-label-sm font-bold text-[var(--color-on-surface)]">{t('consultation')}</span>
               </a>

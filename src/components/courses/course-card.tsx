@@ -52,15 +52,11 @@ export function CourseCard({
             </div>
 
             {/* Body */}
-            <div className="p-8 flex flex-col flex-1">
+            <div className="p-4 md:p-8 flex flex-col flex-1">
                 <div className="flex justify-between items-start gap-2 mb-4">
                     <h3 className="font-bold text-title-md text-[var(--color-on-surface)] group-hover:text-[var(--color-primary)] transition-colors leading-tight">
                         {title}
                     </h3>
-                    <div className="flex items-center gap-1.5 bg-[var(--color-secondary-container)]/15 px-2 py-0.5 rounded-lg border border-[var(--color-secondary-container)]/40 shrink-0">
-                        <Star className="w-4 h-4 text-[var(--color-secondary)] fill-[var(--color-secondary-fixed-dim)]" />
-                        <span className="text-xs font-bold text-[var(--color-secondary)]">5.0</span>
-                    </div>
                 </div>
 
                 <p className="text-[var(--color-on-surface-variant)] text-body-md mb-6 line-clamp-2 flex-grow">
@@ -68,7 +64,7 @@ export function CourseCard({
                 </p>
 
                 {stats && (
-                    <div className="flex flex-wrap gap-4 py-4 border-y border-[var(--color-surface-variant)]/40">
+                    <div className="flex flex-wrap gap-4 pt-4 pb-2 border-t border-[var(--color-surface-variant)]/40">
                         <div className="flex items-center gap-1.5 text-[var(--color-on-surface-variant)]">
                             <BookOpen className="w-[18px] h-[18px]" />
                             <span className="text-label-sm font-semibold">
@@ -84,13 +80,13 @@ export function CourseCard({
                     </div>
                 )}
 
-                <div className="flex items-center justify-end mt-auto pt-6">
+                {/* <div className="flex items-center justify-end mt-auto pt-6">
                     <Link href={`/courses/${c.slug}`}>
                         <Button variant="secondary" className="px-5 py-2.5 rounded-xl font-bold transition-all">
                             {t('details')}
                         </Button>
                     </Link>
-                </div>
+                </div> */}
             </div>
         </div>
     );
