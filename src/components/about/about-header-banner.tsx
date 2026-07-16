@@ -20,9 +20,9 @@ export function AboutHeaderBanner() {
   const t = useTranslations("About");
 
   return (
-    <section className="relative overflow-hidden pt-16 pb-12 md:pt-20 md:pb-16 border-b border-[var(--color-surface-variant)]/40 bg-gradient-to-b from-[var(--color-surface-container-low)] to-[var(--color-bg)]">
-      <div className="container max-w-[1400px] px-4 mx-auto relative z-10">
-        <div className="grid gap-12 lg:grid-cols-2 items-center">
+    <section className="relative overflow-hidden app-section border-b border-[var(--color-surface-variant)]/40 bg-gradient-to-b from-[var(--color-surface-container-low)] to-[var(--color-bg)]">
+      <div className="app-container relative z-10">
+        <div className="grid gap-8 lg:gap-12 lg:grid-cols-2 items-center">
           <div>
             <SectionBadge>{t("aboutBadge")}</SectionBadge>
             <h1 className="text-headline-lg-mobile md:text-display-lg font-bold text-[var(--color-on-background)] tracking-tight leading-[1.1] mb-6 mt-6">
@@ -47,7 +47,7 @@ export function AboutHeaderBanner() {
           </div>
 
           <div className="hidden lg:block relative">
-            <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl">
+            <div className="relative aspect-[4/5] rounded-[var(--radius-3xl)] overflow-hidden shadow-[var(--shadow-coral)]">
               <img
                 src={HERO_IMAGE_URL}
                 alt={t("heroImageAlt")}

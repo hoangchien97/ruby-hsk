@@ -52,9 +52,9 @@ export function MobileBottomNav() {
 
   return (
     <>
-      {/* Bottom Nav Bar */}
       <nav
-        className="fixed inset-x-0 bottom-0 z-50 min-h-16 pb-[env(safe-area-inset-bottom)] bg-[var(--color-surface)] shadow-[0_-4px_10px_rgba(181,35,48,0.1)] rounded-t-[var(--radius-2xl)] md:hidden"
+        className="fixed inset-x-0 bottom-0 z-50 min-h-16 bg-[var(--color-surface)] shadow-[0_-4px_10px_rgba(181,35,48,0.1)] rounded-t-[var(--radius-2xl)] md:hidden"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       >
         <div className="flex h-16 items-center justify-around px-2">
           {navItems.map((item) => {
@@ -115,7 +115,10 @@ export function MobileBottomNav() {
         </button>
 
         {/* Sheet Content */}
-        <div className="bg-[var(--color-bg)] rounded-t-[var(--radius-3xl)] border-t border-x border-[var(--color-surface-variant)] px-6 pt-2 pb-[calc(1.5rem+env(safe-area-inset-bottom))] shadow-[var(--shadow-soft)] max-h-[85vh] overflow-y-auto">
+        <div
+          className="bg-[var(--color-bg)] rounded-t-[var(--radius-3xl)] border-t border-x border-[var(--color-surface-variant)] px-6 pt-2 shadow-[var(--shadow-soft)] max-h-[85vh] overflow-y-auto"
+          style={{ paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))' }}
+        >
           {/* Section: Navigation */}
           <div className="mb-6">
             <h3 className="text-label-lg font-bold text-[var(--color-on-surface-variant)] uppercase tracking-widest mb-3 ml-2">
@@ -184,7 +187,7 @@ export function MobileBottomNav() {
                 href={Contact.zalo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex flex-col items-center justify-center min-h-10 p-3 rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] coral-shadow active:scale-95 transition-all text-center"
+                className="flex-1 flex flex-col items-center justify-center min-h-10 p-3 rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] shadow-[var(--shadow-soft)] active:scale-95 transition-all text-center"
               >
                 <div className="w-10 h-10 rounded-full bg-[#0068FF]/10 flex items-center justify-center mb-1.5">
                   <img
@@ -199,7 +202,7 @@ export function MobileBottomNav() {
                 href={`https://m.me/rubyhsk`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex flex-col items-center justify-center min-h-10 p-3 rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] coral-shadow active:scale-95 transition-all text-center"
+                className="flex-1 flex flex-col items-center justify-center min-h-10 p-3 rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] shadow-[var(--shadow-soft)] active:scale-95 transition-all text-center"
               >
                 <div className="w-10 h-10 rounded-full bg-[#00B2FF]/10 flex items-center justify-center mb-1.5">
                   <img
@@ -212,7 +215,7 @@ export function MobileBottomNav() {
               </a>
               <a
                 href={`tel:${Contact.phoneTel}`}
-                className="flex-1 flex flex-col items-center justify-center min-h-10 p-3 rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] coral-shadow active:scale-95 transition-all text-center"
+                className="flex-1 flex flex-col items-center justify-center min-h-10 p-3 rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] shadow-[var(--shadow-soft)] active:scale-95 transition-all text-center"
               >
                 <div className="w-10 h-10 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center mb-1.5">
                   <Phone className="h-5 w-5 text-[var(--color-primary)]" />

@@ -252,6 +252,7 @@
   },
   "ContactForm": {
     "errRequired": "Vui lòng điền họ tên và số điện thoại.",
+    "errEmailInvalid": "Vui lòng nhập địa chỉ email hợp lệ.",
     "errGeneral": "Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo/điện thoại.",
     "successTitle": "Gửi thành công!",
     "successSub": "Cô Ngọc sẽ liên hệ với bạn trong vòng 24 giờ làm việc. Cảm ơn bạn đã tin tưởng Ruby HSK!",

@@ -252,6 +252,7 @@
   },
   "ContactForm": {
     "errRequired": "Please fill in your name and phone number.",
+    "errEmailInvalid": "Please enter a valid email address.",
     "errGeneral": "An error occurred. Please try again or contact us via Zalo/phone.",
     "successTitle": "Sent successfully!",
     "successSub": "Ms. Ngoc will contact you within 24 working hours. Thank you for trusting Ruby HSK!",

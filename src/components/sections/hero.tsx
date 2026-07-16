@@ -45,7 +45,7 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden pt-16 pb-32">
+      <section className="app-section relative overflow-hidden">
         {/* Mobile background slideshow */}
         <div className="absolute inset-0 md:hidden z-0 pointer-events-none">
           {HERO_IMAGES.map((src, index) => (
@@ -60,7 +60,7 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-[var(--color-bg)]/90 to-[var(--color-bg)]/50 z-20" />
         </div>
 
-        <div className="container relative z-10 max-w-[1400px] px-4 mx-auto grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
+        <div className="app-container relative z-10 grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
           {/* Left: Copy */}
           <div className="z-10">
             <SectionBadge className="mb-6">{t('badge')}</SectionBadge>
@@ -150,7 +150,7 @@ function HeroSlideshow({ images, currentSlide, onPrev, onNext, onDotClick }: Her
       <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-[var(--color-primary-container)]/10 rounded-full blur-3xl" />
 
       {/* Carousel Frame */}
-      <div className="relative bg-[var(--color-surface-container-lowest)] rounded-[var(--radius-3xl)] p-6 coral-shadow rotate-2 hover:rotate-0 transition-transform duration-500 max-w-lg ml-auto border border-[var(--color-surface-variant)]/45 z-10 group">
+      <div className="relative bg-[var(--color-surface-container-lowest)] rounded-[var(--radius-3xl)] p-6 shadow-[var(--shadow-coral)] rotate-2 hover:rotate-0 transition-transform duration-500 max-w-lg ml-auto border border-[var(--color-surface-variant)]/45 z-10 group">
         <div className="relative rounded-[var(--radius-2xl)] w-full h-[360px] overflow-hidden bg-[var(--color-surface-container-low)]">
           {/* Slides */}
           {images.map((src, index) => (
@@ -190,8 +190,8 @@ function HeroSlideshow({ images, currentSlide, onPrev, onNext, onDotClick }: Her
                 onClick={() => onDotClick(idx)}
                 aria-label={`Go to slide ${idx + 1}`}
                 className={`h-2.5 rounded-full transition-all duration-300 ${idx === currentSlide
-                    ? 'bg-[var(--color-primary)] w-6'
-                    : 'w-2.5 bg-white/60 hover:bg-white'
+                  ? 'bg-[var(--color-primary)] w-6'
+                  : 'w-2.5 bg-white/60 hover:bg-white'
                   }`}
               />
             ))}
