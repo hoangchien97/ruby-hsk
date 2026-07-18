@@ -190,7 +190,7 @@ export function CoursesPageContent({
                   currentPage={currentPage}
                   totalPages={totalPages}
                   onPageChange={setCurrentPage}
-                  className="mt-4 md:mt-16"
+                  className="mt-4 md:mt-10"
                 />
               )}
             </div>
