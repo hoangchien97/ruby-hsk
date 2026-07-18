@@ -10,6 +10,7 @@ import { MobileBottomNav } from '@/components/layout/mobile-bottom-nav';
 import { FloatingContact } from '@/components/layout/floating-contact';
 import { ScrollToTop } from '@/components/ui/scroll-to-top';
 import { buildOrganizationLD } from '@/lib/seo/jsonld';
+import NextTopLoader from 'nextjs-toploader';
 import '../globals.scss';
 
 const notoSans = Noto_Sans({ subsets: ['latin', 'vietnamese'], display: 'swap' });
@@ -91,6 +92,12 @@ export default async function LocaleLayout({
         />
       </head>
       <body className={notoSans.className}>
+        <NextTopLoader
+          color="var(--color-primary)"
+          showSpinner={false}
+          height={3}
+          shadow="0 0 10px var(--color-primary), 0 0 5px var(--color-primary)"
+        />
         <NextIntlClientProvider messages={messages} locale={locale}>
           <AppProviders>
             <div className="page-shell">

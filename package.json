@@ -16,6 +16,7 @@
     "next": "latest",
     "next-intl": "latest",
     "next-themes": "latest",
+    "nextjs-toploader": "^3.9.17",
     "react": "latest",
     "react-dom": "latest",
     "sass": "latest",
