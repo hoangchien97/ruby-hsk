@@ -10,8 +10,8 @@ export function ContactHeader() {
   return (
     <>
       {/* ── Desktop: copy left, floating mascot right ────────────── */}
-      <section className="container hidden md:block pt-12 pb-8">
-        <div className="grid md:grid-cols-2 items-center gap-12 max-w-[1400px] mx-auto">
+      <section className="app-section pb-0 hidden md:block">
+        <div className="app-container relative z-10 grid md:grid-cols-2 items-center gap-12">
           {/* Left: copy */}
           <div>
             <SectionBadge className="mb-4">{t('consultationBadge')}</SectionBadge>
@@ -36,14 +36,16 @@ export function ContactHeader() {
       </section>
 
       {/* ── Mobile: copy only ────────────────────────────────────── */}
-      <section className="container block md:hidden pt-8 pb-6">
-        <SectionBadge className="mb-4">{t('consultationBadge')}</SectionBadge>
-        <h1 className="text-headline-lg font-bold text-[var(--color-primary)] tracking-tight leading-tight">
-          {t('title')}
-        </h1>
-        <p className="mt-3 text-body-lg text-[var(--color-on-surface-variant)] leading-relaxed">
-          {t('sub')}
-        </p>
+      <section className="app-section pb-0 block md:hidden">
+        <div className="app-container">
+          <SectionBadge className="mb-4">{t('consultationBadge')}</SectionBadge>
+          <h1 className="text-headline-lg font-bold text-[var(--color-primary)] tracking-tight leading-tight">
+            {t('title')}
+          </h1>
+          <p className="mt-3 text-body-lg text-[var(--color-on-surface-variant)] leading-relaxed">
+            {t('sub')}
+          </p>
+        </div>
       </section>
     </>
   );

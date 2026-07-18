@@ -87,7 +87,7 @@ export function Select({ label, error, value, onChange, options, placeholder, cl
         {open && (
           <ul
             role="listbox"
-            className="absolute z-30 mt-2 w-full max-h-64 overflow-auto rounded-[var(--radius-2xl)] border border-[var(--color-outline-variant)] bg-white p-1.5 shadow-lg shadow-[var(--color-primary)]/10"
+            className="absolute z-30 mt-2 w-full max-h-64 overflow-auto rounded-[var(--radius-2xl)] border border-[var(--color-outline-variant)] bg-white p-1.5 shadow-[var(--shadow-card)]"
           >
             {options.map((opt) => {
               const isSelected = opt.value === value;
@@ -100,7 +100,7 @@ export function Select({ label, error, value, onChange, options, placeholder, cl
                       setOpen(false);
                     }}
                     className={cn(
-                      'w-full flex items-center justify-between gap-2 rounded-xl px-3 py-2.5 text-left text-body-md transition-colors',
+                      'w-full flex items-center justify-between gap-2 rounded-[var(--radius-xl)] px-3 py-2.5 text-left text-body-md transition-colors',
                       isSelected
                         ? 'bg-[var(--color-primary-container)]/15 text-[var(--color-primary)] font-bold'
                         : 'text-[var(--color-on-surface)] font-medium hover:bg-[var(--color-primary)]/5',

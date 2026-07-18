@@ -18,6 +18,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
   const t = useTranslations('ContactForm');
   const [state, setState] = useState<FormState>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [goalChoice, setGoalChoice] = useState('goalHsk12');
   const [modeChoice, setModeChoice] = useState('modeOnline');
 
@@ -25,15 +26,28 @@ export default function ContactForm({ locale }: ContactFormProps) {
     e.preventDefault();
     setState('submitting');
     setErrorMsg('');
+    setErrors({});
 
     const form = e.currentTarget;
     const data = new FormData(form);
-    const fullName = data.get('fullName') as string;
-    const phone = data.get('phone') as string;
-    const email = data.get('email') as string;
-    const message = data.get('message') as string;
+    const fullName = (data.get('fullName') as string) || '';
+    const phone = (data.get('phone') as string) || '';
+    const email = (data.get('email') as string) || '';
+    const message = (data.get('message') as string) || '';
 
-    if (!fullName.trim() || !phone.trim()) {
+    const newErrors: Record<string, string> = {};
+    if (!fullName.trim()) {
+      newErrors.fullName = t('errRequired');
+    }
+    if (!phone.trim()) {
+      newErrors.phone = t('errRequired');
+    }
+    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      newErrors.email = t('errEmailInvalid');
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       setState('error');
       setErrorMsg(t('errRequired'));
       return;
@@ -66,6 +80,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
       if (error) throw error;
       setState('success');
       form.reset();
+      setErrors({});
       setGoalChoice('goalHsk12');
       setModeChoice('modeOnline');
     } catch {
@@ -109,6 +124,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
             label={t('nameLabel')}
             placeholder={t('namePlaceholder')}
             autoComplete="name"
+            error={errors.fullName}
           />
           <Input
             id="contact-phone"
@@ -118,6 +134,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
             label={t('phoneLabel')}
             placeholder={t('phonePlaceholder')}
             autoComplete="tel"
+            error={errors.phone}
           />
         </div>
 
@@ -129,6 +146,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
           label={t('emailLabel')}
           placeholder={t('emailPlaceholder')}
           autoComplete="email"
+          error={errors.email}
         />
 
         {/* Select Goal & Study Mode */}

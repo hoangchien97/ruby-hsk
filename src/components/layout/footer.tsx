@@ -26,9 +26,9 @@ export function Footer({ locale }: { locale: string }) {
   ];
 
   return (
-    <footer className="w-full border-t border-[var(--color-surface-variant)] bg-[var(--color-surface-container-low)] py-16">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-12">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+    <footer className="w-full border-t border-[var(--color-surface-variant)] bg-[var(--color-surface-container-low)] py-10 md:py-16">
+      <div className="app-container">
+        <div className="grid grid-cols-1 gap-8 md:gap-12 md:grid-cols-12">
           {/* Brand */}
           <div className="md:col-span-3 max-w-xs space-y-4">
             <div className="flex items-center gap-3">
@@ -46,7 +46,7 @@ export function Footer({ locale }: { locale: string }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--color-surface-container-lowest)] transition-transform hover:scale-110 coral-shadow overflow-hidden p-0"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--color-surface-container-lowest)] transition-transform hover:scale-110 shadow-[var(--shadow-soft)] overflow-hidden p-0"
               >
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
@@ -59,7 +59,7 @@ export function Footer({ locale }: { locale: string }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Zalo"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--color-surface-container-lowest)] transition-transform hover:scale-110 coral-shadow overflow-hidden p-0"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--color-surface-container-lowest)] transition-transform hover:scale-110 shadow-[var(--shadow-soft)] overflow-hidden p-0"
               >
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
@@ -70,7 +70,7 @@ export function Footer({ locale }: { locale: string }) {
               <a
                 href={`mailto:${Contact.email}`}
                 aria-label="Email"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--color-surface-container-lowest)] text-[var(--color-primary)] transition-transform hover:scale-110 coral-shadow"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--color-surface-container-lowest)] text-[var(--color-primary)] transition-transform hover:scale-110 shadow-[var(--shadow-soft)]"
               >
                 <Mail className="h-5 w-5" />
               </a>

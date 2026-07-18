@@ -28,48 +28,50 @@ export function AboutLearningEnvironmentSection() {
   const t = useTranslations("About");
 
   return (
-    <section className="container max-w-[1400px] px-4 py-16 md:py-24 mx-auto">
-      <SectionHeader
-        title={t("learningEnvTitle")}
-        description={t("learningEnvDesc")}
-        className="mb-12"
-      />
+    <section className="app-section">
+      <div className="app-container">
+        <SectionHeader
+          title={t("learningEnvTitle")}
+          description={t("learningEnvDesc")}
+          className="mb-8 md:mb-12"
+        />
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {GALLERY_IMAGES.map(({ key, src }) => (
-          <div key={key} className="space-y-3">
-            <div className="aspect-video rounded-2xl overflow-hidden shadow-sm">
-              <img
-                src={src}
-                alt={t(`${key}Title`)}
-                className="w-full h-full object-cover"
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {GALLERY_IMAGES.map(({ key, src }) => (
+            <div key={key} className="space-y-3">
+              <div className="aspect-video rounded-[var(--radius-2xl)] overflow-hidden shadow-[var(--shadow-soft)]">
+                <img
+                  src={src}
+                  alt={t(`${key}Title`)}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h4 className="font-bold text-[var(--color-on-surface)]">
+                  {t(`${key}Title`)}
+                </h4>
+                <p className="text-label-sm text-[var(--color-on-surface-variant)]">
+                  {t(`${key}Desc`)}
+                </p>
+              </div>
+            </div>
+          ))}
+
+          <div className="space-y-3">
+            <div className="aspect-video rounded-[var(--radius-2xl)] bg-[var(--color-surface-container-low)] border border-[var(--color-surface-variant)] flex items-center justify-center">
+              <Palette
+                className="w-10 h-10 text-[var(--color-primary)]/40"
+                aria-hidden="true"
               />
             </div>
             <div>
               <h4 className="font-bold text-[var(--color-on-surface)]">
-                {t(`${key}Title`)}
+                {t("env4Title")}
               </h4>
               <p className="text-label-sm text-[var(--color-on-surface-variant)]">
-                {t(`${key}Desc`)}
+                {t("env4Desc")}
               </p>
             </div>
-          </div>
-        ))}
-
-        <div className="space-y-3">
-          <div className="aspect-video rounded-2xl bg-[var(--color-surface-container-low)] border border-[var(--color-surface-variant)] flex items-center justify-center">
-            <Palette
-              className="w-10 h-10 text-[var(--color-primary)]/40"
-              aria-hidden="true"
-            />
-          </div>
-          <div>
-            <h4 className="font-bold text-[var(--color-on-surface)]">
-              {t("env4Title")}
-            </h4>
-            <p className="text-label-sm text-[var(--color-on-surface-variant)]">
-              {t("env4Desc")}
-            </p>
           </div>
         </div>
       </div>

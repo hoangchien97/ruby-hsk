@@ -24,14 +24,16 @@ export function ContactPageContent({
       <ContactHeader />
 
       {/* Main grid: Form + Info */}
-      <section className="container pb-16 grid gap-8 lg:grid-cols-[1.3fr_1fr] items-stretch">
-        {/* Contact Form Wrapper */}
-        <div className="flex flex-col h-full">
-          <ContactForm locale={locale} />
-        </div>
+      <section className="app-section">
+        <div className="app-container grid gap-8 lg:grid-cols-[1.3fr_1fr] items-stretch">
+          {/* Contact Form Wrapper */}
+          <div className="flex flex-col h-full">
+            <ContactForm locale={locale} />
+          </div>
 
-        {/* Info sidebar */}
-        <ContactInfoSidebar locale={locale} />
+          {/* Info sidebar */}
+          <ContactInfoSidebar locale={locale} />
+        </div>
       </section>
 
       {/* Map Embed Section */}

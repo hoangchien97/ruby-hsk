@@ -12,27 +12,27 @@ export default function NotFound() {
   const tCommon = useTranslations('Common');
 
   return (
-    <main className="flex-grow flex items-center justify-center relative px-4 md:px-12 overflow-hidden py-16">
+    <main className="flex-grow flex items-center justify-center relative px-4 md:px-12 overflow-hidden py-10 md:py-16">
       {/* Decorative Blur Backgrounds */}
       <div className="absolute -top-20 -left-20 w-64 h-64 bg-[var(--color-secondary-container)]/20 rounded-full blur-3xl opacity-60" />
       <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-[var(--color-primary-container)]/10 rounded-full blur-3xl opacity-60" />
 
-      <div className="max-w-4xl w-full flex flex-col md:flex-row items-center gap-12 relative z-10">
+      <div className="max-w-4xl w-full flex flex-col md:flex-row items-center gap-8 md:gap-12 relative z-10">
         {/* Mascot Visual Section */}
         <div className="flex-1 flex flex-col items-center justify-center relative">
           <div className="relative animate-bounce-slow">
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-white border border-[var(--color-surface-variant)] shadow-lg flex items-center justify-center p-6 overflow-hidden coral-shadow">
+            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-white border border-[var(--color-surface-variant)] shadow-[var(--shadow-card)] flex items-center justify-center p-6 overflow-hidden">
               <div className="relative">
                 <LogoIcon className="w-48 h-48 md:w-56 md:h-56 drop-shadow-2xl" />
 
                 {/* Broken Card Overlay */}
-                <div className="absolute -bottom-4 -right-4 bg-white p-3 rounded-xl shadow-lg border border-[var(--color-surface-variant)] rotate-12 flex flex-col items-center gap-1">
+                <div className="absolute -bottom-4 -right-4 bg-white p-3 rounded-[var(--radius-xl)] shadow-[var(--shadow-card)] border border-[var(--color-surface-variant)] rotate-12 flex flex-col items-center gap-1">
                   <div className="flex gap-1 items-center">
-                    <div className="w-10 h-14 bg-[var(--color-surface-container)] border-2 border-dashed border-[var(--color-surface-variant)] rounded-md flex items-center justify-center">
+                    <div className="w-10 h-14 bg-[var(--color-surface-container)] border-2 border-dashed border-[var(--color-surface-variant)] rounded-[var(--radius-md)] flex items-center justify-center">
                       <X className="w-5 h-5 text-[var(--color-primary)]" />
                     </div>
                     <div className="w-1 h-14 bg-[var(--color-surface-variant)]/30 rounded-full" />
-                    <div className="w-10 h-14 bg-[var(--color-surface-container)] border-2 border-dashed border-[var(--color-surface-variant)] rounded-md flex items-center justify-center">
+                    <div className="w-10 h-14 bg-[var(--color-surface-container)] border-2 border-dashed border-[var(--color-surface-variant)] rounded-[var(--radius-md)] flex items-center justify-center">
                       <span className="text-[var(--color-primary)] font-bold text-label-sm">汉</span>
                     </div>
                   </div>
@@ -44,10 +44,10 @@ export default function NotFound() {
             </div>
 
             {/* Decorative Floating Items */}
-            <div className="absolute -top-4 -left-4 w-12 h-12 bg-[var(--color-secondary-container)] rounded-full flex items-center justify-center coral-shadow shadow-md">
+            <div className="absolute -top-4 -left-4 w-12 h-12 bg-[var(--color-secondary-container)] rounded-full flex items-center justify-center shadow-[var(--shadow-soft)]">
               <HelpCircle className="w-6 h-6 text-[var(--color-on-secondary-container)]" />
             </div>
-            <div className="absolute top-1/2 -right-8 w-14 h-14 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center coral-shadow shadow-md border border-[var(--color-primary)]/20">
+            <div className="absolute top-1/2 -right-8 w-14 h-14 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center shadow-[var(--shadow-soft)] border border-[var(--color-primary)]/20">
               <PenTool className="w-6 h-6 text-[var(--color-primary)]" />
             </div>
           </div>
@@ -84,9 +84,9 @@ export default function NotFound() {
           <div className="mt-10 grid grid-cols-2 gap-4">
             <Link
               href="/courses"
-              className="p-4 glass-card rounded-xl flex items-center gap-3 hover:bg-white transition-all group"
+              className="p-4 glass-card rounded-[var(--radius-xl)] flex items-center gap-3 hover:bg-white transition-all group"
             >
-              <div className="w-10 h-10 rounded-lg bg-[var(--color-secondary-container)]/20 flex items-center justify-center text-[var(--color-secondary-container)] group-hover:scale-110 transition-transform">
+              <div className="w-10 h-10 rounded-[var(--radius-lg)] bg-[var(--color-secondary-container)]/20 flex items-center justify-center text-[var(--color-secondary-container)] group-hover:scale-110 transition-transform">
                 <BookOpen className="w-5 h-5 text-[var(--color-primary)]" />
               </div>
               <span className="text-label-sm font-bold text-[var(--color-on-surface)]">
@@ -95,9 +95,9 @@ export default function NotFound() {
             </Link>
             <Link
               href="/about"
-              className="p-4 glass-card rounded-xl flex items-center gap-3 hover:bg-white transition-all group"
+              className="p-4 glass-card rounded-[var(--radius-xl)] flex items-center gap-3 hover:bg-white transition-all group"
             >
-              <div className="w-10 h-10 rounded-lg bg-[var(--color-primary-container)]/20 flex items-center justify-center text-[var(--color-primary)] group-hover:scale-110 transition-transform">
+              <div className="w-10 h-10 rounded-[var(--radius-lg)] bg-[var(--color-primary-container)]/20 flex items-center justify-center text-[var(--color-primary)] group-hover:scale-110 transition-transform">
                 <GraduationCap className="w-5 h-5 text-[var(--color-primary)]" />
               </div>
               <span className="text-label-sm font-bold text-[var(--color-on-surface)]">
