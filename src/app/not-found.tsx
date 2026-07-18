@@ -1,2 +1,4 @@
-import {redirect} from 'next/navigation';
-export default function GlobalNotFound(){ redirect('/vi'); }
+import { redirect } from 'next/navigation';
+export default function GlobalNotFound() {
+  redirect('/vi');
+}
