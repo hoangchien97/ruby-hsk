@@ -52,14 +52,14 @@ export function CourseCard({
       </div>
 
       {/* Body */}
-      <div className="p-4 md:p-8 flex flex-col flex-1">
+      <div className="p-4 flex flex-col flex-1">
         <div className="flex justify-between items-start gap-2 mb-4">
           <h3 className="font-bold text-title-md text-[var(--color-on-surface)] group-hover:text-[var(--color-primary)] transition-colors leading-tight">
             {title}
           </h3>
         </div>
 
-        <p className="text-[var(--color-on-surface-variant)] text-body-md mb-6 line-clamp-2 flex-grow">
+        <p className="text-[var(--color-on-surface-variant)] text-body-md mb-4 line-clamp-2 flex-grow">
           {desc}
         </p>
 

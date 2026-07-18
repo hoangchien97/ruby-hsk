@@ -65,33 +65,17 @@ textarea {
 /* ─── Layout ─── */
 .page-shell {
   min-height: 100vh;
-  padding-bottom: 0;
+  padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
 }
 
-@media (min-width: 1400px) {
-  .container {
-    width: min(1400px, calc(100% - 32px));
-    margin-inline: auto;
+@media (min-width: 768px) {
+  .page-shell {
+    padding-bottom: 0;
   }
 }
 
 /* ─── Consistent Layout System ─── */
-.app-section {
-  width: 100%;
-  padding-block: 40px;
-  /* Mobile: 40px vertical padding */
-
-  @media (min-width: 768px) {
-    padding-block: 64px;
-    /* Tablet: 64px vertical padding */
-  }
-
-  @media (min-width: 1400px) {
-    padding-block: 80px;
-    /* Desktop: 80px vertical padding */
-  }
-}
-
+.container,
 .app-container {
   width: 100%;
   max-width: 1400px;
@@ -107,6 +91,22 @@ textarea {
   @media (min-width: 1400px) {
     padding-inline: 32px;
     /* Desktop: 32px horizontal padding */
+  }
+}
+
+.app-section {
+  width: 100%;
+  padding-block: 40px;
+  /* Mobile: 40px vertical padding */
+
+  @media (min-width: 768px) {
+    padding-block: 64px;
+    /* Tablet: 64px vertical padding */
+  }
+
+  @media (min-width: 1400px) {
+    padding-block: 80px;
+    /* Desktop: 80px vertical padding */
   }
 }
 
@@ -267,12 +267,7 @@ textarea {
   animation: bounce-slow 4s infinite ease-in-out;
 }
 
-/* ─── Mobile: show bottom nav ─── */
-@media (min-width: 768px) {
-  .page-shell {
-    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
-  }
-}
+/* ─── Mobile bottom nav offset ─── */
 
 /* ─── Nav Link Underline Hover Animation ─── */
 .nav-link-animated {

@@ -32,8 +32,8 @@ export function ScrollToTop() {
       aria-label={t('scrollToTop')}
       className={[
         // bottom-20 (80px) clears the mobile bottom nav bar (64px) on mobile,
-        // and right-4 places it symmetrically opposite the FloatingContact button stack.
-        'fixed bottom-20 right-4 md:bottom-6 md:right-6 z-40',
+        // and left-4 places it symmetrically opposite the FloatingContact button stack.
+        'fixed bottom-20 left-4 md:bottom-6 md:left-6 z-40',
         'w-11 h-11 rounded-full',
         'bg-[var(--color-primary)] text-white',
         'shadow-[var(--shadow-button)]',

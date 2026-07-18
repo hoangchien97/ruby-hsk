@@ -20,7 +20,6 @@ export default function ContactForm({ locale }: ContactFormProps) {
   const [errorMsg, setErrorMsg] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [goalChoice, setGoalChoice] = useState('goalHsk12');
-  const [modeChoice, setModeChoice] = useState('modeOnline');
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -58,9 +57,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
     if (goalChoice) {
       goalParts.push(`${t('goalSelectLabel')}: ${t(goalChoice)}`);
     }
-    if (modeChoice) {
-      goalParts.push(`${t('modeSelectLabel')}: ${t(modeChoice)}`);
-    }
+
     if (message.trim()) {
       goalParts.push(`${t('msgLabel')}: ${message.trim()}`);
     }
@@ -82,7 +79,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
       form.reset();
       setErrors({});
       setGoalChoice('goalHsk12');
-      setModeChoice('modeOnline');
+
     } catch {
       setState('error');
       setErrorMsg(t('errGeneral'));
@@ -109,7 +106,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
 
   // ── Form ──────────────────────────────────────────────────────
   return (
-    <div className="bg-[var(--color-surface-container-lowest)] rounded-[var(--radius-3xl)] p-6 md:p-8 shadow-[var(--shadow-card)] border border-[var(--color-outline-variant)]/20">
+    <div className="bg-[var(--color-surface-container-lowest)] rounded-[var(--radius-3xl)] p-4 md:p-6 lg:p-8 shadow-[var(--shadow-card)] border border-[var(--color-outline-variant)]/20">
       <h2 className="text-headline-lg-mobile md:text-headline-lg text-[var(--color-on-surface)] mb-6">
         {t('formTitle')}
       </h2>
@@ -149,33 +146,19 @@ export default function ContactForm({ locale }: ContactFormProps) {
           error={errors.email}
         />
 
-        {/* Select Goal & Study Mode */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Select
-            id="contact-goal-choice"
-            label={t('goalSelectLabel')}
-            value={goalChoice}
-            onChange={setGoalChoice}
-            options={[
-              { value: 'goalHsk12', label: t('goalHsk12') },
-              { value: 'goalHsk34', label: t('goalHsk34') },
-              { value: 'goalHsk56', label: t('goalHsk56') },
-              { value: 'goalComms', label: t('goalComms') },
-            ]}
-          />
-
-          <Select
-            id="contact-mode-choice"
-            label={t('modeSelectLabel')}
-            value={modeChoice}
-            onChange={setModeChoice}
-            options={[
-              { value: 'modeOnline', label: t('modeOnline') },
-              { value: 'modeOffline', label: t('modeOffline') },
-              { value: 'modeOneToOne', label: t('modeOneToOne') },
-            ]}
-          />
-        </div>
+        {/* Select Goal */}
+        <Select
+          id="contact-goal-choice"
+          label={t('goalSelectLabel')}
+          value={goalChoice}
+          onChange={setGoalChoice}
+          options={[
+            { value: 'goalHsk12', label: t('goalHsk12') },
+            { value: 'goalHsk34', label: t('goalHsk34') },
+            { value: 'goalHsk56', label: t('goalHsk56') },
+            { value: 'goalComms', label: t('goalComms') },
+          ]}
+        />
 
         {/* Message */}
         <Textarea

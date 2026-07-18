@@ -14,7 +14,7 @@ export function CourseMobileFilter({
     const t = useTranslations('Courses');
 
     const chips = [
-        { key: 'all', label: t('modeAll') },
+        { key: 'all', label: t('all') },
         { key: 'hsk-1', label: 'HSK 1' },
         { key: 'hsk-2', label: 'HSK 2' },
         { key: 'hsk-3', label: 'HSK 3' },

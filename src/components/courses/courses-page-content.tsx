@@ -29,7 +29,6 @@ export function CoursesPageContent({
   const t = useTranslations('Courses');
 
   const [selectedLevels, setSelectedLevels] = useState<string[]>(['all']);
-  const [selectedFormat, setSelectedFormat] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('newest');
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
@@ -39,7 +38,7 @@ export function CoursesPageContent({
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedLevels, selectedFormat, sortBy]);
+  }, [selectedLevels, sortBy]);
 
   // ── Level toggle ──────────────────────────────────────────────
   const handleLevelToggle = (level: string) => {
@@ -81,14 +80,6 @@ export function CoursesPageContent({
       });
     }
 
-    if (selectedFormat !== 'all') {
-      if (selectedFormat === 'online') {
-        result = result.filter((c) => c.slug.includes('hsk') || c.slug.includes('cap'));
-      } else if (selectedFormat === 'video') {
-        result = result.filter((c) => c.slug.includes('thuong-mai') || c.slug.includes('so-cap'));
-      }
-    }
-
     if (sortBy === 'duration-asc') {
       result.sort((a, b) => (a.duration_weeks ?? 0) - (b.duration_weeks ?? 0));
     } else if (sortBy === 'popular') {
@@ -98,7 +89,7 @@ export function CoursesPageContent({
     }
 
     return result;
-  }, [courses, selectedLevels, selectedFormat, sortBy]);
+  }, [courses, selectedLevels, sortBy]);
 
   const totalPages = Math.ceil(filteredCourses.length / itemsPerPage);
   const paginatedCourses = useMemo(() => {
@@ -106,11 +97,7 @@ export function CoursesPageContent({
     return filteredCourses.slice(start, start + itemsPerPage);
   }, [filteredCourses, currentPage]);
 
-  const formats = [
-    { key: 'all', label: t('modeAll') },
-    { key: 'online', label: t('modeOnline') },
-    { key: 'video', label: t('modeVideo') },
-  ];
+
 
   return (
     <div className="w-full">
@@ -141,9 +128,6 @@ export function CoursesPageContent({
             <CourseFilters
               selectedLevels={selectedLevels}
               onLevelToggle={handleLevelToggle}
-              selectedFormat={selectedFormat}
-              onFormatChange={setSelectedFormat}
-              formats={formats}
               counts={counts}
             />
 
@@ -170,7 +154,7 @@ export function CoursesPageContent({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
                 {paginatedCourses.map((c) => (
                   <CourseCard
                     key={c.id ?? c.slug}
@@ -206,7 +190,7 @@ export function CoursesPageContent({
                   currentPage={currentPage}
                   totalPages={totalPages}
                   onPageChange={setCurrentPage}
-                  className="mt-10 md:mt-16"
+                  className="mt-4 md:mt-16"
                 />
               )}
             </div>

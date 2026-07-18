@@ -8,18 +8,12 @@ import { Link } from '@/i18n/navigation';
 interface CourseFiltersProps {
   selectedLevels: string[];
   onLevelToggle: (level: string) => void;
-  selectedFormat: string;
-  onFormatChange: (fmt: string) => void;
-  formats: { key: string; label: string }[];
   counts: Record<string, number>;
 }
 
 export function CourseFilters({
   selectedLevels,
   onLevelToggle,
-  selectedFormat,
-  onFormatChange,
-  formats,
   counts,
 }: CourseFiltersProps) {
   const t = useTranslations('Courses');
@@ -88,27 +82,6 @@ export function CourseFilters({
                   {counts[key] ?? 0}
                 </span>
               </label>
-            ))}
-          </div>
-        </div>
-
-        {/* Format filter */}
-        <div className="mt-8 pt-8 border-t border-[var(--color-surface-variant)]/30">
-          <h3 className="text-title-md font-bold mb-4 text-[var(--color-on-surface)]">
-            {t('teachingMode')}
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {formats.map((f) => (
-              <button
-                key={f.key}
-                onClick={() => onFormatChange(f.key)}
-                className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${selectedFormat === f.key
-                  ? 'bg-[var(--color-primary)] text-white shadow-[var(--shadow-soft)]'
-                  : 'bg-[var(--color-surface-container)] text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-variant)]'
-                  }`}
-              >
-                {f.label}
-              </button>
             ))}
           </div>
         </div>

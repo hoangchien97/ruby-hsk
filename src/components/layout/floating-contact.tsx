@@ -3,7 +3,7 @@ import { Contact } from '@/lib/constants/site';
 
 export function FloatingContact() {
   return (
-    <div className="fixed bottom-20 left-4 z-40 grid gap-2 md:bottom-6 md:left-6">
+    <div className="fixed bottom-20 right-4 z-40 grid gap-2 md:bottom-6 md:right-6">
       <a
         href={Contact.zalo}
         target="_blank"
