@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 export function ContactFaq() {
   const t = useTranslations('Contact');
@@ -24,17 +25,17 @@ export function ContactFaq() {
       <div className="app-container">
         <div className="max-w-3xl mx-auto space-y-8">
           {/* FAQ Section Header */}
-          <div className="text-center space-y-3">
+          <ScrollReveal className="text-center space-y-3">
             <h2 className="text-headline-lg md:text-display-sm text-[var(--color-on-surface)]">
               {t('faqTitle')}
             </h2>
             <p className="text-body-lg text-[var(--color-on-surface-variant)] max-w-xl mx-auto">
               {t('faqSub')}
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* FAQ List */}
-          <div className="space-y-4">
+          <ScrollReveal className="space-y-4">
             {faqKeys.map((key) => {
               const answerKey = `a${key.slice(1)}`;
               const isOpen = openIds.includes(key);
@@ -78,7 +79,7 @@ export function ContactFaq() {
                 </div>
               );
             })}
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

@@ -12,6 +12,7 @@ import { CourseMobileFilter } from './course-mobile-filter';
 import { CourseFilters } from './course-filters';
 import { CourseCard } from './course-card';
 import { Pagination } from '@/components/ui/pagination';
+import { ScrollReveal, ScrollRevealItem } from '@/components/ui/scroll-reveal';
 
 const HSK_LEVEL_KEYS = ['hsk-1', 'hsk-2', 'hsk-3', 'hsk-4', 'hsk-5', 'hsk-6'] as const;
 
@@ -34,7 +35,7 @@ export function CoursesPageContent({
 
   // ── Pagination State & Reset ──────────────────────────────────
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 10;
 
   useEffect(() => {
     setCurrentPage(1);
@@ -154,35 +155,38 @@ export function CoursesPageContent({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+              <ScrollReveal variant="stagger" className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
                 {paginatedCourses.map((c) => (
-                  <CourseCard
-                    key={c.id ?? c.slug}
-                    course={c}
-                    locale={locale}
-                    isFav={!!favorites[c.slug]}
-                    onToggleFav={() => toggleFavorite(c.slug)}
-                  />
+                  <ScrollRevealItem key={c.id ?? c.slug}>
+                    <CourseCard
+                      course={c}
+                      locale={locale}
+                      isFav={!!favorites[c.slug]}
+                      onToggleFav={() => toggleFavorite(c.slug)}
+                    />
+                  </ScrollRevealItem>
                 ))}
 
                 {/* Upcoming placeholder card */}
-                <div className="group bg-[var(--color-surface-container-low)] rounded-[var(--radius-3xl)] overflow-hidden shadow-[var(--shadow-soft)] border-2 border-dashed border-[var(--color-primary)]/20 flex flex-col items-center justify-center p-8 text-center min-h-[400px]">
-                  <div className="w-20 h-20 bg-[var(--color-primary-container)]/30 rounded-full flex items-center justify-center mb-6">
-                    <Award className="w-10 h-10 text-[var(--color-primary)]" />
+                <ScrollRevealItem>
+                  <div className="group bg-[var(--color-surface-container-low)] rounded-[var(--radius-3xl)] overflow-hidden shadow-[var(--shadow-soft)] border-2 border-dashed border-[var(--color-primary)]/20 flex flex-col items-center justify-center p-8 text-center min-h-[400px]">
+                    <div className="w-20 h-20 bg-[var(--color-primary-container)]/30 rounded-full flex items-center justify-center mb-6">
+                      <Award className="w-10 h-10 text-[var(--color-primary)]" />
+                    </div>
+                    <h3 className="text-title-md font-bold text-[var(--color-on-background)] mb-4">
+                      {t('upcomingTitle')}
+                    </h3>
+                    <p className="text-[var(--color-on-surface-variant)] text-body-md max-w-xs mb-8">
+                      {t('upcomingDesc')}
+                    </p>
+                    <Link href="/contact">
+                      <Button variant="outlined" className="px-8 py-3 rounded-full hover:bg-[var(--color-primary)] hover:text-white transition-all">
+                        {t('notifyMe')}
+                      </Button>
+                    </Link>
                   </div>
-                  <h3 className="text-title-md font-bold text-[var(--color-on-background)] mb-4">
-                    {t('upcomingTitle')}
-                  </h3>
-                  <p className="text-[var(--color-on-surface-variant)] text-body-md max-w-xs mb-8">
-                    {t('upcomingDesc')}
-                  </p>
-                  <Link href="/contact">
-                    <Button variant="outlined" className="px-8 py-3 rounded-full hover:bg-[var(--color-primary)] hover:text-white transition-all">
-                      {t('notifyMe')}
-                    </Button>
-                  </Link>
-                </div>
-              </div>
+                </ScrollRevealItem>
+              </ScrollReveal>
 
               {/* Pagination */}
               {totalPages > 1 && (

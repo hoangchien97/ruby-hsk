@@ -1,5 +1,8 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
 import { SectionBadge } from '@/components/ui/section-badge';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 const CONTACT_HERO_IMAGE =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuDhsU2Z3ybUP4TdNm9JnFlzTcGsHf7DoQsVJWScgcRrSJO9h9MOa2GEJLiGRQFfoQn6_6SpAAn0R9LfUGAPKhwLRhuwWpgTwMQJJAnSZjspImTnZeW50hOORglqUFMF09KQ5XfDapMHxjZ7KxUYaWxoPvQIpMFmfMw2JrX2LSuUQLDJpnL_9-t6F-koMB4D7697AwTv62gon7HQpiBc29xZWU-puSjVGAFYtgdrRHmjURqk_sn82kIK6brLc1ZQEdrRaY1NgNkBTy8';
@@ -13,7 +16,7 @@ export function ContactHeader() {
       <section className="app-section pb-0 hidden md:block">
         <div className="app-container relative z-10 grid md:grid-cols-2 items-center gap-12">
           {/* Left: copy */}
-          <div>
+          <ScrollReveal>
             <SectionBadge className="mb-4">{t('consultationBadge')}</SectionBadge>
             <h1 className="text-headline-lg md:text-display-sm text-[var(--color-primary)] max-w-xl tracking-tight">
               {t('title')}
@@ -21,7 +24,7 @@ export function ContactHeader() {
             <p className="mt-3 max-w-xl text-body-lg text-[var(--color-on-surface-variant)] leading-relaxed">
               {t('sub')}
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Right: floating mascot */}
           <div className="relative flex justify-center lg:justify-end select-none group">
@@ -38,13 +41,15 @@ export function ContactHeader() {
       {/* ── Mobile: copy only ────────────────────────────────────── */}
       <section className="app-section pb-0 block md:hidden">
         <div className="app-container">
-          <SectionBadge className="mb-4">{t('consultationBadge')}</SectionBadge>
-          <h1 className="text-headline-lg font-bold text-[var(--color-primary)] tracking-tight leading-tight">
-            {t('title')}
-          </h1>
-          <p className="mt-3 text-body-lg text-[var(--color-on-surface-variant)] leading-relaxed">
-            {t('sub')}
-          </p>
+          <ScrollReveal>
+            <SectionBadge className="mb-4">{t('consultationBadge')}</SectionBadge>
+            <h1 className="text-headline-lg font-bold text-[var(--color-primary)] tracking-tight leading-tight">
+              {t('title')}
+            </h1>
+            <p className="mt-3 text-body-lg text-[var(--color-on-surface-variant)] leading-relaxed">
+              {t('sub')}
+            </p>
+          </ScrollReveal>
         </div>
       </section>
     </>

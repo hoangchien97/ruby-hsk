@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Card } from '@/components/ui/card';
 import { SectionBadge } from '@/components/ui/section-badge';
+import { ScrollReveal, ScrollRevealItem } from '@/components/ui/scroll-reveal';
 import { Target, GraduationCap, Star, Check } from 'lucide-react';
 import type { ComponentType } from 'react';
 
@@ -61,20 +62,22 @@ export function LearningPaths({ locale = 'vi' }: { locale?: string }) {
   return (
     <section className="app-section">
       <div className="app-container">
-        <div className="mb-10 text-center">
+        <ScrollReveal className="mb-10 text-center">
           <h2 className="text-headline-lg text-[var(--color-on-surface)]">
             {t('roadmap')}
           </h2>
           <p className="mt-2 text-body-md text-[var(--color-on-surface-variant)]">
             {t('roadmapDesc')}
           </p>
-        </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <ScrollReveal variant="stagger" className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {paths.map((path) => (
-            <LearningPathCard key={path.level} path={path} />
+            <ScrollRevealItem key={path.level}>
+              <LearningPathCard path={path} />
+            </ScrollRevealItem>
           ))}
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
@@ -119,7 +122,7 @@ function LearningPathCard({ path }: { path: LearningPath }) {
   const linkColor = path.color === 'tertiary' ? 'text-[var(--color-tertiary)]' : 'text-[var(--color-primary)]';
 
   return (
-    <Card hover className="group relative overflow-hidden p-8">
+    <Card hover className="group relative overflow-hidden p-8 h-full">
       <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-[var(--radius-xl)] ${iconBg} ${iconColor}`}>
         <Icon className="h-6 w-6" />
       </div>

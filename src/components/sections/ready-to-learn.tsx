@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Gem } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 export function ReadyToLearn() {
   const t = useTranslations('ReadyToLearn');
@@ -12,7 +13,8 @@ export function ReadyToLearn() {
     <section className="app-section relative overflow-hidden bg-gradient-to-br from-[var(--color-surface-container-low)] via-[var(--color-bg)] to-[var(--color-primary-fixed)]/10">
       <div className="app-container relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div
+          <ScrollReveal
+            variant="scale-in"
             className="relative bg-white dark:bg-[var(--color-surface-container-low)] rounded-[var(--radius-3xl)] p-6 md:p-16 text-center shadow-[var(--shadow-coral)] border border-[var(--color-outline-variant)] dark:border-[var(--color-primary)]/20 transition-all duration-300"
           >
             {/* Floating Diamond Badge */}
@@ -51,7 +53,7 @@ export function ReadyToLearn() {
                 </Button>
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
 

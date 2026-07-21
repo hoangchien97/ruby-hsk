@@ -10,6 +10,7 @@ import {
   Users,
 } from "lucide-react";
 import type { TeacherProfile } from "@/types/models";
+import { ScrollReveal, ScrollRevealItem } from "@/components/ui/scroll-reveal";
 
 interface AboutTeacherSectionProps {
   teacher: TeacherProfile | null;
@@ -39,7 +40,7 @@ export function AboutTeacherSection({ teacher }: AboutTeacherSectionProps) {
       <div className="app-container">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
           {/* Left: Portrait */}
-          <div className="w-full lg:w-1/3 shrink-0">
+          <ScrollReveal className="w-full lg:w-1/3 shrink-0">
             <div className="relative group max-w-sm mx-auto lg:max-w-none">
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary-container)] to-[var(--color-primary)] rounded-[var(--radius-3xl)] transform rotate-3 scale-105 opacity-20 group-hover:rotate-0 transition-transform duration-300" />
               <img
@@ -48,10 +49,10 @@ export function AboutTeacherSection({ teacher }: AboutTeacherSectionProps) {
                 className="relative z-10 w-full aspect-square object-cover rounded-[var(--radius-3xl)] shadow-[var(--shadow-coral)]"
               />
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right: Intro + Achievement Grid + Quote */}
-          <div className="w-full lg:w-2/3 space-y-8">
+          <ScrollReveal className="w-full lg:w-2/3 space-y-8">
             <div>
               <span className="text-label-lg font-bold tracking-widest text-[var(--color-secondary)] uppercase">
                 {t("foundingInstructor")}
@@ -64,27 +65,26 @@ export function AboutTeacherSection({ teacher }: AboutTeacherSectionProps) {
               </p>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <ScrollReveal variant="stagger" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {ACHIEVEMENTS_CONFIG.map(({ key, icon: Icon }) => (
-                <div
-                  key={key}
-                  className="p-5 rounded-[var(--radius-xl)] bg-[var(--color-surface-container-lowest)] border border-l-4 border-[var(--color-primary)] shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-coral)] transition-all duration-300"
-                >
-                  <Icon className="w-6 h-6 text-[var(--color-primary)] mb-2" />
-                  <p className="text-sm font-bold text-[var(--color-on-surface)] leading-tight">
-                    {t(`${key}Title`)}
-                  </p>
-                  <p className="text-xs text-[var(--color-on-surface-variant)] mt-0.5 leading-snug">
-                    {t(`${key}Desc`)}
-                  </p>
-                </div>
+                <ScrollRevealItem key={key}>
+                  <div className="p-5 rounded-[var(--radius-xl)] bg-[var(--color-surface-container-lowest)] border border-l-4 border-[var(--color-primary)] shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-coral)] transition-all duration-300">
+                    <Icon className="w-6 h-6 text-[var(--color-primary)] mb-2" />
+                    <p className="text-sm font-bold text-[var(--color-on-surface)] leading-tight">
+                      {t(`${key}Title`)}
+                    </p>
+                    <p className="text-xs text-[var(--color-on-surface-variant)] mt-0.5 leading-snug lg:min-h-[32px]">
+                      {t(`${key}Desc`)}
+                    </p>
+                  </div>
+                </ScrollRevealItem>
               ))}
-            </div>
+            </ScrollReveal>
 
             <p className="text-body-lg italic text-[var(--color-on-surface-variant)] leading-relaxed border-l-2 border-[var(--color-primary)]/20 pl-6 py-1">
               {t("teacherQuote")}
             </p>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

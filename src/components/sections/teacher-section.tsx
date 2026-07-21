@@ -4,6 +4,8 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';
 import { Teacher } from '@/lib/constants/site';
+import { AnimatedCounter } from '@/components/ui/animated-counter';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 interface TeacherSectionProps {
   locale?: string;
@@ -24,7 +26,7 @@ export function TeacherSection({
   return (
     <section className="app-section">
       <div className="app-container">
-        <div className="overflow-hidden rounded-[var(--radius-3xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] shadow-[var(--shadow-coral)] flex flex-col lg:flex-row">
+        <ScrollReveal className="overflow-hidden rounded-[var(--radius-3xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] shadow-[var(--shadow-coral)] flex flex-col lg:flex-row">
           {/* Teacher photo */}
           <div className="lg:w-2/5 h-80 lg:h-auto relative overflow-hidden bg-gradient-to-br from-[var(--color-primary-fixed)] via-[var(--color-surface-container-low)] to-[var(--color-secondary-fixed)] flex items-center justify-center min-h-[320px]">
             <img
@@ -50,7 +52,7 @@ export function TeacherSection({
             <div className="mt-6 grid grid-cols-2 gap-4">
               <div>
                 <p className="font-bold text-[var(--color-on-surface)]">
-                  {Teacher.yearsExperience}+ {t('teacherYears')}
+                  <AnimatedCounter value={Teacher.yearsExperience} suffix="+" /> {t('teacherYears')}
                 </p>
                 <p className="text-label-lg text-[var(--color-on-surface-variant)]">
                   {t('teacherScope')}
@@ -87,7 +89,7 @@ export function TeacherSection({
               </Link>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

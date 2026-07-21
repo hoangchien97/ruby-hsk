@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { SectionBadge } from "@/components/ui/section-badge";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const STAT_KEYS = [
   { value: "statYears", label: "statYearsLabel" },
@@ -14,7 +16,7 @@ const HERO_IMAGE_URL =
 
 /**
  * About page header banner — two-column hero (text + portrait) on desktop,
- * matching Stitch's about_new layout; the portrait collapses away below `lg`.
+ * the portrait collapses away below `lg`.
  */
 export function AboutHeaderBanner() {
   const t = useTranslations("About");
@@ -23,7 +25,8 @@ export function AboutHeaderBanner() {
     <section className="relative overflow-hidden app-section border-b border-[var(--color-surface-variant)]/40 bg-gradient-to-b from-[var(--color-surface-container-low)] to-[var(--color-bg)]">
       <div className="app-container relative z-10">
         <div className="grid gap-8 lg:gap-12 lg:grid-cols-2 items-center">
-          <div>
+          {/* Left: Copy + stats */}
+          <ScrollReveal>
             <SectionBadge>{t("aboutBadge")}</SectionBadge>
             <h1 className="text-headline-lg-mobile md:text-display-lg font-bold text-[var(--color-on-background)] tracking-tight leading-[1.1] mb-6 mt-6">
               {t("title")}
@@ -32,11 +35,12 @@ export function AboutHeaderBanner() {
               {t("desc")}
             </p>
 
+            {/* Stats bar */}
             <div className="mt-10 grid grid-cols-3 gap-4 pt-8 border-t border-[var(--color-primary)]/10 max-w-lg">
               {STAT_KEYS.map(({ value, label }) => (
                 <div key={value}>
                   <p className="text-headline-lg text-[var(--color-primary)] font-bold">
-                    {t(value)}
+                    <AnimatedCounter value={t(value)} />
                   </p>
                   <p className="text-label-lg text-[var(--color-on-surface-variant)] uppercase font-semibold tracking-wide mt-1">
                     {t(label)}
@@ -44,9 +48,10 @@ export function AboutHeaderBanner() {
                 </div>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
 
-          <div className="hidden lg:block relative">
+          {/* Right: Portrait */}
+          <ScrollReveal delay={0.15} className="hidden lg:block relative">
             <div className="relative aspect-[4/5] rounded-[var(--radius-3xl)] overflow-hidden shadow-[var(--shadow-coral)]">
               <img
                 src={HERO_IMAGE_URL}
@@ -57,7 +62,7 @@ export function AboutHeaderBanner() {
             </div>
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-[var(--color-primary)]/10 rounded-full blur-3xl -z-10" />
             <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-[var(--color-secondary-container)]/25 rounded-full blur-3xl -z-10" />
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

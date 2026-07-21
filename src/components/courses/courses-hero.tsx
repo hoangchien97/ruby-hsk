@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { SectionBadge } from '@/components/ui/section-badge';
 import { AVATARS, FALLBACK_COVER } from './course-constants';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 export function CoursesHero() {
   const t = useTranslations('Courses');
@@ -12,7 +13,7 @@ export function CoursesHero() {
       {/* ── Desktop Hero ─────────────────────────────────────── */}
       <section className="app-section hidden md:block relative overflow-hidden">
         <div className="app-container relative z-10 grid md:grid-cols-2 items-center gap-12">
-          <div>
+          <ScrollReveal>
             <SectionBadge className="mb-6">{t('badge')}</SectionBadge>
             <h1 className="text-display-lg md:text-7xl font-extrabold text-[var(--color-on-background)] mb-6 leading-tight">
               {t('heroLine1')} <br />
@@ -41,7 +42,8 @@ export function CoursesHero() {
                 {t('activeStudents')}
               </p>
             </div>
-          </div>
+          </ScrollReveal>
+
 
           {/* Hero illustration */}
           <div className="relative hidden md:block select-none">

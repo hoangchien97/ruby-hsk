@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { BookOpen, GraduationCap, Laptop, ShieldCheck } from "lucide-react";
 import { IconBox } from "@/components/ui/icon-box";
+import { ScrollReveal, ScrollRevealItem } from "@/components/ui/scroll-reveal";
 
 const WHY_ITEMS = [
   { key: "why1", icon: BookOpen },
@@ -20,33 +21,32 @@ export function AboutWhySection() {
   return (
     <section className="app-section bg-[var(--color-surface-container-low)]">
       <div className="app-container">
-        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-16">
+        <ScrollReveal className="text-center max-w-2xl mx-auto mb-10 md:mb-16">
           <h2 className="text-headline-lg md:text-[40px] font-bold text-[var(--color-on-surface)] mb-4">
             {t("whyTitle")}
           </h2>
           <p className="text-body-lg block text-[var(--color-on-surface-variant)] font-medium">
             {t("whyDesc")}
           </p>
-        </div>
+        </ScrollReveal>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <ScrollReveal variant="stagger" className="grid gap-8 md:grid-cols-2">
           {WHY_ITEMS.map(({ key, icon }) => (
-            <div
-              key={key}
-              className="flex gap-6 p-8 rounded-[var(--radius-3xl)] bg-[var(--color-surface-container-lowest)] border border-[var(--color-surface-variant)] shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-coral)] transition-all duration-300"
-            >
-              <IconBox icon={icon} color="tertiary" />
-              <div>
-                <h4 className="text-title-md font-bold text-[var(--color-on-surface)] mb-2">
-                  {t(`${key}Title`)}
-                </h4>
-                <p className="text-body-md text-[var(--color-on-surface-variant)] leading-relaxed">
-                  {t(`${key}Desc`)}
-                </p>
+            <ScrollRevealItem key={key}>
+              <div className="flex gap-6 p-8 rounded-[var(--radius-3xl)] bg-[var(--color-surface-container-lowest)] border border-[var(--color-surface-variant)] shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-coral)] transition-all duration-300">
+                <IconBox icon={icon} color="tertiary" />
+                <div>
+                  <h4 className="text-title-md font-bold text-[var(--color-on-surface)] mb-2">
+                    {t(`${key}Title`)}
+                  </h4>
+                  <p className="text-body-md text-[var(--color-on-surface-variant)] leading-relaxed">
+                    {t(`${key}Desc`)}
+                  </p>
+                </div>
               </div>
-            </div>
+            </ScrollRevealItem>
           ))}
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

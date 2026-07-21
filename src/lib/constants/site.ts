@@ -38,7 +38,7 @@ export const Teacher = {
 export const Stats = [
     { value: '10k+', labelKey: 'statStudentsLabel' },
     { value: '95%', labelKey: 'statPassRateLabel' },
-    { value: '15+', labelKey: 'statCoursesLabel' },
+    { value: '15%', labelKey: 'statCoursesLabel' },
     { value: '24/7', labelKey: 'statSupportLabel' },
 ] as const;
 

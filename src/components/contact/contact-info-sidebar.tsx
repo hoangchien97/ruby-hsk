@@ -1,12 +1,15 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { Contact as SiteContact } from '@/lib/constants/site';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 export function ContactInfoSidebar({ locale }: { locale: string }) {
   const t = useTranslations('Contact');
 
   return (
-    <div className="flex flex-col gap-4 h-full">
+    <ScrollReveal className="flex flex-col gap-4 h-full">
       {/* Hotline Card */}
       <a
         href={`tel:${SiteContact.phoneTel}`}
@@ -66,6 +69,6 @@ export function ContactInfoSidebar({ locale }: { locale: string }) {
           </p>
         </div>
       </div>
-    </div>
+    </ScrollReveal>
   );
 }

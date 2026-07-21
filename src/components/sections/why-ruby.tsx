@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Heart, Lightbulb, Calendar, Trophy, BookCheck, Users } from 'lucide-react';
+import { ScrollReveal, ScrollRevealItem } from '@/components/ui/scroll-reveal';
 
 interface WhyRubyProps {
   locale?: string;
@@ -51,32 +52,34 @@ export function WhyRuby({ locale = 'vi' }: WhyRubyProps) {
       <div className="app-container">
         <div className="grid grid-cols-1 items-center gap-10 lg:gap-16 lg:grid-cols-2">
           {/* Left: 2×2 feature grid */}
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 order-2 lg:order-1">
+          <ScrollReveal
+            variant="stagger"
+            className="grid grid-cols-1 gap-5 sm:grid-cols-2 order-2 lg:order-1"
+          >
             {features.map((f) => {
               const Icon = f.icon;
               return (
-                <div
-                  key={f.title}
-                  className="rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] p-6 shadow-[var(--shadow-soft)] flex flex-col items-center text-center sm:items-start sm:text-left gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-card)]"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-[var(--radius-xl)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-                    <Icon className="h-6 w-6" />
+                <ScrollRevealItem key={f.title}>
+                  <div className="rounded-[var(--radius-2xl)] border border-[var(--color-surface-variant)] bg-[var(--color-surface-container-lowest)] p-6 shadow-[var(--shadow-soft)] flex flex-col items-center text-center sm:items-start sm:text-left gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-card)]">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-[var(--radius-xl)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-title-md font-semibold text-[var(--color-on-surface)]">
+                        {f.title}
+                      </h4>
+                      <p className="mt-1 text-label-lg text-[var(--color-on-surface-variant)]">
+                        {f.desc}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-title-md font-semibold text-[var(--color-on-surface)]">
-                      {f.title}
-                    </h4>
-                    <p className="mt-1 text-label-lg text-[var(--color-on-surface-variant)]">
-                      {f.desc}
-                    </p>
-                  </div>
-                </div>
+                </ScrollRevealItem>
               );
             })}
-          </div>
+          </ScrollReveal>
 
           {/* Right: Why text + bullets */}
-          <div className="order-1 lg:order-2">
+          <ScrollReveal className="order-1 lg:order-2">
             <h2 className="text-headline-lg-mobile md:text-headline-lg text-[var(--color-on-surface)] text-center md:text-left">
               {t('whyTitle')}{' '}
               <span className="text-[var(--color-primary)] block md:inline">Ruby HSK?</span>
@@ -104,7 +107,7 @@ export function WhyRuby({ locale = 'vi' }: WhyRubyProps) {
                 );
               })}
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

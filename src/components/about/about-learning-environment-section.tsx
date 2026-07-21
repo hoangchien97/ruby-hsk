@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Palette } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
+import { ScrollReveal, ScrollRevealItem } from "@/components/ui/scroll-reveal";
 
 const GALLERY_IMAGES = [
   {
@@ -30,15 +31,17 @@ export function AboutLearningEnvironmentSection() {
   return (
     <section className="app-section">
       <div className="app-container">
-        <SectionHeader
-          title={t("learningEnvTitle")}
-          description={t("learningEnvDesc")}
-          className="mb-8 md:mb-12"
-        />
+        <ScrollReveal>
+          <SectionHeader
+            title={t("learningEnvTitle")}
+            description={t("learningEnvDesc")}
+            className="mb-8 md:mb-12"
+          />
+        </ScrollReveal>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <ScrollReveal variant="stagger" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {GALLERY_IMAGES.map(({ key, src }) => (
-            <div key={key} className="space-y-3">
+            <ScrollRevealItem key={key} className="space-y-3">
               <div className="aspect-video rounded-[var(--radius-2xl)] overflow-hidden shadow-[var(--shadow-soft)]">
                 <img
                   src={src}
@@ -54,10 +57,10 @@ export function AboutLearningEnvironmentSection() {
                   {t(`${key}Desc`)}
                 </p>
               </div>
-            </div>
+            </ScrollRevealItem>
           ))}
 
-          <div className="space-y-3">
+          <ScrollRevealItem className="space-y-3">
             <div className="aspect-video rounded-[var(--radius-2xl)] bg-[var(--color-surface-container-low)] border border-[var(--color-surface-variant)] flex items-center justify-center">
               <Palette
                 className="w-10 h-10 text-[var(--color-primary)]/40"
@@ -72,8 +75,8 @@ export function AboutLearningEnvironmentSection() {
                 {t("env4Desc")}
               </p>
             </div>
-          </div>
-        </div>
+          </ScrollRevealItem>
+        </ScrollReveal>
       </div>
     </section>
   );
