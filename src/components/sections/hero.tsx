@@ -7,6 +7,17 @@ import { TrustStats } from '@/components/sections/trust-stats';
 import { Link } from '@/i18n/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+// ── Hero text animation variants ──────────────────────────────────
+const heroTextVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] },
+  }),
+};
 
 interface HomeHeroProps {
   locale?: string;
@@ -61,21 +72,46 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
         </div>
 
         <div className="app-container relative z-10 grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
-          {/* Left: Copy */}
+          {/* Left: Copy — staggered entrance on page load */}
           <div className="z-10">
-            <SectionBadge className="mb-6">{t('badge')}</SectionBadge>
+            <motion.div
+              custom={0}
+              variants={heroTextVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <SectionBadge className="mb-6">{t('badge')}</SectionBadge>
+            </motion.div>
 
-            <h1 className="text-display-lg md:text-7xl md:font-extrabold md:leading-[1.05] text-[var(--color-on-background)] mb-6">
+            <motion.h1
+              custom={0.12}
+              variants={heroTextVariants}
+              initial="hidden"
+              animate="visible"
+              className="text-display-lg md:text-7xl md:font-extrabold md:leading-[1.05] text-[var(--color-on-background)] mb-6"
+            >
               {t('title')} <br />
               <span className="text-[var(--color-primary)]">{t('subtitle')}</span>
-            </h1>
+            </motion.h1>
 
-            <p className="text-body-lg text-[var(--color-on-surface-variant)] mb-10 max-w-xl">
+            <motion.p
+              custom={0.26}
+              variants={heroTextVariants}
+              initial="hidden"
+              animate="visible"
+              className="text-body-lg text-[var(--color-on-surface-variant)] mb-10 max-w-xl"
+            >
               {t('sub')}
-            </p>
+            </motion.p>
 
             {/* CTA Buttons — rounded-full, h-12 mobile / h-14 desktop */}
-            <div className="mt-8 grid grid-cols-2 md:flex md:flex-wrap gap-3 md:gap-4 mb-8">
+            <motion.div
+              custom={0.4}
+              variants={heroTextVariants}
+              initial="hidden"
+              animate="visible"
+              className="mt-8 grid grid-cols-2 md:flex md:flex-wrap gap-3 md:gap-4 mb-8"
+            >
               <Link href="/contact" className="w-full md:w-auto">
                 <Button
                   className="w-full rounded-full h-12 md:h-14 px-4 md:px-8 text-label-lg md:text-body-md font-bold
@@ -93,10 +129,16 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
                   {t('btnRoadmap')}
                 </Button>
               </Link>
-            </div>
+            </motion.div>
 
             {/* Active Students Counter */}
-            <div className="flex flex-wrap gap-4">
+            <motion.div
+              custom={0.52}
+              variants={heroTextVariants}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-wrap gap-4"
+            >
               <div className="flex -space-x-3">
                 {STUDENT_AVATARS.map((av, idx) => (
                   <div
@@ -113,7 +155,7 @@ export function HomeHero({ locale = 'vi' }: HomeHeroProps) {
               <p className="text-label-lg text-[var(--color-on-surface-variant)] self-center font-semibold">
                 {t('activeStudents')}
               </p>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right: Slideshow (desktop only) */}

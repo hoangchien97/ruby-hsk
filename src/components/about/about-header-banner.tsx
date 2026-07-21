@@ -5,10 +5,17 @@ import { SectionBadge } from "@/components/ui/section-badge";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
-const STAT_KEYS = [
-  { value: "statYears", label: "statYearsLabel" },
-  { value: "statStudents", label: "statStudentsLabel" },
-  { value: "statPassRate", label: "statPassRateLabel" },
+/**
+ * About page stats:
+ * Tách biệt số và đơn vị trước khi truyền vào AnimatedCounter:
+ * - statYears (5+)      -> số 5 và hậu tố "+"
+ * - statStudents (10k+) -> số 10 và hậu tố "k+"
+ * - statPassRate (98%)  -> số 98 và hậu tố "%"
+ */
+const ABOUT_STATS_CONFIG = [
+  { value: 5, suffix: "+", labelKey: "statYearsLabel" },
+  { value: 10, suffix: "k+", labelKey: "statStudentsLabel" },
+  { value: 98, suffix: "%", labelKey: "statPassRateLabel" },
 ] as const;
 
 const HERO_IMAGE_URL =
@@ -37,13 +44,13 @@ export function AboutHeaderBanner() {
 
             {/* Stats bar */}
             <div className="mt-10 grid grid-cols-3 gap-4 pt-8 border-t border-[var(--color-primary)]/10 max-w-lg">
-              {STAT_KEYS.map(({ value, label }) => (
-                <div key={value}>
-                  <p className="text-headline-lg text-[var(--color-primary)] font-bold">
-                    <AnimatedCounter value={t(value)} />
+              {ABOUT_STATS_CONFIG.map(({ value, suffix, labelKey }) => (
+                <div key={labelKey}>
+                  <p className="text-headline-lg text-[var(--color-on-surface)] font-bold">
+                    <AnimatedCounter value={value} suffix={suffix} delay={0.55} duration={1400} />
                   </p>
                   <p className="text-label-lg text-[var(--color-on-surface-variant)] uppercase font-semibold tracking-wide mt-1">
-                    {t(label)}
+                    {t(labelKey)}
                   </p>
                 </div>
               ))}

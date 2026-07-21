@@ -1,26 +1,30 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
-import {
-  useInView,
-  useMotionValue,
-  useMotionValueEvent,
-  animate,
-  useReducedMotion,
-} from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { useInView, useReducedMotion } from 'framer-motion';
 
 /** Props for the AnimatedCounter component */
 export interface AnimatedCounterProps {
-  /** The final target value of the counter (can be a number or a string like "10k+", "95%") */
-  value: number | string;
+  /** The final target value of the counter (must be a clean number) */
+  value: number;
   /** The starting value of the animation (defaults to 0) */
   from?: number;
   /** A string prefix before the formatted number (e.g. "+") */
   prefix?: string;
-  /** A string suffix after the formatted number (e.g. "%" or "+") */
+  /** A string suffix after the formatted number (e.g. "%" or "k+") */
   suffix?: string;
-  /** The animation duration in seconds (defaults to 1.5) */
+  /**
+   * Animation duration in **milliseconds** (defaults to 1500).
+   * Note: changed from seconds to ms for consistency with requestAnimationFrame.
+   */
   duration?: number;
+  /**
+   * Delay before the counter starts, in **seconds** (defaults to 0).
+   * Use this when the counter is inside a ScrollReveal to avoid animating
+   * while the parent is still fading in (opacity: 0 → 1).
+   * E.g. if parent ScrollReveal takes 0.5 s, set delay={0.55}.
+   */
+  delay?: number;
   /** Decimal precision (defaults to 0) */
   decimals?: number;
   /** Locale for formatting (defaults to "vi-VN") */
@@ -29,128 +33,97 @@ export interface AnimatedCounterProps {
   className?: string;
   /** Whether to animate only once when entering viewport (defaults to true) */
   once?: boolean;
-  /** Viewport threshold to trigger the animation (defaults to 0.25) */
+  /** Viewport threshold to trigger the animation (defaults to 0.2) */
   threshold?: number;
   /** Custom Intl.NumberFormatOptions override */
   formatOptions?: Intl.NumberFormatOptions;
 }
 
 /**
- * Utility to parse formatted statistic strings like "10k+", "95%", "5+" into
- * numeric value, prefix, and suffix.
- */
-export function parseStatString(valStr: string): {
-  isNumeric: boolean;
-  value: number;
-  prefix: string;
-  suffix: string;
-} {
-  const match = valStr.match(/^([^\d]*)([\d.,]+)([^\d]*)$/);
-  if (!match) {
-    return { isNumeric: false, value: 0, prefix: '', suffix: valStr };
-  }
-
-  const prefix = match[1] ?? '';
-  const numVal = parseFloat(match[2].replace(/,/g, ''));
-  const suffix = match[3] ?? '';
-
-  if (isNaN(numVal)) {
-    return { isNumeric: false, value: 0, prefix: '', suffix: valStr };
-  }
-
-  return { isNumeric: true, value: numVal, prefix, suffix };
-}
-
-/**
- * AnimatedCounter — scroll-triggered count-up animation.
- * Automatically handles both numeric values and formatted strings (e.g. "10k+", "95%").
+ * AnimatedCounter — scroll-triggered count-up animation for numeric values.
+ *
+ * Architecture:
+ * - useInView detects when the element enters the viewport.
+ * - requestAnimationFrame drives the numeric tween (reliable, no FM internal state).
+ * - SSR-safe: renders the final value on the server (no hydration mismatch, SEO-friendly).
+ * - delay prop: wait N seconds before starting — prevents animating before a parent
+ *   ScrollReveal has finished its own fade/scale-in animation.
+ * - Respects prefers-reduced-motion: skips animation, shows final value instantly.
  */
 export function AnimatedCounter({
   value,
   from = 0,
   prefix = '',
   suffix = '',
-  duration = 1.5,
+  duration = 1500,
+  delay = 0,
   decimals = 0,
   locale = 'vi-VN',
   className = '',
   once = true,
-  threshold = 0.25,
+  threshold = 0.2,
   formatOptions,
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once, amount: threshold });
   const shouldReduceMotion = useReducedMotion();
 
-  // Parse target number, prefix, and suffix if value is a string
-  const isString = typeof value === 'string';
-  const parsed = isString
-    ? parseStatString(value)
-    : { isNumeric: true, value: Number(value), prefix: '', suffix: '' };
+  const hasStarted = useRef(false);
+  const rafId = useRef<number | null>(null);
+  const timerId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const targetValue = parsed.isNumeric ? parsed.value : 0;
-  const resolvedPrefix = prefix || parsed.prefix;
-  const resolvedSuffix = suffix || parsed.suffix;
-
-  const [isMounted, setIsMounted] = useState(false);
-  const [displayValue, setDisplayValue] = useState(targetValue);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const motionValue = useMotionValue(from);
-
-  // ── Mark as mounted on client ──────────────────────────────────────
-  useEffect(() => {
-    setIsMounted(true);
-    if (parsed.isNumeric) {
-      setDisplayValue(from); // reset to start position before animation
-    }
-  }, [from, parsed.isNumeric]);
-
-  // ── Sync MotionValue → React state so the DOM actually updates ────
-  useMotionValueEvent(motionValue, 'change', (latest) => {
-    if (parsed.isNumeric) {
-      setDisplayValue(latest);
-    }
-  });
+  // SSR-safe: render final value on server so bots see the real number.
+  // On client, animation will reset to `from` once it starts.
+  const [count, setCount] = useState(value);
 
   useEffect(() => {
-    if (!isMounted || !isInView || hasAnimated || !parsed.isNumeric) return;
+    // Only start once and only when the element is in the viewport
+    if (!isInView || hasStarted.current) return;
+    hasStarted.current = true;
 
     // Immediately show final value for reduced-motion users
     if (shouldReduceMotion) {
-      setDisplayValue(targetValue);
-      setHasAnimated(true);
+      setCount(value);
       return;
     }
 
-    // Animate from `from` to `targetValue`
-    motionValue.set(from);
-    const controls = animate(motionValue, targetValue, {
-      duration,
-      ease: [0.25, 0.46, 0.45, 0.94], // ease-out-quart
-    });
+    // ease-out-quart: fast start, gradual deceleration
+    const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
 
-    controls.then(() => setHasAnimated(true));
+    const startAnimation = () => {
+      setCount(from); // reset to start value
+      let startTime: number | null = null;
 
-    return () => controls.stop();
-  }, [
-    isMounted,
-    isInView,
-    targetValue,
-    from,
-    duration,
-    shouldReduceMotion,
-    hasAnimated,
-    motionValue,
-    parsed.isNumeric,
-  ]);
+      const tick = (currentTime: number) => {
+        if (startTime === null) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        const current = from + (value - from) * easedProgress;
+        setCount(current);
 
-  if (!parsed.isNumeric) {
-    return (
-      <span ref={ref} className={className}>
-        {value}
-      </span>
-    );
-  }
+        if (progress < 1) {
+          rafId.current = requestAnimationFrame(tick);
+        } else {
+          setCount(value); // pin to exact final value
+        }
+      };
+
+      rafId.current = requestAnimationFrame(tick);
+    };
+
+    if (delay > 0) {
+      timerId.current = setTimeout(startAnimation, delay * 1000);
+    } else {
+      startAnimation();
+    }
+
+    return () => {
+      if (timerId.current) clearTimeout(timerId.current);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInView]);
 
   const formatter = new Intl.NumberFormat(locale, {
     minimumFractionDigits: decimals,
@@ -160,9 +133,48 @@ export function AnimatedCounter({
 
   return (
     <span ref={ref} className={className}>
-      {resolvedPrefix}
-      {isMounted ? formatter.format(displayValue) : formatter.format(targetValue)}
-      {resolvedSuffix}
+      {prefix}
+      {formatter.format(Math.round(count))}
+      {suffix}
     </span>
   );
+}
+
+/**
+ * Utility to parse formatted statistic strings like "10k+", "95%", "5+" into
+ * numeric value, prefix, and suffix.
+ *
+ * Examples:
+ *   "10k+"  → { isNumeric: true, value: 10,  prefix: "", suffix: "k+" }
+ *   "98%"   → { isNumeric: true, value: 98,  prefix: "", suffix: "%" }
+ *   "5+"    → { isNumeric: true, value: 5,   prefix: "", suffix: "+" }
+ *   "24/7"  → { isNumeric: false, value: 0,  prefix: "", suffix: "24/7" }
+ */
+export function parseStatString(valStr: string): {
+  isNumeric: boolean;
+  value: number;
+  prefix: string;
+  suffix: string;
+} {
+  // Matches any optional non-digit prefix, a continuous block of digits (with optional dots/commas), and any trailing non-digit suffix
+  const match = valStr.match(/^([^\d]*)([\d.,]+)([^\d]*)$/);
+  if (!match) {
+    return { isNumeric: false, value: 0, prefix: '', suffix: valStr };
+  }
+
+  const prefix = match[1] ?? '';
+  const numStr = match[2].replace(/,/g, '');
+  const suffix = match[3] ?? '';
+
+  // Explicit check to exclude standard date/ratio formats like "24/7" or "12/2026"
+  if (suffix.startsWith('/')) {
+    return { isNumeric: false, value: 0, prefix: '', suffix: valStr };
+  }
+
+  const numVal = parseFloat(numStr);
+  if (isNaN(numVal)) {
+    return { isNumeric: false, value: 0, prefix: '', suffix: valStr };
+  }
+
+  return { isNumeric: true, value: numVal, prefix, suffix };
 }

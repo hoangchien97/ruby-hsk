@@ -52,7 +52,7 @@ export function TeacherSection({
             <div className="mt-6 grid grid-cols-2 gap-4">
               <div>
                 <p className="font-bold text-[var(--color-on-surface)]">
-                  <AnimatedCounter value={Teacher.yearsExperience} suffix="+" /> {t('teacherYears')}
+                  <AnimatedCounter value={Teacher.yearsExperience} suffix="+" delay={0.55} /> {t('teacherYears')}
                 </p>
                 <p className="text-label-lg text-[var(--color-on-surface-variant)]">
                   {t('teacherScope')}
